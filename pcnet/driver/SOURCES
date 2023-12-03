@@ -1,0 +1,25 @@
+USE_PDB=1
+TARGETNAME=PCNTN4M
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+#INCLUDES=..\inc;..\..\inc
+INCLUDES=C:\DDK\src\network\inc;C:\DDK\inc
+
+SOURCES=lance.c \
+	interrup.c \
+        send.c \
+        request.c \
+        alloc.c \
+        Pcntn3.rc \
+        
+        
+RELATIVE_DEPTH=..\..
+
+MSC_WARNING_LEVEL=/W3 /WX
+       
+
+

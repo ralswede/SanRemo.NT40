@@ -1,0 +1,58 @@
+1 DLGINCLUDE "Amddlg.h"
+
+PCNTN3 DIALOG FIXED 19, 18, 235, 143
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STYLE DS_ABSALIGN | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "@Caption"
+FONT 8, "MS Shell Dlg"
+CLASS "mydlg"
+BEGIN
+    DEFPUSHBUTTON   "@Continue", 403, 14, 122, 49, 14
+    PUSHBUTTON      "@Cancel", 424, 80, 124, 45, 13
+    LTEXT           "@Combo2Label", 202, 10, 37, 63, 8, WS_TABSTOP
+    LTEXT           "@Combo1Label", 201, 10, 16, 63, 8, WS_TABSTOP
+    LTEXT           "@Combo3Label", 203, 10, 59, 60, 11, WS_TABSTOP
+    COMBOBOX        481, 76, 12, 55, 53, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        482, 76, 34, 55, 80, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        483, 76, 56, 55, 47, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "@Group1", 102, 156, 42, 59, 70
+    AUTORADIOBUTTON "@Radio1", 611, 161, 55, 51, 10
+    AUTORADIOBUTTON "@Radio2", 612, 161, 68, 50, 10
+    AUTORADIOBUTTON "@Radio3", 613, 161, 81, 51, 10
+    AUTORADIOBUTTON "@Radio4", 614, 161, 95, 51, 10
+    CHECKBOX        "@CheckBox1", 451, 156, 11, 70, 10
+    CHECKBOX        "@CheckBox2", 452, 156, 24, 70, 10
+    ICON            "dllicon", 101, 214, 2, 16, 16
+    PUSHBUTTON      "@Help", 408, 167, 125, 39, 13
+    LTEXT           "@Combo4Label", 204, 10, 80, 54, 10, WS_TABSTOP
+    COMBOBOX        484, 76, 78, 55, 47, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        485, 76, 100, 55, 47, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "@Combo5Label", 104, 10, 102, 54, 10, WS_TABSTOP
+END
+
+PCNTN3PCI DIALOG 18, 56, 242, 62
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "@Caption"
+FONT 8, "MS Sans Serif"
+CLASS "mydlg"
+BEGIN
+    LTEXT           "@Combo1Label", 201, 8, 8, 55, 8
+    COMBOBOX        481, 8, 20, 55, 53, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "@Continue", 403, 8, 42, 50, 13
+    PUSHBUTTON      "@Cancel", 424, 96, 42, 50, 13
+    PUSHBUTTON      "@Help", 408, 184, 42, 50, 13
+    ICON            "dllicon", 101, 216, 4, 16, 16
+    CHECKBOX        "@CheckBox1", 451, 76, 8, 54, 10
+    CHECKBOX        "@CheckBox2", 452, 76, 20, 54, 10
+    LTEXT           "@Combo2Label", 202, 142, 8, 56, 8
+    COMBOBOX        482, 142, 20, 54, 54, CBS_DROPDOWNLIST | CBS_OEMCONVERT | 
+                    WS_VSCROLL | WS_TABSTOP
+END

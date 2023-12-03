@@ -1,0 +1,1651 @@
+//	Copyright (c) 1997 ADVANCED MICRO DEVICES, INC. All Rights Reserved.
+//	This software is unpblished and contains the trade secrets and
+//	confidential proprietary information of AMD. Unless otherwise provided
+//	in the Software Agreement associated herewith, it is licensed in confidence
+//	"AS IS" and is not to be reproduced in whole or part by any means except
+//	for backup. Use, duplication, or disclosure by the Government is subject
+//	to the restrictions in paragraph (b) (3) (B) of the Rights in Technical
+//	Data and Computer Software clause in DFAR 52.227-7013 (a) (Oct 1988).
+//	Software owned by Advanced Micro Devices, Inc., One AMD Place,
+//	Sunnyvale, CA 94088.
+//
+//	Module Name:
+//
+//		pcnet.mif
+//
+//	Abstract:
+//
+//		DMI MIF file for the AMD PCnet network adapter
+//
+
+Language = "en|US|iso8859-1"
+
+Start Component
+    Name = "AMD PCnet Ethernet Controller Component"
+    Description = "This component implements a set of sixteen groups"
+                  " related to the AMD PCnet Family Ethernet controllers."
+
+    Start Path
+        Name = "Instrumentation"
+        WIN32 = Direct-interface
+    End Path
+
+    Start Enum
+        Name = "BOOL"
+        Type = Integer
+        0 = "FALSE"
+        1 = "TRUE"
+    End Enum
+
+// Component ID Group
+
+    Start Group
+        Name  = "ComponentID"
+        ID    = 1
+        Class = "DMTF|ComponentID|001"
+        Description= "This group defines attributes common to all components. "
+                     "This group is required."
+
+//
+//   Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Manufacturer"
+            ID          = 1
+            Description = "Manufacturer of this network device"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value       = "Advanced Micro Devices, Inc." //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Product"
+            ID          = 2
+            Description = "Product name for this component."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value       = "PCnet Family Ethernet Controller" //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Version"
+            ID          = 3
+            Description = "Version number of this component."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(64)
+            Value       = "1.0"   //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Serial Number"
+            ID          = 4
+            Description = "Serial number for this component."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(64)
+            Value       = "1000000"    //set or modified by the user
+        End Attribute
+
+        Start Attribute
+            Name        = "Installation"
+            ID          = 5
+            Description = "The date of the install of this component."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Date
+            Value       = "19950101010000.000000+120"  //set or modified by the user
+        End Attribute
+
+        Start Attribute
+            Name        = "Verify"
+            Id          = 6
+            Description = "A code that provides a level of verification "
+                          "that the component is still installed and working."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+               0x00 = "An error occurred; check status code."
+               0x01 = "This component does not exist."
+               0x02 = "Verification is not supported."
+               0x03 = "Reserved."
+               0x04 = "This component exists, but the functionality is untested."
+               0x05 = "This component exists, but the functionality is unknown."
+               0x06 = "This component exists, and is not functioning correctly."
+               0x07 = "This component exists, and is functioning correctly."
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+    End Group
+
+// System Resources Description Group
+
+    Start Group
+        Name = "System Resources Description"
+        ID = 2
+        Class = "DMTF|System Resources Description|001"
+        Description = "The System Resources Description group "
+                      "describes the number of entries in the System Resources Group. "
+
+//
+// Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Device Count"
+            ID          = 1
+            Description = "A counter of the number of different hardware"
+                          " devices represented in this table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = 1
+        End Attribute
+
+        Start Attribute
+            Name        = "System Resource Count"
+            ID          = 2
+            Description = "A count of the total number of system resources on"
+                          " this sytem."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+    End Group
+
+//   System Resources Group
+
+//   This group describes the system hardware resources which are commonly
+//   used in PC style computers.  This group is organized as a table where
+//   each entry contains a different type of resource.
+
+    Start Group
+        Name = "System Resources"
+        ID = 3
+        Class = "DMTF|System Resources|001"
+        Key = 1, 2
+        Description = "The System Resources group contains hardware "
+                      "descriptions which are commonly used on PC style "
+                      "LAN Adapters such as IRQs, IO ports, and memory "
+                      "address ranges."
+
+//
+//   Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Resource Instance"
+            ID          = 1
+            Description = "Instance indentifier for a group in this table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Resource Parent Group Index"
+            ID          = 2
+            Description = "This attribute is a 'back pointer' to a group within the system MIF, "
+            "if applicable.  If the back pointer is not known, either because the device is not "
+            "represented by a group, or the actual device type is not known, then the value of "
+            "this attribute will be 0."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Resource Type"
+            ID          = 3
+            Description = "The type of system resource represented by this"
+                          " entry."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Memory Range"
+                              0x04 = "I/O Port"
+                              0x05 = "IRQ"
+                              0x06 = "DMA"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Resource Base"
+            ID          = 4
+            Description = "The starting address of the system resource in the"
+                          " appropriate address space."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Resource Size"
+            ID          = 5
+            Description = "The size of the system resource."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Resource Flags"
+            ID          = 6
+            Description = "This attribute contains fields representing the "
+                          "status of this resource entry.  The meaning of "
+                          "this field varies according to the Resource Type "
+                          "field in this group."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name = "Resource Group ID"
+            ID = 7
+            Description = "This attribute is a 'back pointer' to a group within "
+                          "the system MIF, if applicable.  If the back pointer is "
+                          "not known, either because the device is not represented "
+                          "by a group, or the actual device type is not known, then "
+                          "the value of this attribute will be 0."
+            Access = Read-Only
+            Storage = Common
+            Type = Integer
+            Value = 0
+        End Attribute
+
+    End Group
+
+//  Network Adapter 802 Port Group
+//  This group consists of object  related to the network adapter hardware
+//  on a per port basis.
+
+    Start Group
+        Name = "Network Adapter 802 Port Group"
+        ID   = 4
+        Class = "DMTF|Network Adapter 802 Port|001"
+        Key = 1
+        Description= "Contains objects related to the Network Adapter Port."
+
+//
+//  Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Index"
+            ID          = 1
+            Description = "Instance identifier of this port."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = 0
+        End Attribute
+
+        Start Attribute
+            Name        = "Permanent Network Address"
+            ID          = 2
+            Description = "This is the permanent node address of the adapter"
+                          "as a display string."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(12)
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Current Network Address"
+            ID          = 3
+            Description = "This is the node address that is currently used by"
+                          " the adapter as a display string."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(12)
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Connector Type"
+            ID          = 4
+            Description = "This is the connector type currently being used by"
+                          " the adapter."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Unknown"
+                              0x02 = "AUI"
+                              0x03 = "UTP category 3"
+                              0x04 = "UTP category 4"
+                              0x05 = "UTP category 5"
+                              0x06 = "BNC"
+                              0x07 = "STP RJ45"
+                              0x08 = "STP DB9"
+                              0x09 = "Fiber MIC"
+                              0x0A = "Apple AUI"
+                          End Enum
+            Value       = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Data Rate"
+            ID          = 5
+            Description = "This is the adapter data rate in Mbps."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Packets Tx"
+            ID          = 6
+            Description = "This is the total number of packets transmitted."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Bytes Tx"
+            ID          = 7
+            Description = "This is the total number of bytes transmitted."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Packets Rx"
+            ID          = 8
+            Description = "This is the total number packets received."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Bytes Rx"
+            ID          = 9
+            Description = "This is the total number of bytes received."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Tx Errors"
+            ID          = 10
+            Description = "This is the total number of transmit errors."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Rx Errors"
+            ID          = 11
+            Description = "This is the total number of receive errors."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Host Errors"
+            ID          = 12
+            Description = "This is the total number of errors due to problems"
+                          " with the network adapter host interface"
+                          "(i.e. overrun / underrun errors)."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Total Wire Errors"
+            ID          = 13
+            Description = "This is the total number of errors due to problems"
+                          " with the network (i.e.  receive CRC Errors). "
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter64
+            Value = * "Instrumentation"
+        End Attribute
+
+    End Group
+
+// 802 Alternate Address Group
+
+    Start Group
+        Name = "802 Alternate Address Group"
+        ID   = 5
+        Class = "DMTF|802 Alternate Address|001"
+        Key = 1, 2
+        Description= "Contains objects related to the Network Adapter Port."
+
+//
+//  Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Index"
+            ID          = 1
+            Description = "Instance identifier of this address."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Port Index"
+            ID          = 2
+            Description = "Index into the 802 Port group."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Address Type"
+            ID          = 3
+            Description = "Type of address contained in this instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Multicast"
+                              0x02 = "Functional"
+                              0x03 = "Group"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Alternate Address"
+            ID          = 4
+            Description = "The address as a display string (e.g. Locally Administered Address,"
+                          "Multicast address, etc.)."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(12)
+            Value = * "Instrumentation"
+        End Attribute
+
+    End Group
+
+//  Adapter Driver Group
+
+    Start Group
+        Name = "Network Adapter Driver Group"
+        ID   = 6
+        Class = "DMTF|Network Adapter Driver|001"
+        Key = 1
+        Description= "Contains objects related to the Network Adapter Device"
+                     " Driver."
+
+//
+// Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Driver Index"
+            ID          = 1
+            Description = "This is index into the Network Adapter Driver Group table."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Integer
+            Value       = 0
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Software Name"
+            ID          = 2
+            Description = "This is the sign-on name of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Software Version"
+            ID          = 3
+            Description = "This is revision level of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Software Description"
+            ID          = 4
+            Description = "An expanded description of the driver software."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Size"
+            ID          = 5
+            Description = "This is the resident memory size of the driver in"
+                          " bytes."
+            Access      = Read-Only
+            Storage     = Common
+            Type        =  Integer
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Interface Type"
+            ID          = 6
+            Description = "This is the interface type of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "IPX"
+                              0x03 = "ODI"
+                              0x04 = "NDIS"
+                              0x05 = "Packet Driver"
+                              0x06 = "LANtastic"
+                              0x07 = "UNIX"
+                              0x08 = "Appletalk"
+                              0x09 = "IBM Lan Support Program"
+                              0x0A = "LLC"
+                              0x0B = "Netbios"
+                              0x0C = "Pathworks (DLL)"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Interface Specification Version"
+            ID          = 7
+            Description = "This is specification version of the driver "
+                          "interface."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Driver Interface Description"
+            ID          = 8
+            Description = "An expanded description of the driver interface."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value = * "Instrumentation"
+        End Attribute
+
+    End Group
+
+//  Network Adapter Hardware Group
+
+    Start Group
+        Name = "Network Adapter Hardware Group"
+        ID   = 7
+        Class = "DMTF|Network Adapter Hardware|001"
+        Key = 1
+        Description= "Contains Objects related to the Network Adapter"
+                     " Hardware."
+
+//
+//  Attributes for the Network Adapter Hardware Group
+//
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 1
+            Description = "This is index into the PCnet Network Adapter Hardware Group table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Network Topology"
+            ID          = 2
+            Description = "This is the network topology of the adapter."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "10 Mbps Ethernet"
+                              0x03 = "100 Mbps Ethernet"
+                              0x04 = "100/10 Mbps Ethernet"
+                              0x05 = "100 Mbps VG AnyLAN"
+                              0x06 = "4 Mbps Token-Ring"
+                              0x07 = "16 Mbps Token-Ring"
+                              0x08 = "16/4 Mbps Token-Ring"
+                              0x09 = "2 Mbps Arcnet"
+                              0x0A = "20 Mbps Arcnet"
+                              0x0B = "FDDI"
+                              0x0C = "ATM"
+                              0x0D = "AppleTalk"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start  Attribute
+            Name        = "Transmission Capability"
+            ID          = 3
+            Description = "The transmission capabilities of the adapter."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Normal"
+                              0x02 = "Full Duplex"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Network Adapter RAM Size"
+            ID          = 4
+            Description = "This is the total size of adapter on-board RAM"
+                          " in Kb."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value = * "Instrumentation"
+
+        End Attribute
+
+        Start Attribute
+            Name        = "Bus Type"
+            ID          = 5
+            Description = "This is the bus type of the adapter."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "ISA"
+                              0x03 = "EISA"
+                              0x04 = "MCA"
+                              0x05 = "PCI"
+                              0x06 = "VL"
+                              0x07 = "PCMCIA"
+                              0x08 = "Parallel"           // used for i/o port interfaces, e.g. LPT1
+                              0x09 = "NEC98"
+                              0x100 = "Motherboard"
+                          End Enum
+            Value = * "Instrumentation"  //user must specify 0x100 for MB
+        End Attribute
+
+        Start Attribute
+            Name        = "Bus Width"
+            ID          = 6
+            Description = "This is the bus width of the adapter."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "8 bit card"
+                              0x04 = "16 bit card"
+                              0x05 = "32 bit card"
+                              0x06 = "64 bit card"
+                              0x07 = "128 bit card"
+                          End Enum
+            Value = * "Instrumentation"  //user can overwrite it
+        End Attribute
+
+    End Group
+
+//   Operational State Group
+
+//   This group consists of objects derived from the DSIS standards
+//   committee.  The first four objects are associated with enumerated field
+//   definitions.
+
+    Start Group
+        Name = "Operational State"
+        ID = 8
+        Class = "DMTF|Operational State|001"
+        Key = 1
+        Description="This group provides the operational state, usage, "
+                    " availability status, and administrative state indicators for"
+                    " specific Device Group instances."
+
+//
+// Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "Operational State Instance Index"
+            ID          = 1
+            Description = "The Index into the Operational State table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = 0
+        End Attribute
+
+        Start Attribute
+            Name        = "Device Group index"
+            ID          = 2
+            Description = "The group ID of the group referencing this"
+                          " instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = 0
+        End Attribute
+
+        Start Attribute
+            Name        = "Operational Status"
+            ID          = 3
+            Description = "The operational status of the Device group"
+                          " instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Enabled"
+                              0x04 = "Disabled"
+                              0x05 = "Not Applicable"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Usage State"
+            ID          = 4
+            Description = "The usage state of the Device Group instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Idle"
+                              0x04 = "Active"
+                              0x05 = "Busy"
+                              0x06 = "Not Applicable"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Availability Status"
+            ID          = 5
+            Description = "The availability status of the Device Group"
+                          " instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Running"
+                              0x04 = "Warning"
+                              0x05 = "In Test"
+                              0x06 = "Not Applicable"
+                              0x07 = "Power Off"
+                              0x08 = "Off Line"
+                              0x09 = "Off Duty"
+                              0x0A = "Degraded"
+                              0x0B = "Not Installed"
+                              0x0C = "Install Error"
+                              0x0D = "Power Save"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Administrative State"
+            ID          = 6
+            Description = "The administrative state of the Device Group"
+                          " instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Locked"
+                              0x04 = "Unlocked"
+                              0x05 = "Not Applicable"
+                              0x06 = "Shutting Down"
+                          End Enum
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Fatal Error Count"
+            ID          = 7
+            Description = "The accumulated fatal error count for this Device"
+                          " Group Instance."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Major Error Count"
+            ID          = 8
+            Description = "The accumulated major error count for this Device"
+                          " Group Instance."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = Counter
+            Value = * "Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Warning Error Count"
+            ID          = 9
+            Description = "The accumulated warning error count for this"
+                          " Device Group Instance."
+            Access      = Read-Only
+            Type        = Counter
+            Storage     = Specific
+            Value = * "Instrumentation"
+        End Attribute
+
+    End Group
+
+//   Field Replaceable Unit (FRU) Group
+
+//     This group consists of more objects derived from the DSIS
+//     standards committee.
+
+    Start Group
+        Name = "Field Replacable Unit"
+        Class = "DMTF|FRU|001"
+        Key = 1
+        Description="An FRU, or Field Replaceable Unit, is defined as a"
+                    " hardware component which is designed to be separately removable"
+//                    " for replacement or repair. For the purposes of this"
+//                    " definition, a motherboard and a fixed hard disk are FRUs,"
+//                    " whereas a fixed hard disk platter or a chip fixed in place on"
+//                    " the motherboard are not FRUs since they are not designed to be"
+//                    " separately removable. Each instance within the FRU table should"
+//                    " contain the device group and instance data for the associated "
+//                    " hardware component."
+
+//
+// Start of Attributes for this group
+//
+
+        Start Attribute
+            Name        = "FRU index"
+            ID          = 1
+            Description = "The index into the FRU table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = 0
+        End Attribute
+
+        Start Attribute
+            Name        = "Device Group index"
+            ID          = 2
+            Description = "The group ID of the group referencing this FRU"
+                          " instance."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = 0
+        End Attribute
+
+        Start Attribute
+            Name        = "Description"
+            ID          = 3
+            Description = "A clear description of this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(255)
+            Value       = "AMD PCnet Family Ethernet Controller" //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Manufacturer"
+            ID          = 4
+            Description = "The  name of the company manufacturing or"
+                          " providing this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(80)
+            Value       = "Advanced Micro Devices, Inc."  //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Model"
+            ID          = 5
+            Description = "The manufacturer's model number for this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(64)
+            Value       = "AMD PCnet Family Ethernet controller"  //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Part Number"
+            ID          = 6
+            Description = "A part number by which a replacement part can be"
+                          " ordered for this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(64)
+            Value       = ""          //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "FRU Serial Number"
+            ID          = 7
+            Description = "The manufacturer's serial number for this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(64)
+            Value       = ""          //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Revision Level"
+            ID          = 8
+            Description = "The revision level of this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(64)
+            Value       = ""          //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Warranty Start Date"
+            ID          = 9
+            Description = "The start date of the service Warranty for this"
+                          " FRU."
+            Access      = Read-Write
+            Storage     = Specific
+            Type        = Date
+            Value       = ""          //set or modified by the manufacturer
+        End Attribute
+
+        Start Attribute
+            Name        = "Warranty Duration"
+            ID          = 10
+            Description = "The total duration of this FRU Warranty in months."
+            Access      = Read-Write
+            Storage     = Specific
+            Type        = Integer
+            Value       = 12
+        End Attribute
+
+        Start Attribute
+            Name        = "Support Phone Number"
+            ID          = 11
+            Description = "The phone number(s) for support for this FRU."
+            Access      = Read-Write
+            Storage     = Common
+            Type        = String(64)
+            Value       = "(800)374-5905" //set or modified by the manufacturer
+        End Attribute
+
+    End Group
+    Start Table
+ 	  Name = "FRU Table"
+	  ID = 9
+	  Class = "DMTF|FRU|001"
+	  {0, 0, "AMD PCnet Family Ethernet Controller", "Advanced Micro Devices, Inc.",
+	   "AMD PCnet Family Ethernet controller","", "", "", "", 12, "(800)374-5905"}
+    End Table
+
+// Memory Mapped I/O Group
+
+    Start Group
+        Name        = "Memory Mapped I/O"
+        ID          = 10
+        Class       = "DMTF|Memory Mapped I/O|001"
+        Key = 1
+        Description = "This group defines various attributes for memory mapped I/O."
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 1
+            Description = "This is index into the PCnet Memory Mapped I/O Group table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Memory mapped I/O starting address"
+            ID          = 2
+            Description = "The starting address of a contiguous System memory mapped I/O region."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Memory mapped I/O ending address"
+            ID          = 3
+            Description = "The ending address of a contiguous System memory mapped I/O region."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Memory Mapped I/O Description"
+            ID          = 4
+            Description = "The name of the logical device that is currently using this Memory Mapped I/O."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(64)
+            Value       = *"Instrumentation"
+        End Attribute
+
+   End Group
+
+// IRQ Group
+
+   Start Group
+        Name        = "IRQ"
+        ID          = 11
+        Class       = "DMTF|IRQ|001"
+        Key = 1
+        Description = "This groups defines attributes for the IRQ line"
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 1
+            Description = "This is index into the PCnet IRQ Group table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "IRQ Number"
+            ID          = 2
+            Description = "The current IRQs number"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "IRQ Availability"
+            ID          = 3
+            Description = "Is the IRQ available or in use?"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start ENUM
+                              Name = "IRQ State"
+                              Type = Integer
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Available"
+                              0x04 = "In Use"
+                          End ENUM
+            Value       =  *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "IRQ Trigger Type"
+            ID          = 4
+            Description = "The trigger type of the IRQ"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start ENUM
+                              Name = "IRQ Trigger"
+                              Type = Integer
+                              0x01 = "Other"
+                              0x02 = "Unknown"
+                              0x03 = "Level"
+                              0x04 = "Edge"
+                          End ENUM
+            Value       =  *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "IRQ Shareable"
+            ID          = 5
+            Description = "If TRUE, the IRQ is shareable."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = "BOOL"
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "IRQ Description"
+            ID          = 6
+            Description = "The name of the logical device that is currently using this IRQ."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(64)
+            Value       = *"Instrumentation"
+        End Attribute
+
+   End Group
+
+// DMA Group
+
+   Start Group
+        Name        = "DMA"
+        ID          = 12
+        Class       = "DMTF|DMA|001"
+        Key = 1
+        Description = "This group defines various attributes for the DMA channel"
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 1
+            Description = "This is index into the PCnet DMA Group table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "DMA Number"
+            ID          = 2
+            Description = "The current DMA channel number."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Availability of DMA"
+            ID          = 3
+            Description = "If TRUE, this DMA channel is available"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = "BOOL"
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "DMA Burst Mode"
+            ID          = 4
+            Description = "If TRUE, this DMA channel supports burst mode "
+            Access      = Read-Only
+            Storage     = Common
+            Type        = "BOOL"
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "DMA Description"
+            ID          = 5
+            Description = "The name of the logical device that is currently using this DMA channel."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(80)
+            Value       = *"Instrumentation"
+        End Attribute
+
+   End Group
+
+// PCnet Device Controller Status Registers Group
+
+   Start Group
+        Name        = "CSR"
+        ID          = 13
+        Class       = "AMD|CSR|001"
+        Description = "This group defines various settings for PCnet Control and status registers."
+        Key = 1, 3
+
+        Start Attribute
+            Name        = "CSR number"
+            ID          = 1
+            Description = "CSR number, according AMD manual"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "CSR value"
+            ID          = 2
+            Description = "CSR value, see AMD manual for the bits description"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 3
+            Description = "This is adapter index into the PCnet Device Controller Status Registers."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+   End Group
+
+// PCnet Bus Controller Registers Group
+
+   Start Group
+        Name        = "BCR"
+        ID          = 14
+        Class       = "AMD|BCR|001"
+        Description = "This group defines various settings for PCnet Bus Configuration registers."
+        Key = 1, 3
+
+        Start Attribute
+            Name        = "BCR number"
+            ID          = 1
+            Description = "BCR number, according AMD manual"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "BCR value"
+            ID          = 2
+            Description = "BCR value, see AMD manual for the bits description"
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 3
+            Description = "This is adapter index into the PCnet Bus Configuration registers."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+   End Group
+
+// PCnet Hardware Statistics Counters Group
+
+   Start Group
+        Name        = "Hardware statistics counters"
+        ID          = 15
+        Class       = "AMD|Hardware statistics counters|001"
+        Key = 1
+        Description = "This group defines various integrated counters"
+                      " for the errors, reported by PCnet chips in CSR0, "
+                      " transmit and receive descriptor structures."
+
+        Start Attribute
+            Name        = "Adapter Index"
+            ID          = 1
+            Description = "This is index into the PCnet Hardware Statistics Counters Group table."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Integer
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "ERR"
+            ID          = 2
+            Description = "CSR0 bit 15. Error indicates that one or more error flags"
+                          "(BABL, CERR, MISS, MERR) are true."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "BABL"
+            ID          = 3
+            Description = "CSR0 bit 14. Babble indicates a transmitter time-out error"
+            "due to the transmitter being on the channel longer than the time required"
+            "to transmit a maximum length (1518 bytes) frame."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "CERR"
+            ID          = 4
+            Description = "CSR0 bit 13. In AUI mode, Collision Error indicates that"
+             "the collision inputs to the AUI port failed to activate within 20 network"
+             "bit times after the controller terminated transmission. In 10BASE-T mode,"
+             "Collision Error indicates a transmission was attempted while the T-MAU was"
+             "in link fail state."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "MISS"
+            ID          = 5
+            Description = "CSR0 bit 12. Missed Frame is set when the controller has"
+            "lost an incoming frame because a receive descriptor was not available."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "MERR"
+            ID          = 6
+            Description = "CSR0 bit 11. Memory Error indicates the controller is not"
+            "receiving bus mastership in time to prevent overflow/underflow conditions"
+            "in the receive and transmit FIFOs."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "ERR"
+            ID          = 7
+            Description = "TMD1 bit 14. Error indicates that one or more error flags"
+            "(UFLO, LCOL, LCAR, RTRY) are true."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "MORE"
+            ID          = 8
+            Description = "TMD1 bit 12. More indicates that more than one retry was"
+            "needed to transmit a frame."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "ONE"
+            ID          = 9
+            Description = "TMD1 bit 11. One indicates that exactly one retry was"
+            "required to transmit a frame."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "DEF"
+            ID          = 10
+            Description = "TMD1 bit 10. Deferred indicates that the channel was busy"
+            "when the controller was ready to transmit so the controller deferred"
+            "transmission to a later time."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "BUFF"
+            ID          = 11
+            Description = "TMD3 bit 15. Buffer Error indicates that during transmision,"
+            "the controller did not find the End of Packet flag (ENP) in the current"
+            "descriptor and does not own the next descriptor."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "UFLO"
+            ID          = 12
+            Description = "TMD3 bit 14. Underflow Error indicates that during"
+            "transmission, the controller did not receive data from memory before the"
+            "transmit FIFO was emptied so the transmitted frame was truncated."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "ExDEF"
+            ID          = 13
+            Description = "TMD3 bit 13. Excessive Deferral indicates that during"
+            "transmission, the controller has experienced excessive deferral as defined"
+            "in ISO 802-3 (IEEE/ANSI 802.3). PCnet-PCI, PCnet-PCI II, and PCnet-32"
+            "only."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "LCOL"
+            ID          = 14
+            Description = "TMD3 bit 12. Late Collision indicates that during"
+            "transmission, a collision has occurred after the slot time of the channel"
+            "has elapsed."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "LCAR"
+            ID          = 15
+            Description = "TMD3 bit 11. In AUI mode, during transmission, Loss"
+            "of Carrier indicates that carrier was lost. In 10BASE-T mode, Loss"
+            "of Carrier indicates the T-MAU is in link fail state."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "RTRY"
+            ID          = 16
+            Description = "TMD3 bit 10. Retry Error indicates that during transmission,"
+            "the controller detected repeated collisions and has failed to transmit in"
+            "sixteen attempts."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "ERR"
+            ID          = 17
+            Description = "RMD1 bit 14. Error indicates that one or more error flags"
+            "(FRAM, OFLO, CRC, BUFF) are true."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "FRAM"
+            ID          = 18
+            Description = "RMD1 bit 13. Framing Error indicates that the incoming"
+            "frame contained a non-integer multiple of eight bits and there was an FCS"
+            "error."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "OFLO"
+            ID          = 19
+            Description = "RMD1 bit 12. Overflow Error indicates the receiver has lost"
+            "all or part of the incoming frame due to an inability to store the"
+            "frame in a memory buffer before the receive FIFO overflowed."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "CRC"
+            ID          = 20
+            Description = "RMD1 bit 11. CRC Error indicates the receiver has detected"
+            "a CRC (FCS) error on the incoming frame."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "BUFF"
+            ID          = 21
+            Description = "RMD1 bit 10. Buffer Error indicates the controller does not"
+            "own the next buffer while data chaining a received frame."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Counter64
+            Value       = *"Instrumentation"
+        End Attribute
+
+   End Group
+
+// PCnet Software Component Information Group
+
+   Start Group
+        Name        = "Software Component Information"
+        ID          = 16
+        Class       = "DMTF|Software Component Information|001"
+        Description = "Contains additional identifying information "
+                      "about this software component."
+
+        Start Attribute
+            Name        = "Major Version"
+            ID          = 1
+            Description = "Major version of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Minor Version"
+            ID          = 2
+            Description = "Minor version of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Revision"
+            ID          = 3
+            Description = "Revision of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(64)
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Build"
+            ID          = 4
+            Description = "Manufacturer's internal identifier for this compilation."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(64)
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Target Operating System"
+            ID          = 5
+            Description = "The operating system for which this software"
+                          "component is intended."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = Start Enum
+                              0 = "Other"
+                              1 = "DOS"
+                              2 = "MACOS"
+                              3 = "OS2"
+                              4 = "UNIX"
+                              5 = "WIN16"
+                              6 = "WIN32"
+                              7 = "OPENVMS"
+                          End Enum
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Language Edition"
+            ID          = 6
+            Description = "This identifies the language edition of the driver."
+            Access      = Read-Only
+            Storage     = Common
+            Type        = String(32)
+            Value       = *"Instrumentation"
+        End Attribute
+
+        Start Attribute
+            Name        = "Identification Code"
+            ID          = 7
+            Description = "Stock Keeping Unit (SKU) or Part Number "
+                          "for this software component."
+            Access      = Read-Only
+            Storage     = Specific
+            Type        = String(32)
+            Value       = *"Instrumentation"
+//            Value       = "000101234"
+        End Attribute
+
+   End Group
+
+End Component
+
+
+

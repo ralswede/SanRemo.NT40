@@ -1,0 +1,19 @@
+#include <windows.h>
+#include <ntverp.h>
+
+#define	VER_FILETYPE	            VFT_DLL
+#define	VER_FILESUBTYPE	            VFT2_UNKNOWN
+#define VER_FILEDESCRIPTION_STR     "Resources for AMDPCN driver"
+
+#define VER_INTERNALNAME_STR        "amddlg.dll"
+#define VER_ORIGINALFILENAME_STR    "amddlg.dll"
+
+#include <common.ver>
+
+#include "uilstf.h"
+
+#include "amddlg.h"
+
+dllicon  ICON  "amd1.ico"
+
+#include "amddlg.dlg"

@@ -1,0 +1,56 @@
+BUILD: Computing Include file dependencies:
+BUILD: Examining c:\ddk\src\network\pcnet\driver directory for files to compile.
+Compiling c:\ddk\src\network\pcnet\driver directory ********************
+'nmake.exe /c BUILDMSG=Stop. -i NTTEST= UMTEST= NOLINK=1 NOPASS0=1 386=1'
+cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\lance.c
+lance.c
+cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\interrup.c
+interrup.c
+cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\send.c
+send.c
+cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\request.c
+request.c
+cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\alloc.c
+alloc.c
+
+Stop. 
+Linking c:\ddk\src\network\pcnet\driver directory ********************
+'nmake.exe /c BUILDMSG=Stop. -i LINKONLY=1 NOPASS0=1 NTTEST= UMTEST= 386=1'
+	link -out:C:\DDK\lib\i386\checked\PCNTN4M.sys -machine:i386 @C:\DOCUME~1\Ryan\LOCALS~1\Temp\nma01244.
+Microsoft (R) Incremental Linker Version 6.00.8168
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+-MERGE:_PAGE=PAGE 
+-MERGE:_TEXT=.text 
+-SECTION:INIT,d 
+-OPT:REF 
+-INCREMENTAL:NO 
+-FORCE:MULTIPLE 
+-RELEASE 
+-FULLBUILD 
+-IGNORE:4001,4037,4039,4065,4070,4078,4087,4089,4096 
+-NODEFAULTLIB 
+-debug:notmapped,FULL 
+-debugtype:both 
+-version:4.00 
+-osversion:4.00 
+-MERGE:.rdata=.text 
+-optidata 
+-driver 
+-align:0x20 
+-subsystem:native,4.00 
+-base:0x10000 
+-entry:DriverEntry@8 
+-out:C:\DDK\lib\i386\checked\PCNTN4M.sys 
+obj\i386\pcntn3.res 
+obj\i386\lance.obj 
+obj\i386\interrup.obj 
+obj\i386\send.obj 
+obj\i386\request.obj 
+obj\i386\alloc.obj 
+C:\DDK\lib\i386\checked\int64.lib 
+C:\DDK\lib\i386\checked\ntoskrnl.lib 
+C:\DDK\lib\i386\checked\hal.lib 
+C:\DDK\lib\i386\checked\ndis.lib 
+
+Stop. 

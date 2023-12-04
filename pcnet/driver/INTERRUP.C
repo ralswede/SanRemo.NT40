@@ -310,7 +310,7 @@ Return Value:
 	USHORT *		CurrByteCount;
 	UCHAR *			CurrRMDReserved1;
 	UCHAR *			CurrRMDFlags;
-	USHORT		    Csr0Value;
+	ULONG		    Csr0Value;
 	UCHAR			DummyUchar;
 	/* Receive status of the packet.	*/
 	UCHAR ReceiveStatus;
@@ -967,7 +967,7 @@ USHORT	dbgCount=0;
 	BOOLEAN							IsCancelled;
 	USHORT							TransmitStatus;
 	USHORT							TransmitError;
-	USHORT							Data;
+	ULONG							Data;
 	
 #if DBG	
 	if (LanceDbg)

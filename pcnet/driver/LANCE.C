@@ -160,7 +160,7 @@ CHAR * msg25 = "25: MCA-Abtastung angegeben, Ger„t nicht gefunden";
 INT LanceDbg = 1;
 INT LanceSendDbg = 0;
 INT LanceExtPhyDbg = 0;
-INT LanceEventDbg = 1;
+INT LanceEventDbg = 0;
 INT LanceRxDbg = 0;
 INT LanceFilterDbg = 0;
 INT LanceBreak = 1;
@@ -1705,7 +1705,7 @@ Return Value:
 	ULONG Data;
 	ULONG DeviceId;
 	USHORT ASICData;
-	UINT val;
+	ULONG val;
 	#if DBG
 		if (LanceDbg)
 		DbgPrint("==>LanceHardwareDetails\n");
@@ -1824,15 +1824,15 @@ Return Value:
     NdisImmediateWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x00);
     NdisImmediateReadPortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
 	
-    Adapter->PermanentNetworkAddress[0] = (val & 0xFF);
-    Adapter->PermanentNetworkAddress[1] = ((val >> 8)  & 0xFF);
-    Adapter->PermanentNetworkAddress[2] = ((val >> 16) & 0xFF);
-    Adapter->PermanentNetworkAddress[3] = ((val >> 24) & 0xFF);
+    Adapter->PermanentNetworkAddress[0] = (UCHAR)(val & 0xFF);
+    Adapter->PermanentNetworkAddress[1] = (UCHAR)((val >> 8)  & 0xFF);
+    Adapter->PermanentNetworkAddress[2] = (UCHAR)((val >> 16) & 0xFF);
+    Adapter->PermanentNetworkAddress[3] = (UCHAR)((val >> 24) & 0xFF);
 
     NdisImmediateWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04);
     NdisImmediateReadPortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
-    Adapter->PermanentNetworkAddress[4] = (val & 0xFF);
-    Adapter->PermanentNetworkAddress[5] = ((val >> 8)  & 0xFF);
+    Adapter->PermanentNetworkAddress[4] = (UCHAR)(val & 0xFF);
+    Adapter->PermanentNetworkAddress[5] = (UCHAR)((val >> 8)  & 0xFF);
 
 	#if DBG
 	if (LanceDbg)
@@ -2155,7 +2155,7 @@ None.
 --*/
 
 {
-    UINT temp, eepromPresent;
+    ULONG temp, eepromPresent;
 
 	#if DBG
 		if (LanceDbg)
@@ -2634,7 +2634,7 @@ NOTES:
 {
 
 	UCHAR	i;
-	USHORT	Data;
+	ULONG	Data;
 
 	PLANCE_TRANSMIT_DESCRIPTOR		TransmitDescriptorRing;
 	PLANCE_TRANSMIT_DESCRIPTOR_HI	TransmitDescriptorRingHi;
@@ -2879,7 +2879,7 @@ InitFullDuplexMode (
 	)
 {
 
-	USHORT	Data;
+	ULONG	Data;
 
 	//
 	// Local Pointer to the Initialization Block.
@@ -2911,7 +2911,9 @@ InitFullDuplexMode (
 	{
 		if (Adapter->FullDuplex == FDUP_DEFAULT)
 		{
-			LANCE_READ_BCR(Adapter->MappedIoBaseAddress, 9, &(Adapter->FullDuplex));
+			ULONG FullDuplex = 0;
+			LANCE_READ_BCR(Adapter->MappedIoBaseAddress, 9, &FullDuplex);
+			Adapter->FullDuplex = FullDuplex;
 		}
 		else
 		{
@@ -2969,7 +2971,7 @@ InitLEDs (
 {
 	ULONG *	pLEDs[4];
 	USHORT	n;
-	USHORT	Data;
+	ULONG	Data;
 
 #if DBG
 	if (LanceDbg)
@@ -3626,7 +3628,7 @@ LanceGetActiveMediaInfo (
 {
 
 ULONG	MyAbility;
-USHORT	LinkPartnerAbility;
+ULONG	LinkPartnerAbility;
 USHORT	BitMask = 0x8000;
 
 	if (ExtPhyLinkStatus (Adapter->MappedIoBaseAddress))
@@ -3686,10 +3688,13 @@ USHORT	BitMask = 0x8000;
 		}
 	}
 	else
-	{	/* Read duplex mode from internal phy (10Mbps) */
+	{	
+		ULONG FullDuplex = 0;
+		/* Read duplex mode from internal phy (10Mbps) */
 		Adapter->LineSpeed = 10;
 		/* Determine if the internal PHY is in Full Duplex mode */
-		LANCE_READ_BCR (Adapter->MappedIoBaseAddress, LANCE_FDC_REG, &Adapter->FullDuplex);
+		LANCE_READ_BCR (Adapter->MappedIoBaseAddress, LANCE_FDC_REG, &FullDuplex);
+		Adapter->FullDuplex = FullDuplex;
 		Adapter->FullDuplex &= LANCE_FDC_FDEN;	/* Non-zero (TRUE) if full duplex */
 	}
 
@@ -3934,7 +3939,8 @@ LanceSetExtPhyMedia(
 
 //	LanceResetExtPhy(IoBaseAddress);
 
-	LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &TempByte);
+	LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &Data);
+	TempByte = (UCHAR)Data;
  #if DBG
 	if (LanceExtPhyDbg)
 		DbgPrint("BCR32 : %x\n",TempByte);
@@ -3982,8 +3988,8 @@ LanceSetExtPhyMedia(
 
  #if DBG
 	if (LanceExtPhyDbg) {
-		LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &TempByte);
-		DbgPrint("BCR32 : %x\n",TempByte);
+		LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &Data);
+		DbgPrint("BCR32 : %x\n",Data);
 	}
  #endif
  #if DBG

@@ -1188,7 +1188,7 @@ Return Value:
 		case DMI_OPCODE_GET_PERM_ADDRESS:
 			for (i = 0; i < 6; i++)
 			{
-				ReqBlock->addr[i] = Adapter->PermanentNetworkAddress[i];
+				ReqBlock->addr[i] = (UCHAR)Adapter->PermanentNetworkAddress[i];
 			}
 			break;
 

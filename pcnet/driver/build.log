@@ -2,6 +2,7 @@ BUILD: Computing Include file dependencies:
 BUILD: Examining c:\ddk\src\network\pcnet\driver directory for files to compile.
 Compiling c:\ddk\src\network\pcnet\driver directory ********************
 'nmake.exe /c BUILDMSG=Stop. -i NTTEST= UMTEST= NOLINK=1 NOPASS0=1 386=1'
+	rc -l 409 -z "MS Sans Serif,Helv/MS Shell Dlg"  -r -fo obj\i386\pcntn3.tmp -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER  -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc .\pcntn3.rc
 cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\lance.c
 lance.c
 cl -nologo -Ii386\ -I. -IC:\DDK\src\network\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -IC:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDBG=1 -DDEVL=1 -DFPO=0    -DNDEBUG -D_DLL=1 -D_IDWBUILD -DRDRDBG -DSRVDBG -DNDIS_MINIPORT_DRIVER    /c /Zel /Zp8 /Gy -cbstring /W3 /WX /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF  -Z7 /Od /Oi /Oy-   -FIC:\DDK\inc\warning.h  .\interrup.c
@@ -16,7 +17,7 @@ alloc.c
 Stop. 
 Linking c:\ddk\src\network\pcnet\driver directory ********************
 'nmake.exe /c BUILDMSG=Stop. -i LINKONLY=1 NOPASS0=1 NTTEST= UMTEST= 386=1'
-	link -out:C:\DDK\lib\i386\checked\PCNTN4M.sys -machine:i386 @C:\DOCUME~1\Ryan\LOCALS~1\Temp\nma01244.
+	link -out:C:\DDK\lib\i386\checked\PCNTN4M.sys -machine:i386 @C:\DOCUME~1\Ryan\LOCALS~1\Temp\nma02028.
 Microsoft (R) Incremental Linker Version 6.00.8168
 Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
 

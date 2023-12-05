@@ -577,7 +577,7 @@ typedef struct _LANCE_ADAPTER
 	ULONG led3;
 
 	/* Full Duplex Mode Value. */
-	USHORT FullDuplex;
+	ULONG FullDuplex;
 
 	/* Line Speed Value. */
 	USHORT LineSpeed;

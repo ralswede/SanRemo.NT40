@@ -110,7 +110,7 @@ Return Value:
 	UINT							TotalPacketSize;
 	PCHAR							CurrentDestination;
 	INT								TotalDataMoved = 0;
-	USHORT							Csr0Value;
+	ULONG							Csr0Value;
 	UCHAR							CurrentDescriptorIndex;
 	UCHAR							TransmitStatus;
 	USHORT 						TransmitError;
@@ -644,7 +644,7 @@ Return Value:
 	// Holds the status that should be returned to the caller.
 	//
 	PLANCE_ADAPTER Adapter = (PLANCE_ADAPTER)MiniportAdapterContext;
-	USHORT Csr0Value;
+	ULONG Csr0Value;
 	UINT TotalPacketSize;
 
 	//
@@ -1106,7 +1106,7 @@ EnableTxInts (
 	IN PLANCE_ADAPTER Adapter
 	)
 {
-	USHORT		Data;
+	ULONG		Data;
 
  	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, &Data);
  	Data &= ~LANCE_CSR3_TINTM;
@@ -1153,7 +1153,7 @@ Return Value:
 	UINT							TotalPacketSize;
 	PCHAR							CurrentDestination;
 	INT								TotalDataMoved = 0;
-	USHORT							Csr0Value;
+	ULONG							Csr0Value;
 	UCHAR							CurrentDescriptorIndex;
 	UCHAR							TransmitStatus;
 	USHORT 						TransmitError;

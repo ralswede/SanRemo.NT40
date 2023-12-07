@@ -88,6 +88,8 @@ $Log:   V:\network\pcnet\mini3&4\src\lance.c_v  $
  * Removed conditional statements for redundancy, replaced with "NDIS40_MINIPORT"
 
 --*/
+#define DBG 1
+
 #include <ndis.h>
 #include <efilter.h>
 #include <lancehrd.h>
@@ -444,6 +446,7 @@ Return Value:
 	// Initialize the MAC characteristics for the call to
 	// NdisRegisterMac.
 	//
+	NdisZeroMemory(&LanceChar, sizeof(LanceChar));
 	LanceChar.MajorNdisVersion			= LANCE_NDIS_MAJOR_VERSION;
 	LanceChar.MinorNdisVersion			= LANCE_NDIS_MINOR_VERSION;
 	LanceChar.CheckForHangHandler		= NULL; //LanceCheckForHang;
@@ -458,26 +461,12 @@ Return Value:
 	LanceChar.ResetHandler				= LanceReset;
 	LanceChar.SetInformationHandler		= LanceSetInformation;
 	LanceChar.TransferDataHandler		= LanceTransferData;
-
-#ifdef NDIS40_MINIPORT
-
-	// Extensions for NDIS 4.0
-	// Keep the fields above consistent with NDIS 3.0 miniport characteristics
-	//
 	LanceChar.ReturnPacketHandler		= LanceReturnPacket;
 	LanceChar.AllocateCompleteHandler	= NULL;
 	LanceChar.SendHandler				= NULL;
 	LanceChar.SendPacketsHandler		= LanceSendPackets;
 
-#else
-
-	LanceChar.ReturnPacketHandler		= NULL;
-	LanceChar.AllocateCompleteHandler	= NULL;
-	LanceChar.SendHandler				= LanceSend;
-	LanceChar.SendPacketsHandler		= NULL;
-
-#endif
-
+	Status = 0;
 	//
 	// Register the miniport driver
 	//
@@ -1600,7 +1589,7 @@ Return Value:
 					(UINT)Adapter->LanceInterruptVector,
 					(UINT)Adapter->LanceInterruptVector,
 					FALSE,
-					TRUE, //SharedInterrupt - MCA, PCI
+					(BOOLEAN)((InterfaceType == NdisInterfaceIsa) ? FALSE : TRUE),
 					Adapter->InterruptMode
 					);
 

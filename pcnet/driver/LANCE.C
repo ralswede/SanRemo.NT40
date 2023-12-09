@@ -97,8 +97,6 @@ $Log:   V:\network\pcnet\mini3&4\src\lance.c_v  $
 
 #define ENGLISH 1
 
-NDIS_STRING DefaultAdapterName=NDIS_STRING_CONST("\\Device\\PCNTN301");
-static NDIS_STRING MacName = NDIS_STRING_CONST("PCNTN3") ;
 static const UCHAR VendorDescription[] = "IBM 10/100 Mbps Ethernet TX MCA Adapter";
 
 #ifdef ENGLISH
@@ -165,7 +163,7 @@ INT LanceExtPhyDbg = 0;
 INT LanceEventDbg = 0;
 INT LanceRxDbg = 0;
 INT LanceFilterDbg = 0;
-INT LanceBreak = 1;
+INT LanceBreak = 0;
 #define STATIC
 
 #if LANCELOG
@@ -467,6 +465,7 @@ Return Value:
 	LanceChar.SendPacketsHandler		= LanceSendPackets;
 
 	Status = 0;
+	
 	//
 	// Register the miniport driver
 	//
@@ -846,10 +845,6 @@ Return Value:
 			case 1:
 				Adapter->FullDuplex = FDUP_OFF;
 				break;
-
-			//case 2:
-			//	Adapter->FullDuplex = FDUP_AUI;
-			//	break;
 
 			case 3:
 				Adapter->FullDuplex = FDUP_10BASE_T;
@@ -2022,13 +2017,12 @@ Return Value:
 	//
 	// Read MCA POS codes and find out the resources
 	//	
-
-	NdisReadMcaPosInformation(
-					&Status,
-					Adapter->LanceMiniportHandle,
-					&slot,
-					&McaData
-					);
+    NdisReadMcaPosInformation(
+        &Status,
+        ConfigurationHandle,
+        &slot,
+        &McaData
+        );    
 
 	
 	if (Status == NDIS_STATUS_SUCCESS)
@@ -2157,15 +2151,35 @@ None.
 	   and is required to start it up. 
 	   IBM only knows what they mean. */
     NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1D, 0x00);
+	if(LanceDbg)
+		DbgPrint("srent_config0x1D\n");
     NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1E, 0x4F);
+	if(LanceDbg)
+		DbgPrint("srent_config0x1E\n");
     NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1F, 0x04);
+	if(LanceDbg)
+		DbgPrint("srent_config0x1F\n");
     NdisImmediateWritePortUlong (ConfigurationHandle, IoAddr + 0x28, 0x00000000);
+	if(LanceDbg)
+		DbgPrint("srent_config0x0000\n");
     NdisImmediateWritePortUshort(ConfigurationHandle, IoAddr + 0x00, 0x0006);
+	if(LanceDbg)
+		DbgPrint("srent_config0x00\n");
     NdisImmediateWritePortUlong (ConfigurationHandle, IoAddr + 0x10, 0x00000000);
+	if(LanceDbg)
+		DbgPrint("srent_config0x10n");
     NdisImmediateWritePortUlong (ConfigurationHandle, IoAddr + 0x14, 0x00000000);
+	if(LanceDbg)
+		DbgPrint("srent_config0x14\n");
     NdisImmediateWritePortUshort(ConfigurationHandle, IoAddr + 0x1A, 0x0FFF);
+	if(LanceDbg)
+		DbgPrint("srent_config0x1A\n");
     NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x22, 0x7F);
+	if(LanceDbg)
+		DbgPrint("srent_config0x22\n");
     NdisImmediateWritePortUshort(ConfigurationHandle, IoAddr + 0x20, 0x03FF);
+	if(LanceDbg)
+		DbgPrint("srent_config0x20\n");
 
     /* Set up the PCnet's PCI Configuration Space through the ASIC */
 
@@ -2173,28 +2187,40 @@ None.
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
     NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
-
+    if(LanceDbg)
+		DbgPrint("srent_config0x0C Latency\n");
+	
     // Write Latency and Header Type
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x0000FF00);
+	if(LanceDbg)
+		DbgPrint("srent_config0xLatency Write\n");
 
     // Write I/O Base Address
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x10);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), ASIC_IO_OFFSET + IoAddr);
+	if(LanceDbg)
+		DbgPrint("srent_config0x1D\n");
 
     // Write Control: SERREN, PERREN, IOEN
     // BMEN will be set later by mca_enable_disable_dma()
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x00000141);
+	if(LanceDbg)
+		DbgPrint("0xSERREN, PERREN, IOEN\n");
 
     // Read PCI Revision ID
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
     NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);  
-		
+    if(LanceDbg)
+	{
+		DbgPrint("Read PCI Revision ID\n");
+		DbgPrint("%s %x\n","IO Address", IoAddr);
+	}	
     /* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the 
        32-bit DWIO mode. Maybe DWIO is the only one supported by the ASIC, I have never tested WIO.
        The original AIX driver shifts gears into DWIO mode as first action between the driver and 
@@ -2204,9 +2230,14 @@ None.
            access to the I/O location at offset 10h (RDP)"                     */
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
     NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
+	if(LanceDbg)
+		DbgPrint(" WIO address mode read\n");
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), temp);
+	if(LanceDbg)
+		DbgPrint(" WIO address mode write\n");
 
+	/*
     #if DBG
     if (LanceDbg)
     {
@@ -2225,12 +2256,13 @@ None.
         DbgPrint("PCnet chip version is: %x\n", chipVersion);
     }
     #endif
+	*/
   
 	  /* Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
 	    that indicates an EEPROM has been read and found valid */
     temp = 0;
     LANCE_READ_BCR_BEFORE_REGISTRATION(IoAddr, 19, &temp, ConfigurationHandle);
-  
+    DbgPrint("EEPROM Control \n");
     if (!(temp & 0x8000))
     {
 		    UINT eepromValid, time;
@@ -2248,13 +2280,19 @@ None.
         
         // Delay until EEPROM is read
         for(time = 0; time < 1000; time++)
+		{
             NdisStallExecution(1);
-
+			 if(LanceDbg){
+				DbgPrint("NdisStallExecution\n");
+        } 
+		}
 		    // Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
 		    // that indicates the EEPROM has been read and is checksum-correct
         temp = 0;
         LANCE_READ_BCR_BEFORE_REGISTRATION(IoAddr, 19, &temp, ConfigurationHandle);
         eepromValid = temp & 0x8000;
+		 if(LanceDbg)
+			DbgPrint("eepromValid\n");
  		
 		if (eepromValid)
         {
@@ -2276,7 +2314,7 @@ None.
 	
    #if DBG
 		if (LanceDbg)
-		DbgPrint("==>srent_config\n");
+			DbgPrint("<==srent_config\n");
 	    if (LanceBreak)
 			_asm int 3;
 	#endif

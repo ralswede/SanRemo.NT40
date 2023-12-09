@@ -880,7 +880,7 @@ writeparameters = +
             set NewValueList = {{BusType,$(NoTitle),$(!REG_VT_DWORD),5},+
                 {MediaType,$(NoTitle),$(!REG_VT_DWORD),1},+
 				{BUS_TO_SCAN,$(NoTitle),$(!REG_VT_SZ),$(BusScanValue)},+
-				{MCAPosId,$(NoTitle),$(!REG_VT_SZ),$(MCAPosId)},+
+				{MCAPosId,$(NoTitle),$(!REG_VT_DWORD),$(MCAPosId)},+
 				{BusType,$(NoTitle),$(!REG_VT_DWORD),3},+
                 {LED0,  $(NoTitle),$(!REG_VT_DWORD),$(LED0Value)},+
                 {LED1,  $(NoTitle),$(!REG_VT_DWORD),$(LED1Value)},+

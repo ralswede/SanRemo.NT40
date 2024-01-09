@@ -117,8 +117,8 @@ Return Value:
    //
    if (NdisMAllocateMapRegisters(
          Adapter->LanceMiniportHandle,
-         (UINT)Adapter->LanceDmaChannel,
-         (BOOLEAN)(Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV),
+         0, //(UINT)Adapter->LanceDmaChannel,
+         TRUE, //(BOOLEAN)(Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV),
 //         (ULONG)4,
 //	      Adapter->AllocatedCachedMemorySize  //RECEIVE_BUFFER_SIZE
 			maxMapReg, //TRANSMIT_BUFFERS,

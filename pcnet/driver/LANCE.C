@@ -1803,6 +1803,7 @@ Return Value:
 		Adapter->PermanentNetworkAddress[i] = dataByte;
 	}
 	*/
+	srent_config(ConfigurationHandle, Adapter->PhysicalIoBaseAddress);
 	
 	// Through the ASIC we're in word-only access mode, so we read 4 bytes at once
     NdisImmediateWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x00);
@@ -1830,9 +1831,7 @@ Return Value:
 			(UCHAR)Adapter->PermanentNetworkAddress[5]);
 		DbgPrint("\n");
 	}
-	#endif
-		
-	srent_config(ConfigurationHandle, Adapter->PhysicalIoBaseAddress);
+	#endif	
 
 	//
 	// Reset the controller and stop the chip
@@ -2149,7 +2148,7 @@ None.
    	
 	  /* This sequence of writes goes out to the San Remo ASIC
 	   and is required to start it up. 
-	   IBM only knows what they mean. */
+	   IBM only knows what they mean. */	   
     NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1D, 0x00);
 	if(LanceDbg)
 		DbgPrint("srent_config0x1D\n");
@@ -2204,11 +2203,10 @@ None.
 	if(LanceDbg)
 		DbgPrint("srent_config0x1D\n");
 
-    // Write Control: SERREN, PERREN, IOEN
-    // BMEN will be set later by mca_enable_disable_dma()
+    // Write Control: SERREN, PERREN, IOEN    
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x00000141);
+    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x00000145);
 	if(LanceDbg)
 		DbgPrint("0xSERREN, PERREN, IOEN\n");
 
@@ -2227,13 +2225,19 @@ None.
        the PCnet, and in Linux we do the same. Guaranteed to work fine. 
        From the Am79C971 datasheet:                    
           "The Software can invoke the DWIO mode by performing a DWord write 
-           access to the I/O location at offset 10h (RDP)"                     */
+           access to the I/O location at offset 10h (RDP)"       
+		   */
+	NdisStallExecution(1000);		   
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
     NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
 	if(LanceDbg)
+	{
 		DbgPrint(" WIO address mode read\n");
+	}
+	NdisStallExecution(1000);	
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), temp);
+	NdisStallExecution(1000);	
 	if(LanceDbg)
 		DbgPrint(" WIO address mode write\n");
 
@@ -2397,9 +2401,9 @@ Return Value:
 		DbgPrint("==>LanceSetPciDma\n");
 	#endif
 	
-	NdisRawWritePortUchar((Adapter->PhysicalIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
-    NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Buffer);
+	NdisRawWritePortUchar((Adapter->MappedIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
+    NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &Buffer);
 	
 	if (EnablePciDma) {
 		// Enable DMA		
@@ -2409,9 +2413,9 @@ Return Value:
 		Buffer &= 0x0000fffb;
 	}
 
-	NdisRawWritePortUchar((Adapter->PhysicalIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), Buffer);
+	NdisRawWritePortUchar((Adapter->MappedIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
+    NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), Buffer);
 
 	#if DBG
 		if (LanceDbg)

@@ -2218,38 +2218,19 @@ None.
     NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);  
     if(LanceDbg)
 	{
-		DbgPrint("Read PCI Revision ID\n");
+		DbgPrint("Read PCI Revision ID: %4.4X\n", temp);
 		DbgPrint("%s %x\n","IO Address", IoAddr);
 	}	
-	if (LanceDbg)
-    {
-		DbgPrint("PCnet chip version is checking...\n");
-		chipVersion = 0;
-        NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT);
-		DbgPrint("PCnet chip version is checking...1\n");
-        NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 88);
-		DbgPrint("PCnet chip version is checking...2\n");
-        NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-		DbgPrint("PCnet chip version is checking...3\n");
-        NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
-		DbgPrint("PCnet chip version is checking...4\n");
-        chipVersion = temp & 0xFFFF;
-		
-		for (Time = 0; Time < 1000; Time++)
-			NdisStallExecution(1);	
-			
-        NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT);
-		DbgPrint("PCnet chip version is checking...5\n");
-        NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 89);
-		DbgPrint("PCnet chip version is checking...6\n");
-        NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-		DbgPrint("PCnet chip version is checking...7\n");
-        NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
-		DbgPrint("PCnet chip version is checking...8\n");
-        chipVersion |= (temp & 0xFFFF) << 16;
 
-        DbgPrint("PCnet chip version is: %x\n", chipVersion);
-    }
+	// Read PCI Vendor ID
+    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
+    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
+    if(LanceDbg)
+	{
+		DbgPrint("Read Vendor Revision ID: %4.4X\n", temp);
+	}
+
     /* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the 
        32-bit DWIO mode. Maybe DWIO is the only one supported by the ASIC, I have never tested WIO.
        The original AIX driver shifts gears into DWIO mode as first action between the driver and 

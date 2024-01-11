@@ -2137,7 +2137,7 @@ None.
 --*/
 
 {
-    ULONG temp, eepromPresent;
+    ULONG temp, temp1, temp2, temp3, temp4, temp5, eepromPresent;
 	UINT chipVersion;
 	USHORT Time;
 
@@ -2215,20 +2215,38 @@ None.
     // Read PCI Revision ID
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);  
+    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp1);  
     if(LanceDbg)
 	{
-		DbgPrint("Read PCI Revision ID: %4.4X\n", temp);
+		DbgPrint("Read PCI Revision ID: %4.4X\n", temp1);
+		DbgPrint("%s %x\n","IO Address", IoAddr);
+	}	
+	
+	NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x2C);
+    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp2);  
+    if(LanceDbg)
+	{
+		DbgPrint("Read PCI SubVender ID: %4.4X\n", temp2);
+		DbgPrint("%s %x\n","IO Address", IoAddr);
+	}	
+	
+	NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
+    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp3);  
+    if(LanceDbg)
+	{
+		DbgPrint("Read Command Register: %4.4X\n", temp3);
 		DbgPrint("%s %x\n","IO Address", IoAddr);
 	}	
 
 	// Read PCI Vendor ID
     NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
+    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp4);
     if(LanceDbg)
 	{
-		DbgPrint("Read Vendor Revision ID: %4.4X\n", temp);
+		DbgPrint("Read Vendor ID: %4.4X\n", temp4);
 	}
 
     /* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the 
@@ -2241,18 +2259,25 @@ None.
 		   */
 	for (Time = 0; Time < 1000; Time++)
 		NdisStallExecution(1);	   
-		
+	
+	DbgPrint("PCnet Register RDP: %4.4X\n", IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
+	DbgPrint("Set AIC to RDP Port take 1\n");
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
+	DbgPrint("AIC IO port is set to RDP\n");
+    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp5);
+	DbgPrint("What we read from the RDP Port: %4.4X\n", temp5);
 	if(LanceDbg)
 	{
 		DbgPrint(" WIO address mode read\n");
 	}
 	for (Time = 0; Time < 1000; Time++)
 		NdisStallExecution(1);	
-		
+	
+	DbgPrint("Set AIC to RDP Port take 2\n");
     NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), temp);
+	DbgPrint("We will write this to the RDP port: %4.4X\n", temp5);
+    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), temp5);
+	DbgPrint("We did it!!\n");
 	
 	for (Time = 0; Time < 1000; Time++)
 		NdisStallExecution(1);

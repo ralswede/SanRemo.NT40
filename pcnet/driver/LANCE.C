@@ -1797,7 +1797,7 @@ Return Value:
 	/*
 	for (i = 0; i < 6; i++)
 	{
-		NdisImmediateReadPortUchar(ConfigurationHandle,
+		NdisReadPortUchar(ConfigurationHandle,
 								   Adapter->PhysicalIoBaseAddress + i,
 								   &dataByte);
 		Adapter->PermanentNetworkAddress[i] = dataByte;
@@ -1806,16 +1806,16 @@ Return Value:
 	srent_config(ConfigurationHandle, Adapter->PhysicalIoBaseAddress);
 	
 	// Through the ASIC we're in word-only access mode, so we read 4 bytes at once
-    NdisImmediateWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x00);
-    NdisImmediateReadPortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
+    NdisWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x00);
+    NdisReadPortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
 	
     Adapter->PermanentNetworkAddress[0] = (UCHAR)(val & 0xFF);
     Adapter->PermanentNetworkAddress[1] = (UCHAR)((val >> 8)  & 0xFF);
     Adapter->PermanentNetworkAddress[2] = (UCHAR)((val >> 16) & 0xFF);
     Adapter->PermanentNetworkAddress[3] = (UCHAR)((val >> 24) & 0xFF);
 
-    NdisImmediateWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04);
-    NdisImmediateReadPortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
+    NdisWritePortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04);
+    NdisReadPortUlong(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
     Adapter->PermanentNetworkAddress[4] = (UCHAR)(val & 0xFF);
     Adapter->PermanentNetworkAddress[5] = (UCHAR)((val >> 8)  & 0xFF);
 
@@ -1836,9 +1836,9 @@ Return Value:
 	//
 	// Reset the controller and stop the chip
 	//
-	//NdisImmediateReadPortUshort(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + LANCE_RESET_PORT, &Data);
-	NdisImmediateWritePortUlong(ConfigurationHandle, (Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
-	NdisImmediateReadPortUlong(ConfigurationHandle, (Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);  
+	//NdisReadPortUshort(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + LANCE_RESET_PORT, &Data);
+	NdisWritePortUlong(ConfigurationHandle, (Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
+	NdisReadPortUlong(ConfigurationHandle, (Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
 	
 	// Delay after reset
 	//
@@ -2137,7 +2137,7 @@ None.
 --*/
 
 {
-    ULONG temp, temp1, temp2, temp3, temp4, temp5, eepromPresent;
+    ULONG temp, temp1, temp2, temp3, temp4, temp5, eepromPresent, i;
 	UINT chipVersion;
 	USHORT Time;
 
@@ -2151,103 +2151,89 @@ None.
 	  /* This sequence of writes goes out to the San Remo ASIC
 	   and is required to start it up. 
 	   IBM only knows what they mean. */	   
-    NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1D, 0x00);
+    NdisWritePortUchar (ConfigurationHandle, IoAddr + 0x1D, 0x00);
 	if(LanceDbg)
 		DbgPrint("srent_config0x1D\n");
-    NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1E, 0x4F);
+    NdisWritePortUchar (ConfigurationHandle, IoAddr + 0x1E, 0x4F);
 	if(LanceDbg)
 		DbgPrint("srent_config0x1E\n");
-    NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x1F, 0x04);
+    NdisWritePortUchar (ConfigurationHandle, IoAddr + 0x1F, 0x04);
 	if(LanceDbg)
 		DbgPrint("srent_config0x1F\n");
-    NdisImmediateWritePortUlong (ConfigurationHandle, IoAddr + 0x28, 0x00000000);
+    NdisWritePortUlong (ConfigurationHandle, IoAddr + 0x28, 0x00000000);
 	if(LanceDbg)
 		DbgPrint("srent_config0x0000\n");
-    NdisImmediateWritePortUshort(ConfigurationHandle, IoAddr + 0x00, 0x0006);
+    NdisWritePortUshort(ConfigurationHandle, IoAddr + 0x00, 0x0006);
 	if(LanceDbg)
 		DbgPrint("srent_config0x00\n");
-    NdisImmediateWritePortUlong (ConfigurationHandle, IoAddr + 0x10, 0x00000000);
+    NdisWritePortUlong (ConfigurationHandle, IoAddr + 0x10, 0x00000000);
 	if(LanceDbg)
 		DbgPrint("srent_config0x10n");
-    NdisImmediateWritePortUlong (ConfigurationHandle, IoAddr + 0x14, 0x00000000);
+    NdisWritePortUlong (ConfigurationHandle, IoAddr + 0x14, 0x00000000);
 	if(LanceDbg)
 		DbgPrint("srent_config0x14\n");
-    NdisImmediateWritePortUshort(ConfigurationHandle, IoAddr + 0x1A, 0x0FFF);
+    NdisWritePortUshort(ConfigurationHandle, IoAddr + 0x1A, 0x0FFF);
 	if(LanceDbg)
 		DbgPrint("srent_config0x1A\n");
-    NdisImmediateWritePortUchar (ConfigurationHandle, IoAddr + 0x22, 0x7F);
+    NdisWritePortUchar (ConfigurationHandle, IoAddr + 0x22, 0x7F);
 	if(LanceDbg)
 		DbgPrint("srent_config0x22\n");
-    NdisImmediateWritePortUshort(ConfigurationHandle, IoAddr + 0x20, 0x03FF);
+    NdisWritePortUshort(ConfigurationHandle, IoAddr + 0x20, 0x03FF);
 	if(LanceDbg)
 		DbgPrint("srent_config0x20\n");
 
     /* Set up the PCnet's PCI Configuration Space through the ASIC */
 
     // Read Latency and Header Type
-    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
+    NdisWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
+    NdisReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp);
     if(LanceDbg)
 		DbgPrint("srent_config0x0C Latency\n");
 	
     // Write Latency and Header Type
-    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x0000FF00);
+    NdisWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x0000FF00);
 	if(LanceDbg)
 		DbgPrint("srent_config0xLatency Write\n");
 
     // Write I/O Base Address
-    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x10);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), ASIC_IO_OFFSET + IoAddr);
+    NdisWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x10);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), ASIC_IO_OFFSET + IoAddr);
 	if(LanceDbg)
 		DbgPrint("srent_config0x1D\n");
 
     // Write Control: SERREN, PERREN, IOEN    
-    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x00000145);
+    NdisWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), 0x00000145);
 	if(LanceDbg)
 		DbgPrint("0xSERREN, PERREN, IOEN\n");
 
     // Read PCI Revision ID
-    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp1);  
+    NdisWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
+    NdisReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp1);
     if(LanceDbg)
 	{
 		DbgPrint("Read PCI Revision ID: %4.4X\n", temp1);
 		DbgPrint("%s %x\n","IO Address", IoAddr);
 	}	
 	
-	NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x2C);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp2);  
-    if(LanceDbg)
+	if(LanceDbg)
 	{
-		DbgPrint("Read PCI SubVender ID: %4.4X\n", temp2);
-		DbgPrint("%s %x\n","IO Address", IoAddr);
-	}	
-	
-	NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp3);  
-    if(LanceDbg)
-	{
-		DbgPrint("Read Command Register: %4.4X\n", temp3);
-		DbgPrint("%s %x\n","IO Address", IoAddr);
-	}	
+		DbgPrint("PCI config space: \n");
+		for (i = 0; i < 0x40, i += 4)
+		{
+			NdisWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+			NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), i);
+			NdisReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp2);
 
-	// Read PCI Vendor ID
-    NdisImmediateWritePortUchar(ConfigurationHandle, (IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp4);
-    if(LanceDbg)
-	{
-		DbgPrint("Read Vendor ID: %4.4X\n", temp4);
-	}
+			DbgPrint("%4.4X\n", temp2);
+		}
+	}	
 
     /* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the 
        32-bit DWIO mode. Maybe DWIO is the only one supported by the ASIC, I have never tested WIO.
@@ -2262,9 +2248,9 @@ None.
 	
 	DbgPrint("PCnet Register RDP: %4.4X\n", IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	DbgPrint("Set AIC to RDP Port take 1\n");
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	DbgPrint("AIC IO port is set to RDP\n");
-    NdisImmediateReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp5);
+    NdisReadPortUlong (ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), &temp5);
 	DbgPrint("What we read from the RDP Port: %4.4X\n", temp5);
 	if(LanceDbg)
 	{
@@ -2274,9 +2260,9 @@ None.
 		NdisStallExecution(1);	
 	
 	DbgPrint("Set AIC to RDP Port take 2\n");
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	DbgPrint("We will write this to the RDP port: %4.4X\n", temp5);
-    NdisImmediateWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), temp5);
+    NdisWritePortUlong(ConfigurationHandle, (IoAddr + ASIC_IO_DATA_REGISTER), temp5);
 	DbgPrint("We did it!!\n");
 	
 	for (Time = 0; Time < 1000; Time++)

@@ -688,7 +688,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 //
 // Handy macros to read Lance I/O ports.
 //
-
+/*
 #define LANCE_READ_CSR_BEFORE_REGISTRATION(_IOBASE, _Port, _Value, _Handle) \
 {\
 	LanceMutex (LOCK);		\
@@ -699,7 +699,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 	*_Value &= 0xFFFF; \
 	LanceMutex (UNLOCK);\	
 }
-
+*/
 #define LANCE_READ_CSR(_IOBASE, _Port, _Value) \
 {\
 	LanceMutex (LOCK);	\
@@ -721,6 +721,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 	LanceMutex (UNLOCK);	\
 }
 
+/*
 #define LANCE_READ_BCR_BEFORE_REGISTRATION(_IOBASE, _Port, _Value, _Handle) \
 {\
 	LanceMutex (LOCK);  \
@@ -741,7 +742,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
     NdisImmediateWritePortUlong(_Handle, (_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Value)); \
 	LanceMutex (UNLOCK); \
 }
-
+*/
 #define LANCE_READ_BCR(_IOBASE, _Port, _Value) \
 {\
 	LanceMutex (LOCK);	\
@@ -770,6 +771,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 //
 // Handy macros to read Lance I/O ports.
 //
+/*
 #define LANCE_READ_CSR_BEFORE_REGISTRATION(_IOBASE, _Port, _Value, _Handle) \
 {\
 	NdisImmediateWritePortUlong(_Handle, (_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); \
@@ -778,7 +780,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
     NdisImmediateReadPortUlong(_Handle, (_IOBASE + ASIC_IO_DATA_REGISTER), (PULONG)(_Value)); \
 	*_Value &= 0xFFFF; \
 }
-
+*/
 #define LANCE_READ_CSR(_IOBASE, _Port, _Value) \
 {\
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); \
@@ -795,7 +797,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT)); \
     NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Value)); \
 }
-
+/*
 #define LANCE_READ_BCR_BEFORE_REGISTRATION(_IOBASE, _Port, _Value, _Handle) \
 { \
 	NdisImmediateWritePortUlong(_Handle, (_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); \
@@ -812,7 +814,7 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 	NdisImmediateWritePortUlong(_Handle, (_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_IDP_PORT)); \
     NdisImmediateWritePortUlong(_Handle, (_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Value)); \
 }
-
+*/
 #define LANCE_READ_BCR(_IOBASE, _Port, _Value) \
 {\
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); 	\

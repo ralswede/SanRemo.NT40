@@ -169,7 +169,7 @@ Return Value:
 		case PCNET_PCI1:
 			/* If the chip not running, restart it */
 
-			LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 			if ((Csr0Value & LANCE_CSR0_RUNNING) != LANCE_CSR0_RUNNING)
 			{
@@ -229,9 +229,9 @@ Return Value:
 			NumberOfPackets++;
 			if(oldNumPkts != NumberOfPackets)
 			{
-				LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+				LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 				Csr0Value &= LANCE_CSR0_IENA;
-				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 			}
 			while (NumberOfPackets--) {
 				NDIS_SET_PACKET_STATUS(*PacketArray,NDIS_STATUS_RESOURCES);
@@ -552,9 +552,9 @@ Return Value:
 		#endif
 	} //while
 
-		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 		Csr0Value &= LANCE_CSR0_IENA;
-		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 
 	#if DBG
 		if (LanceDbg)
@@ -696,7 +696,7 @@ Return Value:
 		//
 		// If chip not running, restart it
 		//
-		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 		if ((Csr0Value & LANCE_CSR0_RUNNING) != LANCE_CSR0_RUNNING)
 		{
@@ -1069,9 +1069,9 @@ Return Value:
 	// 
 	// Start chip now to send packet on the wire
 	//
-	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 	Csr0Value &= LANCE_CSR0_IENA;
-	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 
 	//
 	// Increment the next available xit descriptor index.
@@ -1108,9 +1108,9 @@ EnableTxInts (
 {
 	ULONG		Data;
 
- 	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, &Data);
+ 	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, &Data);
  	Data &= ~LANCE_CSR3_TINTM;
- 	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, Data);
+ 	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, Data);
 }
 
 #ifdef _FAILOVER
@@ -1182,7 +1182,7 @@ Return Value:
 		case PCNET_PCI1:
 			/* If the chip not running, restart it */
 
-			LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 			if ((Csr0Value & LANCE_CSR0_RUNNING) != LANCE_CSR0_RUNNING)
 			{
@@ -1244,9 +1244,9 @@ Return Value:
 			NumberOfPackets++;
 			if(oldNumPkts != NumberOfPackets)
 			{
-				LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+				LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 				Csr0Value &= LANCE_CSR0_IENA;
-				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 			}
 			while (NumberOfPackets--) {
 				NDIS_SET_PACKET_STATUS(*PacketArray,NDIS_STATUS_RESOURCES);
@@ -1552,9 +1552,9 @@ Return Value:
 	} // while (NumberOfPackets --)
 
 	/* Start chip now to send packet on the wire */
-	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
+	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 	Csr0Value &= LANCE_CSR0_IENA;
-	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 
 	#if DBG
 		if (LanceDbg)

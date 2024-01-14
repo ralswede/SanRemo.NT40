@@ -296,7 +296,7 @@ Return Value:
 #ifdef NDIS40_MINIPORT
 
 				case OID_GEN_MEDIA_CONNECT_STATUS:
-					if (LanceReadLink (Adapter->MappedIoBaseAddress,
+					if (LanceReadLink (Adapter->PhysicalIoBaseAddress,
 						 Adapter->DeviceType, Adapter))
 						GenericUlong = NdisMediaStateConnected;
 					else
@@ -1358,7 +1358,7 @@ Return Value:
 			break;
 
 		case DMI_OPCODE_GET_IO_BASE_ADDR:
-			ReqBlock->Value = Adapter->MappedIoBaseAddress;
+			ReqBlock->Value = Adapter->PhysicalIoBaseAddress;
 			break;
 
 		case DMI_OPCODE_GET_GET_IRQ:
@@ -1506,7 +1506,7 @@ Return Value:
          break;
 
 		case DMI_OPCODE_GET_RAM_SIZE:
-			LANCE_READ_BCR (Adapter->MappedIoBaseAddress, 25, &Data);
+			LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, 25, &Data);
 			ReqBlock->Value = ((USHORT)Data << 8);
 			break;
 
@@ -1530,11 +1530,11 @@ INT	RetCode		= LANCE_PORT_SUCCESS;
 				switch (AccessType)
 				{
 					case PORT_READ:
-						LANCE_READ_CSR (Adapter->MappedIoBaseAddress, Adapter->CsrNum, pData);
+						LANCE_READ_CSR (Adapter->PhysicalIoBaseAddress, Adapter->CsrNum, pData);
 						break;
 
 					case PORT_WRITE:
-						LANCE_WRITE_CSR (Adapter->MappedIoBaseAddress, Adapter->CsrNum, *pData);
+						LANCE_WRITE_CSR (Adapter->PhysicalIoBaseAddress, Adapter->CsrNum, *pData);
 						break;
 
 					default:
@@ -1546,11 +1546,11 @@ INT	RetCode		= LANCE_PORT_SUCCESS;
 				switch (AccessType)
 				{
 					case PORT_READ:
-						LANCE_READ_BCR (Adapter->MappedIoBaseAddress, Adapter->BcrNum, pData);
+						LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, Adapter->BcrNum, pData);
 						break;
 
 					case PORT_WRITE:
-						LANCE_WRITE_BCR (Adapter->MappedIoBaseAddress, Adapter->BcrNum, *pData);
+						LANCE_WRITE_BCR (Adapter->PhysicalIoBaseAddress, Adapter->BcrNum, *pData);
 						break;
 
 					default:

@@ -2332,9 +2332,9 @@ None.
         for(time = 0; time < 1000; time++)
 		{
             NdisStallExecution(1);
-			 if(LanceDbg){
-				DbgPrint("NdisStallExecution\n");
-        } 
+			 //if(LanceDbg){
+				//DbgPrint("NdisStallExecution\n");
+			//} 
 		}
 		    // Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
 		    // that indicates the EEPROM has been read and is checksum-correct
@@ -2536,6 +2536,7 @@ Return Value:
 	/* Initialize registers and data structure	*/
 	LanceSetupRegistersAndInit(Adapter, FullReset);
 
+	LancePciEnableDma(Adapter);
 	/* Start the chip	*/
 	LanceStartChip(Adapter);
 	#if DBG
@@ -2571,8 +2572,8 @@ Return Value:
 {
 
 	USHORT Time;
-	ULONG Data;
-	UINT Timeout = START_STOP_TIMEOUT;
+	//ULONG Data;
+	//UINT Timeout = START_STOP_TIMEOUT;
 
 	#if DBG
 		if (LanceDbg)
@@ -2585,52 +2586,55 @@ Return Value:
 	// For PCI device, disable PCI DMA engine before stopping
 	// the chip.
 	//
-	if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound ==  MCA_DEV) {
-
-		ASIC_DISABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
-		while (Timeout--) {
+	//if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound ==  MCA_DEV) {
+		
+		//LancePciDisableDma(Adapter);
+		
+		//while (Timeout--) {
 
 		//
 		// Stop PCI DMA engine
 		//
-		if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
-			LancePciDisableDma(Adapter);
+		
 
 		//
 		// Set STOP bit to stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,LANCE_CSR0_STOP | 0xff00);
+		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,LANCE_CSR0_STOP | 0xff00);
 
 		//
 		// Mask out IDONM interrupts
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, LANCE_CSR3_IDONM);
+		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, LANCE_CSR3_IDONM);
 
 		//
 		// Set initialization block physical address registers
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2, LANCE_GET_HIGH_PART_PCI_ADDRESS(
-									NdisGetPhysicalAddressLow(
-										Adapter->InitializationBlockPhysical)));
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1, LANCE_GET_LOW_PART_ADDRESS(
-									NdisGetPhysicalAddressLow(
-										Adapter->InitializationBlockPhysical)));
-
+		
+		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2, LANCE_GET_HIGH_PART_PCI_ADDRESS(
+		//							NdisGetPhysicalAddressLow(
+		//								Adapter->InitializationBlockPhysical)));
+		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1, LANCE_GET_LOW_PART_ADDRESS(
+		//							NdisGetPhysicalAddressLow(
+		//								Adapter->InitializationBlockPhysical)));
+		
 		//
 		// Initialize the chip and load initialization block
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
+		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
 
 		//
 		// Enable PCI DMA engine
 		//
-		if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
-			LancePciEnableDma(Adapter);
+	
+		//if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
+		//	LancePciEnableDma(Adapter);
 
 		//
 		// Check if chip stopped successfully.	If initialization done
 		// bit set, it is sure chip stopped.		
 		//
+		/*
 		for (Time = 0; Time < 1000; Time++)
 		{
 
@@ -2639,6 +2643,7 @@ Return Value:
 			// Check IDON bit
 			//
 			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Data);
+
 			if (Data & LANCE_CSR0_IDON)
 			{
 
@@ -2657,20 +2662,23 @@ Return Value:
 
 		}
 		}
-
-	} else {
+	*/
+	//} else {
 
 		//
 		// Stop the chip
 		//
+		LancePciDisableDma(Adapter);
+		
 		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);		
 
+		ASIC_DISABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
 		//
 		// Ensure that the chip stops completely with interrupts disabled.
 		//
 		for (Time = 0; Time < 5; Time++)
-		NdisStallExecution(1);
-	}
+			NdisStallExecution(1);
+	//}
 
 	#if DBG
 		if (LanceDbg)
@@ -3174,7 +3182,9 @@ Return Value:
 		Adapter->OpFlags &= ~RESET_IN_PROGRESS;
 
 		/* Clear all interrupt status bits and start chip	*/
-		ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
+		if (LanceDbg) {
+			DbgPrint("==>IN_INTERRUPT_DPC_3181\n");		
+		}
 		if (Adapter->OpFlags & IN_INTERRUPT_DPC) {
 
 			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress,
@@ -3182,7 +3192,10 @@ Return Value:
 					LANCE_CSR0_START | LANCE_CSR0_INIT);
 
 		} else {
-
+			if (LanceDbg) {			
+				DbgPrint("==>ASIC_ENABLE_INTERRUPTS_3191\n");	
+			}				
+			ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
 			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress,
 					LANCE_CSR0,
 					LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);

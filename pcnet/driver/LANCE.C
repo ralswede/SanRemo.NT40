@@ -1986,7 +1986,7 @@ LanceCleanResources(
 	//
 	for (i = 0; i < MAX_ADAPTERS; i++)
 	{
-		if (AdapterIo[i] = Adapter->PhysicalIoBaseAddress)
+		if (AdapterIo[i] == Adapter->PhysicalIoBaseAddress)
 		{
 			AdapterIo[i] = 0;
 			AdapterIrq[i] = 0;
@@ -2535,10 +2535,10 @@ Return Value:
 
 	/* Initialize registers and data structure	*/
 	LanceSetupRegistersAndInit(Adapter, FullReset);
-
-	LancePciEnableDma(Adapter);
+		
 	/* Start the chip	*/
 	LanceStartChip(Adapter);
+			
 	#if DBG
 		if (LanceDbg)
 		DbgPrint("<==LanceInit\n");
@@ -2571,81 +2571,68 @@ Return Value:
 
 {
 
-	USHORT Time;
-	//ULONG Data;
-	//UINT Timeout = START_STOP_TIMEOUT;
+	USHORT Time, Data;
+	UINT Timeout = START_STOP_TIMEOUT;
 
-	#if DBG
+	#ifdef MYDBG
 		if (LanceDbg)
 		DbgPrint("==>LanceStopChip\n");
-		if (LanceBreak)
-			_asm int 3;
 	#endif
 
 	//
 	// For PCI device, disable PCI DMA engine before stopping
 	// the chip.
 	//
-	//if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound ==  MCA_DEV) {
-		
-		//LancePciDisableDma(Adapter);
-		
-		//while (Timeout--) {
+//      if (Adapter->BoardFound == PCI_DEV) {
+	if (Adapter->DeviceType == PCNET_PCI1) {
+		while (Timeout--) {
 
 		//
 		// Stop PCI DMA engine
 		//
-		
+		LancePciDisableDma(Adapter);
 
 		//
 		// Set STOP bit to stop the chip
 		//
-		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,LANCE_CSR0_STOP | 0xff00);
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress,LANCE_CSR0,LANCE_CSR0_STOP | 0xff00);
 
 		//
 		// Mask out IDONM interrupts
 		//
-		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, LANCE_CSR3_IDONM);
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, LANCE_CSR3_IDONM);
 
 		//
 		// Set initialization block physical address registers
 		//
-		
-		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2, LANCE_GET_HIGH_PART_PCI_ADDRESS(
-		//							NdisGetPhysicalAddressLow(
-		//								Adapter->InitializationBlockPhysical)));
-		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1, LANCE_GET_LOW_PART_ADDRESS(
-		//							NdisGetPhysicalAddressLow(
-		//								Adapter->InitializationBlockPhysical)));
-		
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2, LANCE_GET_HIGH_PART_PCI_ADDRESS(
+									NdisGetPhysicalAddressLow(
+										Adapter->InitializationBlockPhysical)));
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1, LANCE_GET_LOW_PART_ADDRESS(
+									NdisGetPhysicalAddressLow(
+										Adapter->InitializationBlockPhysical)));
+
 		//
 		// Initialize the chip and load initialization block
 		//
-		//LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
 
 		//
 		// Enable PCI DMA engine
 		//
-	
-		//if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
-		//	LancePciEnableDma(Adapter);
+		LancePciEnableDma(Adapter);
 
 		//
-		// Check if chip stopped successfully.	If initialization done
-		// bit set, it is sure chip stopped.		
+		// Check if chip stopped successfully.  If initialization done
+		// bit set, it is sure chip stopped.
 		//
-		/*
-		for (Time = 0; Time < 1000; Time++)
-		{
-
+		for (Time = 0; Time < 1000; Time++) {
 
 			//
 			// Check IDON bit
 			//
 			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Data);
-
-			if (Data & LANCE_CSR0_IDON)
-			{
+			if (Data & LANCE_CSR0_IDON) {
 
 				//
 				// If IDON bit set, clear status bits
@@ -2662,23 +2649,20 @@ Return Value:
 
 		}
 		}
-	*/
-	//} else {
+
+	} else {
 
 		//
 		// Stop the chip
 		//
-		LancePciDisableDma(Adapter);
-		
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);		
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);
 
-		ASIC_DISABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
 		//
 		// Ensure that the chip stops completely with interrupts disabled.
 		//
 		for (Time = 0; Time < 5; Time++)
-			NdisStallExecution(1);
-	//}
+		NdisStallExecution(1);
+	}
 
 	#if DBG
 		if (LanceDbg)
@@ -2945,7 +2929,13 @@ NOTES:
 			LANCE_GET_HIGH_PART_PCI_ADDRESS(NdisGetPhysicalAddressLow(
 			Adapter->InitializationBlockPhysical)));
 		}
-		
+		else
+		{
+			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2,
+			LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
+			Adapter->InitializationBlockPhysical)));
+		}
+
 		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1,
 		LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
 		Adapter->InitializationBlockPhysical)));
@@ -3121,6 +3111,7 @@ InitLEDs (
 
 } /* End of function InitLEDs () */
 
+
 STATIC
 VOID
 LanceStartChip(
@@ -3145,13 +3136,11 @@ Return Value:
 
 {
 
-	ULONG Data;
+	UINT Data;
 	UINT Timeout = START_STOP_TIMEOUT;
 	#if DBG
 		if (LanceDbg)
 		DbgPrint("==>LanceStartChip\n");
-		if (LanceBreak)
-			_asm int 3;
 	#endif
 
 	//
@@ -3164,16 +3153,21 @@ Return Value:
 	/* Clear the IDON bit and other interrupt bits in CSR0 with	*/
 	/* chip interrupt disabled	*/
 	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0xFF00);
-
+	NdisStallExecution(30);
 	/* Load initialization block into controller	*/
 	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
-
+	NdisStallExecution(30);
+	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_START);
+	NdisStallExecution(30);
+	
 	/* Waiting until IDON bit set	*/
 	while (Timeout--) {
 
 		/* Read CSR0	*/
 		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Data);
-
+		if (LanceDbg) {
+			DbgPrint("IDON bit = %x\n",Data);
+		}
 		/* Check if IDON bit set	*/
 		if (Data & LANCE_CSR0_IDON) {
 
@@ -3182,26 +3176,20 @@ Return Value:
 		Adapter->OpFlags &= ~RESET_IN_PROGRESS;
 
 		/* Clear all interrupt status bits and start chip	*/
-		if (LanceDbg) {
-			DbgPrint("==>IN_INTERRUPT_DPC_3181\n");		
-		}
 		if (Adapter->OpFlags & IN_INTERRUPT_DPC) {
 
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress,
+			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
 					LANCE_CSR0,
 					LANCE_CSR0_START | LANCE_CSR0_INIT);
 
 		} else {
-			if (LanceDbg) {			
-				DbgPrint("==>ASIC_ENABLE_INTERRUPTS_3191\n");	
-			}				
-			ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress,
+
+			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
 					LANCE_CSR0,
 					LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
 
 		}
-
+		
 		//
 		// Exit the loop
 		//
@@ -3217,12 +3205,9 @@ Return Value:
 
 	#if DBG
 		if (LanceDbg)
-		DbgPrint("<==LanceStartChip\n");
-		if (LanceBreak)
-			_asm int 3;
+		DbgPrint("<==LanceStartChip, Timeout %d\n", Timeout);
 	#endif
 }
-
 
 NDIS_STATUS
 LanceReset(
@@ -3261,7 +3246,7 @@ Return Value:
 
 	#if DBG
 		if (LanceDbg)
-		DbgPrint("==>LanceReset\n");
+			DbgPrint("==>LanceReset : Adapter->OpFlags = %x\n", Adapter->OpFlags);	
 		if (LanceBreak)
 			_asm int 3;
 	#endif
@@ -3285,6 +3270,10 @@ Return Value:
 		//
 		Adapter->OpFlags &= ~(RESET_IN_PROGRESS | RESET_PROHIBITED);
 
+		#if DBG
+			if (LanceDbg)
+				DbgPrint("LanceReset calls LanceInit.\n");
+		#endif
 		//
 		// Restart the chip
 		//
@@ -3841,21 +3830,23 @@ ExtPhyLinkStatus (
 	IN ULONG IoBaseAddress
 	)
 {
-	ULONG TempValue;
+	USHORT  TempValue;
+	USHORT  Bcr33Value;
+	USHORT  NewBcr33Value;
 
-	/* Check to see if an external PHY is indicating its presence via	*/
-	/* the MDIO pin value. Us regular software folk know the MDIO pin	*/
-	/* as the MIIPD bit, read from BCR32.								*/
-	/*																	*/
-	/* Since some PHYs do not pull up the MDIO pin, reading a zero from	*/
-	/* MIIPD does not necessarily indicate the absence of an external	*/
-	/* PHY. Logically, if MDIO = 1 there is an external PHY	present,	*/
-	/* else	if MIIPD = 0, there *may* be an external PHY present. (DOH!)*/
-	/*																	*/
-	/* In summary,														*/
-	/*	MIIPD = 1	Indicates an external PHY *is* present				*/
-	/*	MIIPD = 0	External PHY? Maybe, maybe not!						*/
-	/* Of course, all of this is theory and conjecture anyway...		*/
+	/* Check to see if an external PHY is indicating its presence via       */
+	/* the MDIO pin value. Us regular software folk know the MDIO pin       */
+	/* as the MIIPD bit, read from BCR32.                                                           */
+	/*                                                                                                                                      */
+	/* Since some PHYs do not pull up the MDIO pin, reading a zero from     */
+	/* MIIPD does not necessarily indicate the absence of an external       */
+	/* PHY. Logically, if MDIO = 1 there is an external PHY present,        */
+	/* else if MIIPD = 0, there *may* be an external PHY present. (DOH!)*/
+	/*                                                                                                                                      */
+	/* In summary,                                                                                                          */
+	/*      MIIPD = 1       Indicates an external PHY *is* present                          */
+	/*      MIIPD = 0       External PHY? Maybe, maybe not!                                         */
+	/* Of course, all of this is theory and conjecture anyway...            */
 
 	LANCE_READ_BCR (IoBaseAddress, LANCE_BCR32, &TempValue);
 	/* If no PHY is detected, double-check by reading the IEEE ID */
@@ -3864,22 +3855,28 @@ ExtPhyLinkStatus (
 	if (!(TempValue & MIIPD))
 	{
 		/* Write address of IEEE ID register */
-		LANCE_WRITE_BCR (IoBaseAddress, MII_ADDR, MII_IEEE_ID);
+		LANCE_READ_BCR (IoBaseAddress, MII_ADDR, &Bcr33Value);
+		Bcr33Value &= PHYADDR_MASK;
+		NewBcr33Value = Bcr33Value | MII_IEEE_ID;
+		LANCE_WRITE_BCR (IoBaseAddress, MII_ADDR, NewBcr33Value);
 
 		/* Read IEEE ID from MII data register */
 		LANCE_READ_BCR (IoBaseAddress, MII_MDR, &TempValue);
 
-		/* Two assumtions are made here:	*/
+		/* Two assumtions are made here:        */
 		/* 1. There is no IEEE ID == 0 or 0xFFFF */
 		/* 2. Reading from a PHY that doesn't exist yields either 0 or 0xFFFF */
 
 		if ((TempValue == 0xFFFF) || (TempValue == 0))
 		{
-			return FALSE;	/* Apparently there is no external PHY. */
-		}					/* No PHY means no link, right? Bail out here */
+			return FALSE;   /* Apparently there is no external PHY. */
+		}                                       /* No PHY means no link, right? Bail out here */
 	}
 	/* Write address of MII register to be read */
-	LANCE_WRITE_BCR (IoBaseAddress, MII_ADDR, (PHYADDR | MII_STAT_REG));
+	LANCE_READ_BCR (IoBaseAddress, MII_ADDR, &Bcr33Value);
+	Bcr33Value &= PHYADDR_MASK; 
+	NewBcr33Value = Bcr33Value | MII_STAT_REG;
+	LANCE_WRITE_BCR (IoBaseAddress, MII_ADDR, NewBcr33Value);
 
 	/* Read Status from MII */
 	LANCE_READ_BCR (IoBaseAddress, MII_MDR, &TempValue);

@@ -147,6 +147,7 @@ $Log:   V:\network\pcnet\mini3&4\src\lancehrd.h_v  $
 
 /* Address of internal PHY, aligned starting at bit 5 */
 #define	PHYADDR			(0x01 << 5)
+#define PHYADDR_MASK 	0x3e0
 
 /* External PHY register and bit definitions */
 /* Relevant register is BCR32 */

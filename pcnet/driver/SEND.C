@@ -195,7 +195,8 @@ Return Value:
 	while (NumberOfPackets--)
 	{
 		/* Set no-reset flag for ISR routine */
-		Adapter->OpFlags |= RESET_PROHIBITED;
+		//commenteded out in NDIS5
+		//Adapter->OpFlags |= RESET_PROHIBITED;
 
 		/* Get a pointer to the out of band data for this packet */
 		OobData = NDIS_OOB_DATA_FROM_PACKET (*PacketArray);
@@ -221,8 +222,8 @@ Return Value:
 			if (LanceDbg || LanceSendDbg)
 				DbgPrint("no xmit descriptor available. Pkts send : %i\n",oldNumPkts - NumberOfPackets);
 			#endif
-
-			Adapter->OpFlags &= ~RESET_PROHIBITED;
+			//commented out in NDIS5
+			//Adapter->OpFlags &= ~RESET_PROHIBITED;
 
 // MJ : Disabled Tx Watermark.
 //			EnableTxInts(Adapter);
@@ -322,6 +323,12 @@ Return Value:
 						LanceInit(CurrentAdapter, FALSE);
 #else
 						LanceInit(Adapter, FALSE);
+			#ifdef DBG
+				if (LanceDbg)
+				{
+					DbgPrint("LanceInit is called due to send error\n");
+				}
+			#endif
 #endif
 					}
 				}
@@ -730,8 +737,8 @@ Return Value:
 
 	//
 	// Set no-reset flag for ISR routine
-	//
-	Adapter->OpFlags |= RESET_PROHIBITED;
+	//commented out in NDIS5
+	//Adapter->OpFlags |= RESET_PROHIBITED;
 
 	//
 	// Check if there is a descriptor available for this request
@@ -752,8 +759,8 @@ Return Value:
 			if (LanceDbg)
 				DbgPrint("LanceSend routine: no xmit descriptor available.\n");
 			#endif
-
-			Adapter->OpFlags &= ~RESET_PROHIBITED;
+			//commented out in NDIS5
+			//Adapter->OpFlags &= ~RESET_PROHIBITED;
 			return NDIS_STATUS_RESOURCES;
 		}
 	}
@@ -769,8 +776,8 @@ Return Value:
 			if (LanceDbg)
 				DbgPrint("LanceSend routine: no xmit descriptor available.\n");
 			#endif
-
-			Adapter->OpFlags &= ~RESET_PROHIBITED;
+			//commented out in NDIS5
+			//Adapter->OpFlags &= ~RESET_PROHIBITED;
 			return NDIS_STATUS_RESOURCES;
 		}
 	}
@@ -1080,8 +1087,8 @@ Return Value:
 	{
 		Adapter->NextTransmitDescriptorIndex = 0;
 	}
-
-	Adapter->OpFlags &= ~RESET_PROHIBITED;
+	//commented out in NDIS5
+	//Adapter->OpFlags &= ~RESET_PROHIBITED;
 
 	#if DBG
 		if (LanceDbg)
@@ -1208,7 +1215,8 @@ Return Value:
 	while (NumberOfPackets--)
 	{
 		/* Set no-reset flag for ISR routine */
-		Adapter->OpFlags |= RESET_PROHIBITED;
+		//commented out in NDIS5
+		//Adapter->OpFlags |= RESET_PROHIBITED;
 
 		/* Get a pointer to the out of band data for this packet */
 		OobData = NDIS_OOB_DATA_FROM_PACKET (*PacketArray);
@@ -1238,7 +1246,8 @@ Return Value:
 //			Adapter->CableDisconnected = TRUE;
 //			NdisMSetPeriodicTimer (&(Adapter->CableTimer),60000);
 
-			Adapter->OpFlags &= ~RESET_PROHIBITED;
+			//commented out in NDIS5
+			//Adapter->OpFlags &= ~RESET_PROHIBITED;
 
 //			EnableTxInts(Adapter);
 			NumberOfPackets++;

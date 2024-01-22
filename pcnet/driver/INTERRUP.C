@@ -220,7 +220,7 @@ Return Value:
 
 	#if DBG
 		if (LanceDbg)
-		DbgPrint("==>LanceISR : %i\n",Adapter->RedundantMode);
+		DbgPrint("==>LanceISR\n");
 	#endif
 
 	LOG(IN_ISR)
@@ -248,8 +248,8 @@ Return Value:
 	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 	/* Check if we own this interrupt	*/
-//	if (Csr0Value & (LANCE_CSR0_INTR | LANCE_CSR0_STOP))
-	if ( (Csr0Value & (LANCE_CSR0_INTR)) && (Csr0Value & (LANCE_CSR0_IENA)) )
+	//if (Csr0Value & (LANCE_CSR0_INTR) | LANCE_CSR0_STOP))
+	if ((Csr0Value & (LANCE_CSR0_INTR)) && (Csr0Value & (LANCE_CSR0_IENA)) )
 	{
 		/* Disable interrupt source. Writing zeroes to the interrupt status */
 		/* bits in CSR0 has no effect on them. All the other bits except	*/
@@ -275,6 +275,7 @@ Return Value:
 	{
 		#if DBG
 		if (LanceDbg)
+			DbgPrint("IDON bit = %x\n",Csr0Value);
 			DbgPrint("LanceISR routine: Not my interrupt.\n");
 		#endif
 	}

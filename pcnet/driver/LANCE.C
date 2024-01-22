@@ -2595,7 +2595,7 @@ Return Value:
 		//
 		// Set STOP bit to stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress,LANCE_CSR0,LANCE_CSR0_STOP | 0xff00);
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,LANCE_CSR0_STOP | LANCE_CSR0_CLEAR);
 
 		//
 		// Mask out IDONM interrupts
@@ -2637,7 +2637,7 @@ Return Value:
 				//
 				// If IDON bit set, clear status bits
 				//
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0xff00 | LANCE_CSR0_STOP);
+				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR | LANCE_CSR0_STOP);
 				return;
 
 			}
@@ -2655,7 +2655,7 @@ Return Value:
 		//
 		// Stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);
+		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR | LANCE_CSR0_STOP);
 
 		//
 		// Ensure that the chip stops completely with interrupts disabled.
@@ -2663,7 +2663,7 @@ Return Value:
 		for (Time = 0; Time < 5; Time++)
 		NdisStallExecution(1);
 	}
-
+	ASIC_DISABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
 	#if DBG
 		if (LanceDbg)
 		DbgPrint("<==LanceStopChip\n");
@@ -3152,12 +3152,10 @@ Return Value:
 
 	/* Clear the IDON bit and other interrupt bits in CSR0 with	*/
 	/* chip interrupt disabled	*/
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0xFF00);
+	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR);
 	NdisStallExecution(30);
 	/* Load initialization block into controller	*/
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
-	NdisStallExecution(30);
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_START);
+	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_START | LANCE_CSR0_INIT);
 	NdisStallExecution(30);
 	
 	/* Waiting until IDON bit set	*/
@@ -3167,45 +3165,55 @@ Return Value:
 		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Data);
 		if (LanceDbg) {
 			DbgPrint("IDON bit = %x\n",Data);
+			DbgPrint("Timeout = %x\n",Timeout);
 		}
 		/* Check if IDON bit set	*/
 		if (Data & LANCE_CSR0_IDON) {
 
-		/* Now clear reset flag to allow the isr reading	*/
-		/* CSR0 for the interrupt	*/
-		Adapter->OpFlags &= ~RESET_IN_PROGRESS;
+			/* Now clear reset flag to allow the isr reading	*/
+			/* CSR0 for the interrupt	*/
+			Adapter->OpFlags &= ~RESET_IN_PROGRESS;
 
-		/* Clear all interrupt status bits and start chip	*/
-		if (Adapter->OpFlags & IN_INTERRUPT_DPC) {
+			/* Clear all interrupt status bits and start chip	*/
+			ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
+			if (Adapter->OpFlags & IN_INTERRUPT_DPC) {				
+				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
+						LANCE_CSR0,
+						LANCE_CSR0_START | LANCE_CSR0_INIT);
+				
+			} else {
+				
+				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
+						LANCE_CSR0,
+						LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
+				
+			}	
 
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
-					LANCE_CSR0,
-					LANCE_CSR0_START | LANCE_CSR0_INIT);
-
-		} else {
-
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
-					LANCE_CSR0,
-					LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
-
+			#if DBG
+				if (LanceDbg)
+					DbgPrint("<==LanceStartChip, Timeout %d\n", Timeout);
+			#endif
+			//
+			// Exit out
+			//
+			return;
 		}
-		
-		//
-		// Exit the loop
-		//
-		break;
-
-		}
-
 		//
 		// Give some delay
 		//
 		NdisStallExecution(1);
 	}
-
+	if (LanceDbg) {
+			DbgPrint("Fuck it catch is going to fire!\n");
+	}
+	// This is the fuck it catch
+	Adapter->OpFlags &= ~RESET_IN_PROGRESS;
+	ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
+	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,
+						LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
 	#if DBG
 		if (LanceDbg)
-		DbgPrint("<==LanceStartChip, Timeout %d\n", Timeout);
+		DbgPrint("<==LanceStartChip - Fuck it happened!\n");
 	#endif
 }
 

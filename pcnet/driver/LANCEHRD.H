@@ -202,7 +202,7 @@ $Log:   V:\network\pcnet\mini3&4\src\lancehrd.h_v  $
 #define LANCE_CSR0_BABL    0x4000
 #define LANCE_CSR0_ERR     0x8000  /* MERR | MISS | CERR | BABL */
 #define LANCE_CSR0_RUNNING 0x0033  /* Value to check that the chip is running  */
-#define    LANCE_CSR0_CLEAR   0xFF00
+#define LANCE_CSR0_CLEAR   0xFF00
 /* define csr3 bits: */
 #define LANCE_CSR3_BCON    0x0001
 #define LANCE_CSR3_ACON    0x0002

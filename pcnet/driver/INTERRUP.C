@@ -217,6 +217,7 @@ Return Value:
 	PLANCE_ADAPTER	Adapter = Context;
 	ULONG			Csr0Value;
 	ULONG			SavedRAPValue;
+	USHORT ASICData18, ASICData02;
 
 	#if DBG
 		if (LanceDbg)
@@ -224,6 +225,11 @@ Return Value:
 	#endif
 
 	LOG(IN_ISR)
+
+	/* Read ASIC interrupt flags?
+       ASIC is not documented. */
+	NdisRawReadPortUshort((Adapter->PhysicalIoBaseAddress + 0x18), &ASICData18);
+	NdisRawReadPortUshort((Adapter->PhysicalIoBaseAddress + 0x02), &ASICData02);
 
 	/* Set default return value	*/
 	*InterruptRecognized = FALSE;
@@ -279,6 +285,12 @@ Return Value:
 			DbgPrint("LanceISR routine: Not my interrupt.\n");
 		#endif
 	}
+
+    /* Acknowledge ASIC interrupt flags and re-prepare?
+	   ASIC is not documented. */
+	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x18), ASICData18);
+	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x02), ASICData02);
+	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x1A), 0x0FFF);
 
 	LOG(OUT_ISR)
 
@@ -362,8 +374,7 @@ Return Value:
 
 	ULONGLONG	SystemTime;
 	
-	USHORT ASICData18, ASICData02;
-			USHORT BufferSize;
+	USHORT BufferSize;
 
 
 #ifdef NDIS40_MINIPORT
@@ -403,8 +414,6 @@ Return Value:
 
 	/* Read CSR0 for interrupts	*/
 	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
-	NdisRawReadPortUshort((Adapter->PhysicalIoBaseAddress + 0x18), &ASICData18);
-	NdisRawReadPortUshort((Adapter->PhysicalIoBaseAddress + 0x02), &ASICData02);
 
 	/* Check if there are any pending interrupts	*/
 	/* If STOP bit is set, reset the chip.	Note: when	*/
@@ -950,9 +959,6 @@ SkipIndication:
 
 	/* Clean interrupt flag	*/
 	Adapter->OpFlags &= ~IN_INTERRUPT_DPC;
-	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x18), ASICData18); 
-	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x02), ASICData02);
-	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x1A), 0x0FFF); 
 
 	LOG(OUT_DPC)
 

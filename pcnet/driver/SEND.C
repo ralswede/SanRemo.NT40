@@ -169,7 +169,7 @@ Return Value:
 		case PCNET_PCI1:
 			/* If the chip not running, restart it */
 
-			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+			LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 			if ((Csr0Value & LANCE_CSR0_RUNNING) != LANCE_CSR0_RUNNING)
 			{
@@ -195,8 +195,7 @@ Return Value:
 	while (NumberOfPackets--)
 	{
 		/* Set no-reset flag for ISR routine */
-		//commenteded out in NDIS5
-		//Adapter->OpFlags |= RESET_PROHIBITED;
+		Adapter->OpFlags |= RESET_PROHIBITED;
 
 		/* Get a pointer to the out of band data for this packet */
 		OobData = NDIS_OOB_DATA_FROM_PACKET (*PacketArray);
@@ -222,17 +221,17 @@ Return Value:
 			if (LanceDbg || LanceSendDbg)
 				DbgPrint("no xmit descriptor available. Pkts send : %i\n",oldNumPkts - NumberOfPackets);
 			#endif
-			//commented out in NDIS5
-			//Adapter->OpFlags &= ~RESET_PROHIBITED;
+
+			Adapter->OpFlags &= ~RESET_PROHIBITED;
 
 // MJ : Disabled Tx Watermark.
 //			EnableTxInts(Adapter);
 			NumberOfPackets++;
 			if(oldNumPkts != NumberOfPackets)
 			{
-				LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+				LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 				Csr0Value &= LANCE_CSR0_IENA;
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 			}
 			while (NumberOfPackets--) {
 				NDIS_SET_PACKET_STATUS(*PacketArray,NDIS_STATUS_RESOURCES);
@@ -559,9 +558,9 @@ Return Value:
 		#endif
 	} //while
 
-		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 		Csr0Value &= LANCE_CSR0_IENA;
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 
 	#if DBG
 		if (LanceDbg)
@@ -703,7 +702,7 @@ Return Value:
 		//
 		// If chip not running, restart it
 		//
-		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 		if ((Csr0Value & LANCE_CSR0_RUNNING) != LANCE_CSR0_RUNNING)
 		{
@@ -759,8 +758,7 @@ Return Value:
 			if (LanceDbg)
 				DbgPrint("LanceSend routine: no xmit descriptor available.\n");
 			#endif
-			//commented out in NDIS5
-			//Adapter->OpFlags &= ~RESET_PROHIBITED;
+			Adapter->OpFlags &= ~RESET_PROHIBITED;
 			return NDIS_STATUS_RESOURCES;
 		}
 	}
@@ -776,8 +774,7 @@ Return Value:
 			if (LanceDbg)
 				DbgPrint("LanceSend routine: no xmit descriptor available.\n");
 			#endif
-			//commented out in NDIS5
-			//Adapter->OpFlags &= ~RESET_PROHIBITED;
+			Adapter->OpFlags &= ~RESET_PROHIBITED;
 			return NDIS_STATUS_RESOURCES;
 		}
 	}
@@ -1076,9 +1073,9 @@ Return Value:
 	// 
 	// Start chip now to send packet on the wire
 	//
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 	Csr0Value &= LANCE_CSR0_IENA;
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 
 	//
 	// Increment the next available xit descriptor index.
@@ -1087,8 +1084,7 @@ Return Value:
 	{
 		Adapter->NextTransmitDescriptorIndex = 0;
 	}
-	//commented out in NDIS5
-	//Adapter->OpFlags &= ~RESET_PROHIBITED;
+	Adapter->OpFlags &= ~RESET_PROHIBITED;
 
 	#if DBG
 		if (LanceDbg)
@@ -1115,9 +1111,9 @@ EnableTxInts (
 {
 	ULONG		Data;
 
- 	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, &Data);
+ 	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, &Data);
  	Data &= ~LANCE_CSR3_TINTM;
- 	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, Data);
+ 	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, Data);
 }
 
 #ifdef _FAILOVER
@@ -1189,7 +1185,7 @@ Return Value:
 		case PCNET_PCI1:
 			/* If the chip not running, restart it */
 
-			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+			LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 			if ((Csr0Value & LANCE_CSR0_RUNNING) != LANCE_CSR0_RUNNING)
 			{
@@ -1215,8 +1211,7 @@ Return Value:
 	while (NumberOfPackets--)
 	{
 		/* Set no-reset flag for ISR routine */
-		//commented out in NDIS5
-		//Adapter->OpFlags |= RESET_PROHIBITED;
+		Adapter->OpFlags |= RESET_PROHIBITED;
 
 		/* Get a pointer to the out of band data for this packet */
 		OobData = NDIS_OOB_DATA_FROM_PACKET (*PacketArray);
@@ -1246,16 +1241,15 @@ Return Value:
 //			Adapter->CableDisconnected = TRUE;
 //			NdisMSetPeriodicTimer (&(Adapter->CableTimer),60000);
 
-			//commented out in NDIS5
-			//Adapter->OpFlags &= ~RESET_PROHIBITED;
+			Adapter->OpFlags &= ~RESET_PROHIBITED;
 
 //			EnableTxInts(Adapter);
 			NumberOfPackets++;
 			if(oldNumPkts != NumberOfPackets)
 			{
-				LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+				LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 				Csr0Value &= LANCE_CSR0_IENA;
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 			}
 			while (NumberOfPackets--) {
 				NDIS_SET_PACKET_STATUS(*PacketArray,NDIS_STATUS_RESOURCES);
@@ -1561,9 +1555,9 @@ Return Value:
 	} // while (NumberOfPackets --)
 
 	/* Start chip now to send packet on the wire */
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 	Csr0Value &= LANCE_CSR0_IENA;
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, Csr0Value | LANCE_CSR0_TDMD);
 
 	#if DBG
 		if (LanceDbg)

@@ -100,59 +100,59 @@ $Log:   V:\network\pcnet\mini3&4\src\lance.c_v  $
 static const UCHAR VendorDescription[] = "IBM 10/100 Mbps Ethernet TX MCA Adapter";
 
 #ifdef ENGLISH
-CHAR * msg1 = "NdisRegisterMac successful";
-CHAR * msg2 = "BusScan = ";
-CHAR * msg3 = "led0 = ";
-CHAR * msg4 = "led1 = ";
-CHAR * msg5 = "led2 = ";
-CHAR * msg6 = "led3 = ";
-CHAR * msg7 = "tp = ";
-CHAR * msg8 = "New Address = ";
-CHAR * msg9 = "IO base address is already in use by another device";
-CHAR * msg10 = "You can't specify IOBase address for PCI device";
-CHAR * msg11 = "IRQ number found doesn't match PROTOCOL.INI";
-CHAR * msg12 = "DMA number found doesn't match PROTOCOL.INI";
-CHAR * msg13 = "IRQ and/or DMA number is already in use by another device";
-CHAR * msg14 = "IO base address = ";
-CHAR * msg15 = "Interrupt number =";
-CHAR * msg16 = "DMA channel =";
-CHAR * msg17 = "PCI scan specified, PCI bus not found";
-CHAR * msg18 = "PCI scan specified, device not found";
-CHAR * msg19 = "LanceOpenAdapter failed";
-CHAR * msg20 = "Device at specified IO base address not found";
-CHAR * msg21 = " Device not found";
-CHAR * msg22 = "22: PnP scan specified, device not found";
-CHAR * msg23 = "23: VESA scan specified, device not found";
-CHAR * msg24 = "24: ISA scan specified, device not found";
-CHAR * msg25 = "25: MCA scan specified, device not found";
+CHAR* msg1 = "NdisRegisterMac successful";
+CHAR* msg2 = "BusScan = ";
+CHAR* msg3 = "led0 = ";
+CHAR* msg4 = "led1 = ";
+CHAR* msg5 = "led2 = ";
+CHAR* msg6 = "led3 = ";
+CHAR* msg7 = "tp = ";
+CHAR* msg8 = "New Address = ";
+CHAR* msg9 = "IO base address is already in use by another device";
+CHAR* msg10 = "You can't specify IOBase address for PCI device";
+CHAR* msg11 = "IRQ number found doesn't match PROTOCOL.INI";
+CHAR* msg12 = "DMA number found doesn't match PROTOCOL.INI";
+CHAR* msg13 = "IRQ and/or DMA number is already in use by another device";
+CHAR* msg14 = "IO base address = ";
+CHAR* msg15 = "Interrupt number =";
+CHAR* msg16 = "DMA channel =";
+CHAR* msg17 = "PCI scan specified, PCI bus not found";
+CHAR* msg18 = "PCI scan specified, device not found";
+CHAR* msg19 = "LanceOpenAdapter failed";
+CHAR* msg20 = "Device at specified IO base address not found";
+CHAR* msg21 = " Device not found";
+CHAR* msg22 = "22: PnP scan specified, device not found";
+CHAR* msg23 = "23: VESA scan specified, device not found";
+CHAR* msg24 = "24: ISA scan specified, device not found";
+CHAR* msg25 = "25: MCA scan specified, device not found";
 #endif
 
 #ifdef GERMAN
-CHAR * msg1 = "NdisRegisterMac erfolgreich";
-CHAR * msg2 = "BusScan = ";
-CHAR * msg3 = "led0 = ";
-CHAR * msg4 = "led1 = ";
-CHAR * msg5 = "led2 = ";
-CHAR * msg6 = "led3 = ";
-CHAR * msg7 = "tp = ";
-CHAR * msg8 = "Neue Adresse = ";
-CHAR * msg9 = "I/O-Basisadresse wird bereits von anderem Ger„t verwendet";
-CHAR * msg10 = "I/O-Basisadresse kann nicht fr PCI-Ger„t angegeben werden";
-CHAR * msg11 = "Festgestellte IRQ-Nummer stimmt nicht mit PROTOCOL.INI berein";
-CHAR * msg12 = "Festgestellte DMA-Nummer stimmt nicht mit PROTOCOL.INI berein";
-CHAR * msg13 = "IRQ- und/oder DMA-Nummer wird/werden bereits von anderem Ger„t verwendet";
-CHAR * msg14 = "I/O-Basisadresse = ";
-CHAR * msg15 = "Interrupt-Nummer =";
-CHAR * msg16 = "DMA-Kanal =";
-CHAR * msg17 = "PCI-Abtastung angegeben, PCI-Bus nicht gefunden";
-CHAR * msg18 = "PCI-Abtastung angegeben, Ger„t nicht gefunden";
-CHAR * msg19 = "Fehler LanceOpenAdapter";
-CHAR * msg20 = " Ger„t mit der angegeben I/O-Basisadresse nicht gefunden";
-CHAR * msg21 = " Ger„t nicht gefunden";
-CHAR * msg22 = "22: PnP-Abtastung angegeben, Ger„t nicht gefunden";
-CHAR * msg23 = "23: VESA-Abtastung angegeben, Ger„t nicht gefunden";
-CHAR * msg24 = "24: ISA-Abtastung angegeben, Ger„t nicht gefunden";
-CHAR * msg25 = "25: MCA-Abtastung angegeben, Ger„t nicht gefunden";
+CHAR* msg1 = "NdisRegisterMac erfolgreich";
+CHAR* msg2 = "BusScan = ";
+CHAR* msg3 = "led0 = ";
+CHAR* msg4 = "led1 = ";
+CHAR* msg5 = "led2 = ";
+CHAR* msg6 = "led3 = ";
+CHAR* msg7 = "tp = ";
+CHAR* msg8 = "Neue Adresse = ";
+CHAR* msg9 = "I/O-Basisadresse wird bereits von anderem Gerâ€žt verwendet";
+CHAR* msg10 = "I/O-Basisadresse kann nicht fÂr PCI-Gerâ€žt angegeben werden";
+CHAR* msg11 = "Festgestellte IRQ-Nummer stimmt nicht mit PROTOCOL.INI Âberein";
+CHAR* msg12 = "Festgestellte DMA-Nummer stimmt nicht mit PROTOCOL.INI Âberein";
+CHAR* msg13 = "IRQ- und/oder DMA-Nummer wird/werden bereits von anderem Gerâ€žt verwendet";
+CHAR* msg14 = "I/O-Basisadresse = ";
+CHAR* msg15 = "Interrupt-Nummer =";
+CHAR* msg16 = "DMA-Kanal =";
+CHAR* msg17 = "PCI-Abtastung angegeben, PCI-Bus nicht gefunden";
+CHAR* msg18 = "PCI-Abtastung angegeben, Gerâ€žt nicht gefunden";
+CHAR* msg19 = "Fehler LanceOpenAdapter";
+CHAR* msg20 = " Gerâ€žt mit der angegeben I/O-Basisadresse nicht gefunden";
+CHAR* msg21 = " Gerâ€žt nicht gefunden";
+CHAR* msg22 = "22: PnP-Abtastung angegeben, Gerâ€žt nicht gefunden";
+CHAR* msg23 = "23: VESA-Abtastung angegeben, Gerâ€žt nicht gefunden";
+CHAR* msg24 = "24: ISA-Abtastung angegeben, Gerâ€žt nicht gefunden";
+CHAR* msg25 = "25: MCA-Abtastung angegeben, Gerâ€žt nicht gefunden";
 #endif
 
 
@@ -177,7 +177,7 @@ UCHAR LogPlace = 0;
 
 #endif
 
-ULONG LED_defaults[] = {0x00c0l, 0x0090l, 0x0088l, 0x0081l};
+ULONG LED_defaults[] = { 0x00c0l, 0x0090l, 0x0088l, 0x0081l };
 #if DBG	/* Used for Mutex macro in LANCESFT.H */
 UCHAR Mutex;
 #endif
@@ -185,11 +185,11 @@ UCHAR Mutex;
 NDIS_HANDLE LanceWrapperHandle;
 
 /* Ensure that there are MAX_ADAPTERS zeroes in each of the following three arrays. */
-ULONG AdapterIo[MAX_ADAPTERS] =	{0};//{0, 0, 0, 0};
-UCHAR AdapterIrq[MAX_ADAPTERS] = {0};//{0, 0, 0, 0};
-UCHAR AdapterDma[MAX_ADAPTERS] = {0};//{0, 0, 0, 0};
+ULONG AdapterIo[MAX_ADAPTERS] = { 0 };//{0, 0, 0, 0};
+UCHAR AdapterIrq[MAX_ADAPTERS] = { 0 };//{0, 0, 0, 0};
+UCHAR AdapterDma[MAX_ADAPTERS] = { 0 };//{0, 0, 0, 0};
 
-CHAR *Copyright = "Copyright(c) 1996 ADVANCED MICRO DEVICES, INC.";
+CHAR* Copyright = "Copyright(c) 1996 ADVANCED MICRO DEVICES, INC.";
 //BOOLEAN LinkActive = TRUE;
 
 /* Function prototypes	*/
@@ -202,7 +202,7 @@ LanceInitialize(
 	IN UINT MediumArraySize,
 	IN NDIS_HANDLE LanceMiniportHandle,
 	IN NDIS_HANDLE ConfigurationHandle
-	);
+);
 
 STATIC
 NDIS_STATUS
@@ -211,89 +211,89 @@ LanceRegisterAdapter(
 	IN NDIS_HANDLE ConfigurationHandle,
 	IN PUCHAR NetworkAddress,
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 ULONG
 LanceHardwareDetails(
 	IN PLANCE_ADAPTER Adapter,
 	IN NDIS_HANDLE ConfigurationHandle
-	);
+);
 
 STATIC
 BOOLEAN
 LanceCheckIoAddress(
 	IN ULONG IoAddress
-	);
+);
 
 STATIC
 BOOLEAN
 LanceCheckIrqDmaValid(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
 LanceCleanResources(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
 LancePciEnableDma(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
 LancePciDisableDma(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
 LanceSetPciDma(
 	IN PLANCE_ADAPTER Adapter,
 	BOOLEAN EnablePciDma
-	);
+);
 
 STATIC
 VOID
-srent_config (
-    IN NDIS_HANDLE ConfigurationHandle,
-    IN ULONG IoAddr
-    );	
-	
+srent_config(
+	IN NDIS_HANDLE ConfigurationHandle,
+	IN ULONG IoAddr
+);
+
 STATIC
 VOID
 LanceStartChip(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 NDIS_STATUS
 LanceReset(
 	OUT PBOOLEAN AddressingReset,
 	IN NDIS_HANDLE MiniportAdapterContext
-	);
+);
 
 STATIC
 VOID
 LanceShutdownHandler(
 	IN PVOID Context
-	);
+);
 
 STATIC
 VOID
 LanceHalt(
 	IN NDIS_HANDLE Context
-	);
+);
 
 STATIC
 VOID
 LanceIoMoveSramData(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 NDIS_STATUS
@@ -304,45 +304,45 @@ LanceTransferData(
 	IN NDIS_HANDLE MiniportReceiveContext,
 	IN UINT ByteOffset,
 	IN UINT BytesToTransfer
-	);
+);
 
 // Added by Ryan Alswede 3/4/2005
 
 STATIC
 VOID
-LanceScanMca (
+LanceScanMca(
 	IN PLANCE_ADAPTER Adapter,
 	IN NDIS_HANDLE ConfigurationHandle
-	);
+);
 
 //****************
 
 STATIC
 VOID
-InitLEDs (
+InitLEDs(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
-InitFullDuplexMode (
+InitFullDuplexMode(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 #ifdef NDIS40_MINIPORT
 
 STATIC
 VOID
-LanceFreeNdisPkts (
+LanceFreeNdisPkts(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
 LanceSetExtPhyMedia(
 	IN ULONG IoBaseAddress,
 	IN ULONG ExtPhyMode
-	);
+);
 
 VOID
 LanceLinkMonitor(
@@ -350,32 +350,32 @@ LanceLinkMonitor(
 	IN PLANCE_ADAPTER Adapter,
 	IN PVOID	SystemSpecific2,
 	IN PVOID	SystemSpecific3
-	);
+);
 
 STATIC
 BOOLEAN
-IntPhyLinkStatus (
+IntPhyLinkStatus(
 	IN ULONG IoBaseAddress
-	);
+);
 
 
 STATIC
 BOOLEAN
-ExtPhyLinkStatus (
+ExtPhyLinkStatus(
 	IN ULONG IoBaseAddress
-	);
+);
 
 STATIC
 BOOLEAN
 LanceInitRxPacketPool(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 STATIC
 VOID
 LanceFreeRxPacketPool(
 	IN PLANCE_ADAPTER Adapter
-	);
+);
 
 #endif /* NDIS40_MINIPORT */
 
@@ -383,7 +383,7 @@ NTSTATUS
 DriverEntry(
 	IN PDRIVER_OBJECT DriverObject,
 	IN PUNICODE_STRING RegistryPath
-	)
+)
 
 /*++
 
@@ -421,14 +421,14 @@ Return Value:
 	//
 	NDIS_STRING MacName = NDIS_STRING_CONST("PCNTN4M");
 
-	#if DBG
-		if (LanceDbg)
-		{
-			DbgPrint("==>DriverEntry\n");
-			if (LanceBreak)
-				_asm int 3;
-		}
-	#endif
+#if DBG
+	if (LanceDbg)
+	{
+		DbgPrint("==>DriverEntry\n");
+		if (LanceBreak)
+			_asm int 3;
+	}
+#endif
 
 	//
 	// Initialize the wrapper.
@@ -438,34 +438,34 @@ Return Value:
 		DriverObject,
 		RegistryPath,
 		NULL
-		);
+	);
 
 	//
 	// Initialize the MAC characteristics for the call to
 	// NdisRegisterMac.
 	//
 	NdisZeroMemory(&LanceChar, sizeof(LanceChar));
-	LanceChar.MajorNdisVersion			= LANCE_NDIS_MAJOR_VERSION;
-	LanceChar.MinorNdisVersion			= LANCE_NDIS_MINOR_VERSION;
-	LanceChar.CheckForHangHandler		= NULL; //LanceCheckForHang;
-	LanceChar.DisableInterruptHandler	= LanceDisableInterrupt;
-	LanceChar.EnableInterruptHandler	= LanceEnableInterrupt;
-	LanceChar.HaltHandler				= LanceHalt;
-	LanceChar.HandleInterruptHandler	= LanceHandleInterrupt;
-	LanceChar.InitializeHandler			= LanceInitialize;
-	LanceChar.ISRHandler				= LanceISR;
-	LanceChar.QueryInformationHandler	= LanceQueryInformation;
-	LanceChar.ReconfigureHandler		= NULL;
-	LanceChar.ResetHandler				= LanceReset;
-	LanceChar.SetInformationHandler		= LanceSetInformation;
-	LanceChar.TransferDataHandler		= LanceTransferData;
-	LanceChar.ReturnPacketHandler		= LanceReturnPacket;
-	LanceChar.AllocateCompleteHandler	= NULL;
-	LanceChar.SendHandler				= NULL;
-	LanceChar.SendPacketsHandler		= LanceSendPackets;
+	LanceChar.MajorNdisVersion = LANCE_NDIS_MAJOR_VERSION;
+	LanceChar.MinorNdisVersion = LANCE_NDIS_MINOR_VERSION;
+	LanceChar.CheckForHangHandler = NULL; //LanceCheckForHang;
+	LanceChar.DisableInterruptHandler = LanceDisableInterrupt;
+	LanceChar.EnableInterruptHandler = LanceEnableInterrupt;
+	LanceChar.HaltHandler = LanceHalt;
+	LanceChar.HandleInterruptHandler = LanceHandleInterrupt;
+	LanceChar.InitializeHandler = LanceInitialize;
+	LanceChar.ISRHandler = LanceISR;
+	LanceChar.QueryInformationHandler = LanceQueryInformation;
+	LanceChar.ReconfigureHandler = NULL;
+	LanceChar.ResetHandler = LanceReset;
+	LanceChar.SetInformationHandler = LanceSetInformation;
+	LanceChar.TransferDataHandler = LanceTransferData;
+	LanceChar.ReturnPacketHandler = LanceReturnPacket;
+	LanceChar.AllocateCompleteHandler = NULL;
+	LanceChar.SendHandler = NULL;
+	LanceChar.SendPacketsHandler = LanceSendPackets;
 
 	Status = 0;
-	
+
 	//
 	// Register the miniport driver
 	//
@@ -473,17 +473,17 @@ Return Value:
 		LanceWrapperHandle,
 		&LanceChar,
 		sizeof(LanceChar)
-		);
+	);
 
 	//
 	// If ok, done
 	//
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("<==DriverEntry\n");
-		#endif
+#endif
 
 		return Status;
 	}
@@ -494,10 +494,10 @@ Return Value:
 	//
 	NdisTerminateWrapper(LanceWrapperHandle, NULL);
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("DriverEntry Fail, NdisMRegisterMiniport\n");
-	#endif
+#endif
 
 	return NDIS_STATUS_FAILURE;
 
@@ -512,7 +512,7 @@ LanceInitialize(
 	IN UINT MediumArraySize,
 	IN NDIS_HANDLE LanceMiniportHandle,
 	IN NDIS_HANDLE ConfigurationHandle
-	)
+)
 
 /*++
 
@@ -593,10 +593,10 @@ Return Value:
 	// several times depending on the number of device entries
 	// inside registry
 	//
-	#if DBG
-		if (LanceDbg)
-			DbgPrint("==>LanceInitialize\n");
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("==>LanceInitialize\n");
+#endif
 
 	/* Search for correct medium.	*/
 	for (; MediumArraySize > 0; MediumArraySize--)
@@ -607,10 +607,10 @@ Return Value:
 			break;
 		}
 	}
-	#if DBG
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+#if DBG
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	if (MediumArray[MediumArraySize] != NdisMedium802_3)
 	{
@@ -644,7 +644,7 @@ Return Value:
 		Adapter->BusTimer = BUSTIMER_DEFAULT;
 		Adapter->LanceHardwareConfigStatus = LANCE_INIT_OK;
 		Adapter->LineSpeed = LINESPEED_DEFAULT;
-//for DMI
+		//for DMI
 		Adapter->DmiIdRev[0] = 'D';
 		Adapter->DmiIdRev[1] = 'M';
 		Adapter->DmiIdRev[2] = 'I';
@@ -652,10 +652,10 @@ Return Value:
 	}
 	else
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("<==LanceInitialize\nABORT: Failed allocating adapter memory!\n");
-		#endif
+#endif
 		return NDIS_STATUS_RESOURCES;
 	}
 
@@ -664,14 +664,14 @@ Return Value:
 		&Status,
 		&ConfigHandle,
 		ConfigurationHandle
-		);
+	);
 
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("<==LanceInitialize\nABORT: Failed opening configuration registry!\n");
-		#endif
+#endif
 		return Status;
 	}
 
@@ -682,7 +682,7 @@ Return Value:
 		ConfigHandle,
 		&SlotNumberString,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -690,10 +690,10 @@ Return Value:
 	}
 	else
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("Slot number not read. NdisReadConfiguration returned %8.8X\n", Status);
-		#endif
+#endif
 	}
 
 	/* Get the Slot Number Keyword	*/
@@ -703,7 +703,7 @@ Return Value:
 		ConfigHandle,
 		&BusNumberString,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -711,16 +711,16 @@ Return Value:
 	}
 	else
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("Bus number not read. NdisReadConfiguration returned %8.8X\n", Status);
-		#endif
+#endif
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("SLOT NUMBER = %x\n",Adapter->LanceSlotNumber);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("SLOT NUMBER = %x\n", Adapter->LanceSlotNumber);
+#endif
 
 	//
 	// Get the interrupt vector number
@@ -731,12 +731,12 @@ Return Value:
 		ConfigHandle,
 		&InterruptVectorString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		Adapter->LanceInterruptVector =
-		(CCHAR)ReturnedValue->ParameterData.IntegerData;
+			(CCHAR)ReturnedValue->ParameterData.IntegerData;
 	}
 
 	/* Get the DMA channel number	*/
@@ -746,7 +746,7 @@ Return Value:
 		ConfigHandle,
 		&DmaChannelString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -761,7 +761,7 @@ Return Value:
 		ConfigHandle,
 		&BaseAddressString,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -777,22 +777,22 @@ Return Value:
 		ConfigHandle,
 		&BusTypeString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		Adapter->BusType = (USHORT)ReturnedValue->ParameterData.IntegerData;
 	}
 
-	#if DBG
+#if DBG
 	if (LanceDbg)
 	{
 		DbgPrint("Registry information:\n");
-		DbgPrint("%s %x\n",msg14, Adapter->PhysicalIoBaseAddress);
-		DbgPrint("%s %d\n",msg15, Adapter->LanceInterruptVector);
-		DbgPrint("%s %d\n",msg16, Adapter->LanceDmaChannel);
+		DbgPrint("%s %x\n", msg14, Adapter->PhysicalIoBaseAddress);
+		DbgPrint("%s %d\n", msg15, Adapter->LanceInterruptVector);
+		DbgPrint("%s %d\n", msg16, Adapter->LanceDmaChannel);
 	}
-	#endif
+#endif
 
 	//
 	// Get the bus_scan keyword
@@ -803,24 +803,24 @@ Return Value:
 		ConfigHandle,
 		&BusScanString,
 		NdisParameterString
-		);
+	);
 
-		#if DBG	
-			if (LanceDbg)	
-				DbgPrint("==>LanceInitialize\n");	
-			if (LanceBreak)	
-				_asm int 3;
-		#endif
-	
+#if DBG	
+	if (LanceDbg)
+		DbgPrint("==>LanceInitialize\n");
+	if (LanceBreak)
+		_asm int 3;
+#endif
+
 	if (Status == NDIS_STATUS_SUCCESS)
-	{	
-		Adapter->BusScan = MCA_DEV;		
+	{
+		Adapter->BusScan = MCA_DEV;
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("%s %x\n",msg2, Adapter->BusScan);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("%s %x\n", msg2, Adapter->BusScan);
+#endif
 
 	//
 	// Get the Full Duplex keyword
@@ -831,40 +831,40 @@ Return Value:
 		ConfigHandle,
 		&FullDuplexString,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		Adapter->FullDuplex = (SHORT)ReturnedValue->ParameterData.IntegerData;
 		switch (Adapter->FullDuplex)
 		{
-			case 0:
-				Adapter->FullDuplex = FDUP_DEFAULT;
-				break;
+		case 0:
+			Adapter->FullDuplex = FDUP_DEFAULT;
+			break;
 
-			case 1:
-				Adapter->FullDuplex = FDUP_OFF;
-				break;
+		case 1:
+			Adapter->FullDuplex = FDUP_OFF;
+			break;
 
-			case 3:
-				Adapter->FullDuplex = FDUP_10BASE_T;
-				break;
+		case 3:
+			Adapter->FullDuplex = FDUP_10BASE_T;
+			break;
 
-			default:
-				Adapter->FullDuplex = FDUP_DEFAULT;
+		default:
+			Adapter->FullDuplex = FDUP_DEFAULT;
 		}
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("FDUP = %x\n",Adapter->FullDuplex);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("FDUP = %x\n", Adapter->FullDuplex);
+#endif
 
 #ifdef NDIS40_MINIPORT
 
-/***********************************
- *	Get the External Phy Mode keyword *
- ***********************************/
+	/***********************************
+	 *	Get the External Phy Mode keyword *
+	 ***********************************/
 
 	NdisReadConfiguration(
 		&Status,
@@ -872,14 +872,14 @@ Return Value:
 		ConfigHandle,
 		&ExternalPhyModeString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		Adapter->ExtPhyMode = ReturnedValue->ParameterData.IntegerData;
 #if DBG
-			if (LanceDbg)
-				DbgPrint("EXTPHY = %x\n",Adapter->ExtPhyMode);
+		if (LanceDbg)
+			DbgPrint("EXTPHY = %x\n", Adapter->ExtPhyMode);
 #endif
 
 	}
@@ -892,23 +892,23 @@ Return Value:
 		&Status,
 		&ReturnedValue,
 		ConfigHandle,
-		&BusTimerString ,
+		&BusTimerString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		//Adapter->BusTimer = (SHORT)ReturnedValue->ParameterData.IntegerData * 10;
 		//if (Adapter->BusTimer < 50 || Adapter->BusTimer > 130)
 		//{
-			Adapter->BusTimer = BUSTIMER_DEFAULT;  // 60
+		Adapter->BusTimer = BUSTIMER_DEFAULT;  // 60
 		//
 	}
 
-	#if DBG
+#if DBG
 	if (LanceDbg)
-		DbgPrint("BUS TIMER = %x\n",Adapter->BusTimer);
-	#endif
+		DbgPrint("BUS TIMER = %x\n", Adapter->BusTimer);
+#endif
 
 	//
 	// Get the LED0 keyword
@@ -919,7 +919,7 @@ Return Value:
 		ConfigHandle,
 		&LED0String,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -930,10 +930,10 @@ Return Value:
 		}
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("%s	%x\n",msg3, Adapter->led0);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("%s	%x\n", msg3, Adapter->led0);
+#endif
 
 	//
 	// Get the LED1 keyword
@@ -944,7 +944,7 @@ Return Value:
 		ConfigHandle,
 		&LED1String,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -955,10 +955,10 @@ Return Value:
 		}
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("%s	%x\n",msg4, Adapter->led1);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("%s	%x\n", msg4, Adapter->led1);
+#endif
 
 	//
 	// Get the LED2 keyword
@@ -969,7 +969,7 @@ Return Value:
 		ConfigHandle,
 		&LED2String,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -980,10 +980,10 @@ Return Value:
 		}
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("%s	%x\n",msg5, Adapter->led2);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("%s	%x\n", msg5, Adapter->led2);
+#endif
 
 	//
 	// Get the LED3 keyword
@@ -994,7 +994,7 @@ Return Value:
 		ConfigHandle,
 		&LED3String,
 		NdisParameterHexInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
@@ -1005,17 +1005,17 @@ Return Value:
 		}
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("%s	%x\n",msg6, Adapter->led3);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("%s	%x\n", msg6, Adapter->led3);
+#endif
 
 	//
 	// Get the TP parametr
 	//
-	#if DBG
-		DbgPrint("TP keyword\n");
-	#endif
+#if DBG
+	DbgPrint("TP keyword\n");
+#endif
 
 	NdisReadConfiguration(
 		&Status,
@@ -1023,24 +1023,24 @@ Return Value:
 		ConfigHandle,
 		&TPString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		Adapter->tp = ReturnedValue->ParameterData.IntegerData;
 	}
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("%s	%d\n",msg7, Adapter->tp);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("%s	%d\n", msg7, Adapter->tp);
+#endif
 
 	//
 	// Get the MPMODE parameter
 	//
-	#if DBG
-		DbgPrint("MPMODE keyword\n");
-	#endif
+#if DBG
+	DbgPrint("MPMODE keyword\n");
+#endif
 
 	NdisReadConfiguration(
 		&Status,
@@ -1048,27 +1048,27 @@ Return Value:
 		ConfigHandle,
 		&MPString,
 		NdisParameterInteger
-		);
+	);
 
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
 		Adapter->MpMode = ReturnedValue->ParameterData.IntegerData;
 	}
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("MPMode = %d\n", Adapter->MpMode);
-	#endif
+#endif
 
 	//
 	// Read network address
 	//
 	NdisReadNetworkAddress(
 		&Status,
-		(PVOID *)&NetworkAddress,
+		(PVOID*)&NetworkAddress,
 		&NetworkAddressLength,
 		ConfigHandle
-		);
+	);
 
 	//
 	// Make sure that the address is the right length asnd
@@ -1090,8 +1090,8 @@ Return Value:
 		//
 		NetworkAddress = sum ? NetAddress : NULL;
 
-		#if DBG
-		if(LanceDbg)
+#if DBG
+		if (LanceDbg)
 		{
 			DbgPrint("%s %.x-%.x-%.x-%.x-%.x-%.x\n", msg8,
 				(UCHAR)NetAddress[0],
@@ -1101,9 +1101,10 @@ Return Value:
 				(UCHAR)NetAddress[4],
 				(UCHAR)NetAddress[5]);
 		}
-		#endif
+#endif
 
-	} else {
+	}
+	else {
 
 		//
 		// Tells LanceRegisterAdapter to use the burned-in address.
@@ -1112,19 +1113,19 @@ Return Value:
 
 	}
 
-//   NdisAllocateSpinLock(&Adapter->SendLock);
-//   NdisAllocateSpinLock(&Adapter->Lock);
-	//
-	// Used passed-in adapter name to register.
-	//
+	//   NdisAllocateSpinLock(&Adapter->SendLock);
+	//   NdisAllocateSpinLock(&Adapter->Lock);
+		//
+		// Used passed-in adapter name to register.
+		//
 	NdisCloseConfiguration(ConfigHandle);
 
 	Status = LanceRegisterAdapter(
-				LanceMiniportHandle,
-				ConfigurationHandle,
-				NetworkAddress,
-				Adapter
-				);
+		LanceMiniportHandle,
+		ConfigurationHandle,
+		NetworkAddress,
+		Adapter
+	);
 
 	//
 	// Check status.	If not ok, release allocated memory and
@@ -1132,31 +1133,31 @@ Return Value:
 	//
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
-//		NdisFreeSpinLock(&Adapter->Lock);
-//		NdisFreeSpinLock(&Adapter->SendLock);
+		//		NdisFreeSpinLock(&Adapter->Lock);
+		//		NdisFreeSpinLock(&Adapter->SendLock);
 		LANCE_FREE_MEMORY(Adapter, sizeof(LANCE_ADAPTER));
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("<==LanceInitialize\nABORT: LanceRegisterAdapter returned %8.8X\n", Status);
-		#endif
+#endif
 
 		return Status;
 	}
 
 	NdisMRegisterAdapterShutdownHandler(
-				LanceMiniportHandle,
-				(PVOID)Adapter,
-				LanceShutdownHandler
-				);
+		LanceMiniportHandle,
+		(PVOID)Adapter,
+		LanceShutdownHandler
+	);
 
 #ifdef NDIS40_MINIPORT
 
-	NdisMInitializeTimer (
+	NdisMInitializeTimer(
 		&(Adapter->CableTimer),
 		LanceMiniportHandle,
 		(PVOID)LanceCableTimerFunction,
 		(PVOID)Adapter
-		);
+	);
 
 	Adapter->CableDisconnected = FALSE;
 	Adapter->LinkInactive = FALSE;
@@ -1166,8 +1167,7 @@ Return Value:
 	*/
 
 
-	NdisMSetPeriodicTimer (&(Adapter->CableTimer),CABLE_CHK_TIMEOUT);
-
+	
 
 
 #endif
@@ -1188,7 +1188,7 @@ LanceRegisterAdapter(
 	IN NDIS_HANDLE ConfigurationHandle,
 	IN PUCHAR NetworkAddress,
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 /*++
 
@@ -1229,12 +1229,12 @@ Return Value:
 	PLANCE_INIT_BLOCK_HI InitializationBlockHi;
 	PNDIS_RESOURCE_LIST AssignedResources;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceRegisterAdapter\n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	//
 	// We put in this assertion to make sure that ushort are 2 bytes.
@@ -1250,9 +1250,9 @@ Return Value:
 	// Get hardware resource information
 	//
 	HardwareDetailsStatus = LanceHardwareDetails(
-												Adapter,
-												ConfigurationHandle
-												);
+		Adapter,
+		ConfigurationHandle
+	);
 
 	//
 	// Check status returned from routine
@@ -1261,51 +1261,51 @@ Return Value:
 	{
 		switch (HardwareDetailsStatus)
 		{
-			case LANCE_INIT_ERROR_9:
-				// IO base address already in use by another device
-			case LANCE_INIT_ERROR_13:
-				// IRQ and/or DMA already in use by another device
-				ErrorCode = NDIS_ERROR_CODE_RESOURCE_CONFLICT;
-				break;
+		case LANCE_INIT_ERROR_9:
+			// IO base address already in use by another device
+		case LANCE_INIT_ERROR_13:
+			// IRQ and/or DMA already in use by another device
+			ErrorCode = NDIS_ERROR_CODE_RESOURCE_CONFLICT;
+			break;
 
-			case LANCE_INIT_ERROR_18:
-				// PCI scan specified, device not found
-			case LANCE_INIT_ERROR_21:
-				// Device not found
-			case LANCE_INIT_ERROR_25:
-				// MCA device not found
-			case LANCE_INIT_ERROR_22:
-				// PnP scan specified, device not found
-			case LANCE_INIT_ERROR_23:
-				// VESA scan specified, device not found
-			case LANCE_INIT_ERROR_24:
-				// ISA scan specified, device not found
-				ErrorCode = NDIS_ERROR_CODE_ADAPTER_NOT_FOUND;
-				break;
+		case LANCE_INIT_ERROR_18:
+			// PCI scan specified, device not found
+		case LANCE_INIT_ERROR_21:
+			// Device not found
+		case LANCE_INIT_ERROR_25:
+			// MCA device not found
+		case LANCE_INIT_ERROR_22:
+			// PnP scan specified, device not found
+		case LANCE_INIT_ERROR_23:
+			// VESA scan specified, device not found
+		case LANCE_INIT_ERROR_24:
+			// ISA scan specified, device not found
+			ErrorCode = NDIS_ERROR_CODE_ADAPTER_NOT_FOUND;
+			break;
 
-			case LANCE_INIT_ERROR_20:
-				// Device at specified IO base address not found
-				ErrorCode = NDIS_ERROR_CODE_BAD_IO_BASE_ADDRESS;
-				break;
+		case LANCE_INIT_ERROR_20:
+			// Device at specified IO base address not found
+			ErrorCode = NDIS_ERROR_CODE_BAD_IO_BASE_ADDRESS;
+			break;
 
-			default:
-				ErrorCode = NDIS_ERROR_CODE_DRIVER_FAILURE;
+		default:
+			ErrorCode = NDIS_ERROR_CODE_DRIVER_FAILURE;
 		}
 
 		//
 		// Log error and exit
 		//
 		NdisWriteErrorLogEntry(Adapter->LanceMiniportHandle,
-							ErrorCode,
-							0
-							);
-		#if DBG
+			ErrorCode,
+			0
+		);
+#if DBG
 		if (LanceDbg)
 		{
 			DbgPrint("LanceHarewareDetails return error status: ");
 			DbgPrint("%x\n", HardwareDetailsStatus);
 		}
-		#endif
+#endif
 
 		//
 		// Return with fail status
@@ -1322,33 +1322,33 @@ Return Value:
 	// Register the adapter with NDIS.
 	//
 	NdisMSetAttributes(
-					Adapter->LanceMiniportHandle,
-					(NDIS_HANDLE)Adapter,
-					TRUE,
-					InterfaceType
-					);
+		Adapter->LanceMiniportHandle,
+		(NDIS_HANDLE)Adapter,
+		TRUE,
+		InterfaceType
+	);
 
 	//
 	// Register the adapter io range
 	//
-    /*
+
 	Status = NdisMRegisterIoPortRange(
-						(PVOID *)(&(Adapter->MappedIoBaseAddress)),
-						Adapter->LanceMiniportHandle,
-						Adapter->PhysicalIoBaseAddress,
-						//0x20
-						0x400
-						);
+		(PVOID*)(&(Adapter->MappedIoBaseAddress)),
+		Adapter->LanceMiniportHandle,
+		Adapter->PhysicalIoBaseAddress,
+		//0x20
+		0x400
+	);
 
 	//
 	// Return error status if failed
 	//
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("Failed registering I/O address!\n");
-		#endif
+#endif
 
 		//
 		// Log error if io registation failed
@@ -1359,11 +1359,11 @@ Return Value:
 			2,
 			registerAdapter,
 			LANCE_ERRMSG_HARDWARE_ADDRESS
-			);
+		);
 
 		goto InitErr0;
 	}
-	*/
+
 	//
 	// Allocate memory for all of the adapter structures.
 	//
@@ -1374,21 +1374,21 @@ Return Value:
 */
 	if (!LanceAllocateAdapterMemory(Adapter))
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("Failed allocating memory for descriptor rings!\n");
-			
-		#endif
+
+#endif
 
 		//
 		// Log error if memory allocation failed
 		//
 		NdisWriteErrorLogEntry(
-		Adapter->LanceMiniportHandle,
-		NDIS_ERROR_CODE_OUT_OF_RESOURCES,
-		2,
-		registerAdapter,
-		LANCE_ERRMSG_ALLOC_MEMORY
+			Adapter->LanceMiniportHandle,
+			NDIS_ERROR_CODE_OUT_OF_RESOURCES,
+			2,
+			registerAdapter,
+			LANCE_ERRMSG_ALLOC_MEMORY
 		);
 
 		Status = NDIS_STATUS_RESOURCES;
@@ -1417,10 +1417,10 @@ Return Value:
 		// Initialize the init-block network addresses
 		//
 		for (i = 0; i < ETH_LENGTH_OF_ADDRESS; i++)
-		InitializationBlockHi->PhysicalNetworkAddress[i]
+			InitializationBlockHi->PhysicalNetworkAddress[i]
 			= Adapter->CurrentNetworkAddress[i];
 		for (i = 0; i < 8; i++)
-		InitializationBlockHi->LogicalAddressFilter[i] = 0;
+			InitializationBlockHi->LogicalAddressFilter[i] = 0;
 
 		//
 		// Set the init-block receiving descriptor ring pointer low address
@@ -1435,7 +1435,7 @@ Return Value:
 		//
 		i = RECEIVE_BUFFERS;
 		while (i >>= 1)
-		InitializationBlockHi->RLen
+			InitializationBlockHi->RLen
 			+= BUFFER_LENGTH_EXPONENT_H;
 
 		//
@@ -1443,12 +1443,12 @@ Return Value:
 		//
 		InitializationBlockHi->ReceiveDescriptorRingPhysicalHighL
 			|= LANCE_GET_HIGH_PART_ADDRESS(
-					NdisGetPhysicalAddressLow(
+				NdisGetPhysicalAddressLow(
 					Adapter->ReceiveDescriptorRingPhysical));
 
 		InitializationBlockHi->ReceiveDescriptorRingPhysicalHighH
 			|= LANCE_GET_HIGH_PART_ADDRESS_H(
-					NdisGetPhysicalAddressLow(
+				NdisGetPhysicalAddressLow(
 					Adapter->ReceiveDescriptorRingPhysical));
 
 
@@ -1461,7 +1461,7 @@ Return Value:
 		//
 		i = TRANSMIT_BUFFERS;
 		while (i >>= 1)
-		InitializationBlockHi->TLen
+			InitializationBlockHi->TLen
 			+= BUFFER_LENGTH_EXPONENT_H;
 
 		//
@@ -1486,11 +1486,11 @@ Return Value:
 		// Initialize the init-block network addresses
 		//
 		for (i = 0; i < ETH_LENGTH_OF_ADDRESS; i++)
-		InitializationBlock->PhysicalNetworkAddress[i]
+			InitializationBlock->PhysicalNetworkAddress[i]
 			= Adapter->CurrentNetworkAddress[i];
 
 		for (i = 0; i < 8; i++)
-		InitializationBlock->LogicalAddressFilter[i] = 0;
+			InitializationBlock->LogicalAddressFilter[i] = 0;
 
 		//
 		// Set the init-block receiving descriptor ring pointer low address
@@ -1505,7 +1505,7 @@ Return Value:
 		//
 		i = RECEIVE_BUFFERS;
 		while (i >>= 1)
-		InitializationBlock->RLen
+			InitializationBlock->RLen
 			+= BUFFER_LENGTH_EXPONENT;
 
 		//
@@ -1513,7 +1513,7 @@ Return Value:
 		//
 		InitializationBlock->ReceiveDescriptorRingPhysicalHighL
 			|= LANCE_GET_HIGH_PART_ADDRESS(
-					NdisGetPhysicalAddressLow(
+				NdisGetPhysicalAddressLow(
 					Adapter->ReceiveDescriptorRingPhysical));
 
 		//
@@ -1528,7 +1528,7 @@ Return Value:
 		//
 		i = TRANSMIT_BUFFERS;
 		while (i >>= 1)
-		InitializationBlock->TLen
+			InitializationBlock->TLen
 			+= BUFFER_LENGTH_EXPONENT;
 
 		//
@@ -1541,22 +1541,22 @@ Return Value:
 	}
 
 #ifdef NDIS40_MINIPORT
-	if (!(LanceInitRxPacketPool (Adapter)))
+	if (!(LanceInitRxPacketPool(Adapter)))
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("Failed allocating packets &/or buffers for receive!\n");
-		#endif
+#endif
 
 		//
 		// Log error if buffer/packet allocation failed
 		//
 		NdisWriteErrorLogEntry(
-		Adapter->LanceMiniportHandle,
-		NDIS_ERROR_CODE_OUT_OF_RESOURCES,
-		2,
-		registerAdapter,
-		LANCE_ERRMSG_HARDWARE_ALLOC_BUFFER
+			Adapter->LanceMiniportHandle,
+			NDIS_ERROR_CODE_OUT_OF_RESOURCES,
+			2,
+			registerAdapter,
+			LANCE_ERRMSG_HARDWARE_ALLOC_BUFFER
 		);
 
 		Status = NDIS_STATUS_RESOURCES;
@@ -1564,15 +1564,15 @@ Return Value:
 	}
 #endif
 
-	NdisZeroMemory (Adapter->GeneralMandatory, GM_ARRAY_SIZE * sizeof(ULONG));
-	NdisZeroMemory (Adapter->GeneralOptionalByteCount, GO_COUNT_ARRAY_SIZE * sizeof(LANCE_LARGE_INTEGER));
-	NdisZeroMemory (Adapter->GeneralOptionalFrameCount, GO_COUNT_ARRAY_SIZE * sizeof(ULONG));
-	NdisZeroMemory (Adapter->GeneralOptional, (GO_ARRAY_SIZE - GO_ARRAY_START) * sizeof(ULONG));
-	NdisZeroMemory (Adapter->MediaMandatory, MM_ARRAY_SIZE * sizeof(ULONG));
-	NdisZeroMemory (Adapter->MediaOptional, MO_ARRAY_SIZE * sizeof(ULONG));
+	NdisZeroMemory(Adapter->GeneralMandatory, GM_ARRAY_SIZE * sizeof(ULONG));
+	NdisZeroMemory(Adapter->GeneralOptionalByteCount, GO_COUNT_ARRAY_SIZE * sizeof(LANCE_LARGE_INTEGER));
+	NdisZeroMemory(Adapter->GeneralOptionalFrameCount, GO_COUNT_ARRAY_SIZE * sizeof(ULONG));
+	NdisZeroMemory(Adapter->GeneralOptional, (GO_ARRAY_SIZE - GO_ARRAY_START) * sizeof(ULONG));
+	NdisZeroMemory(Adapter->MediaMandatory, MM_ARRAY_SIZE * sizeof(ULONG));
+	NdisZeroMemory(Adapter->MediaOptional, MO_ARRAY_SIZE * sizeof(ULONG));
 
 	/* Initialize the interrupt.	*/
-	NdisZeroMemory (&Adapter->LanceInterruptObject, sizeof(NDIS_MINIPORT_INTERRUPT));
+	NdisZeroMemory(&Adapter->LanceInterruptObject, sizeof(NDIS_MINIPORT_INTERRUPT));
 
 	/* Save interrupt mode	*/
 	Adapter->InterruptMode = NdisInterruptLevelSensitive;
@@ -1580,21 +1580,21 @@ Return Value:
 	Adapter->LinkActive = TRUE;
 
 	Status = NdisMRegisterInterrupt(
-				(PNDIS_MINIPORT_INTERRUPT)&(Adapter->LanceInterruptObject),
-					Adapter->LanceMiniportHandle,
-					(UINT)Adapter->LanceInterruptVector,
-					(UINT)Adapter->LanceInterruptVector,
-					FALSE,
-					(BOOLEAN)((InterfaceType == NdisInterfaceIsa) ? FALSE : TRUE),
-					Adapter->InterruptMode
-					);
+		(PNDIS_MINIPORT_INTERRUPT) & (Adapter->LanceInterruptObject),
+		Adapter->LanceMiniportHandle,
+		(UINT)Adapter->LanceInterruptVector,
+		(UINT)Adapter->LanceInterruptVector,
+		FALSE,
+		(BOOLEAN)((InterfaceType == NdisInterfaceIsa) ? FALSE : TRUE),
+		Adapter->InterruptMode
+	);
 
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("Failed registering interrupt!\n");
-		#endif
+#endif
 
 		/* Log error information	*/
 		NdisWriteErrorLogEntry(
@@ -1603,7 +1603,7 @@ Return Value:
 			2,
 			registerAdapter,
 			LANCE_ERRMSG_INIT_INTERRUPT
-			);
+		);
 
 		goto InitErr2;
 	}
@@ -1616,10 +1616,10 @@ Return Value:
 	//
 	Adapter->OpFlags |= INIT_COMPLETED;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceRegisterAdapter\n");
-	#endif
+#endif
 
 	return NDIS_STATUS_SUCCESS;
 
@@ -1639,10 +1639,17 @@ InitErr1:
 		//0x20,
 		0x400, //AIX uses 0x400
 		(PVOID)(Adapter->MappedIoBaseAddress)
-		);
-		
-			
+	);
 
+
+
+InitErr0:
+
+	//
+	// Release allocated resources
+	//
+	LanceCleanResources(Adapter);
+	/*      LANCE_FREE_MEMORY(Adapter, sizeof(LANCE_ADAPTER)); 7-7-97 M. Steiger */
 	return Status;
 
 }
@@ -1651,8 +1658,8 @@ STATIC
 ULONG
 LanceHardwareDetails(
 	IN PLANCE_ADAPTER Adapter,
-	IN NDIS_HANDLE ConfigurationHandle
-	)
+	IN NDIS_HANDLE ConfigurationHandle	
+)
 
 /*++
 
@@ -1686,12 +1693,12 @@ Return Value:
 	ULONG DeviceId;
 	USHORT ASICData;
 	ULONG val;
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceHardwareDetails\n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	//
 	// Clear board found flag
@@ -1702,58 +1709,58 @@ Return Value:
 	// Search device based on user's choice and bus type
 	// information detected and saved inside the registry
 	//
-	
-	#if DBG
-		if (LanceDbg)
+
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>Bus Scan \n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 	switch (Adapter->BusScan)
 	{
-		case MCA_DEV:
-			if (Adapter->BusType == MicroChannel)
+	case MCA_DEV:
+		if (Adapter->BusType == MicroChannel)
+		{
+			//
+			//Scan MCA bus to find controller
+			//
+			LanceScanMca(Adapter, ConfigurationHandle);
+			if (!Adapter->BoardFound)
 			{
-				//
-				//Scan MCA bus to find controller
-				//
-				LanceScanMca (Adapter, ConfigurationHandle);
-				if (!Adapter->BoardFound)
-				{
-					#if DBG
-					//if (LanceDbg)
-						DbgPrint("%s \n", msg18);
-					#endif
-				}
-				else
-				{
-					break;
-				}
+#if DBG
+				//if (LanceDbg)
+				DbgPrint("%s \n", msg18);
+#endif
+			}
+			else
+			{
+				break;
+			}
+		}
+		return LANCE_INIT_ERROR_25;
+
+
+	default:
+		if (Adapter->BusType == MicroChannel)
+		{
+			//
+			//Scan MCA bus to find controller
+			//
+			LanceScanMca(Adapter, ConfigurationHandle);
+			if (!Adapter->BoardFound)
+			{
+#if DBG
+				//if (LanceDbg)
+				DbgPrint("%s \n", msg25);
+#endif
+			}
+			else
+			{
+				break;
 			}
 			return LANCE_INIT_ERROR_25;
-	
-		
-		default:
-			if (Adapter->BusType == MicroChannel)
-			{
-				//
-				//Scan MCA bus to find controller
-				//
-				LanceScanMca (Adapter, ConfigurationHandle);
-				if (!Adapter->BoardFound)
-				{
-					 #if DBG
-					//if (LanceDbg)
-						DbgPrint("%s \n", msg25);
-					#endif
-				}
-				else
-				{
-					break;
-				}
-				return LANCE_INIT_ERROR_25;
-			}
-					
+		}
+
 	}	/* switch */
 
 	//
@@ -1761,92 +1768,58 @@ Return Value:
 	//
 	if (!Adapter->BoardFound)
 	{
-		#if DBG
-		if(LanceDbg)
-			DbgPrint("%s \n",msg21);
-		#endif
+#if DBG
+		if (LanceDbg)
+			DbgPrint("%s \n", msg21);
+#endif
 		return LANCE_INIT_ERROR_21;
-	}	
+	}
 	//
 	// Check if interrupt and DMA are valid
 	//
-	if (!LanceCheckIrqDmaValid (Adapter))
+	if (!LanceCheckIrqDmaValid(Adapter))
 	{
-		#if DBG
-		if(LanceDbg)
-			DbgPrint("%s \n",msg13);
-		#endif
+#if DBG
+		if (LanceDbg)
+			DbgPrint("%s \n", msg13);
+#endif
 		return LANCE_INIT_ERROR_13;
 	}
 
-	#if DBG
+#if DBG
 	if (LanceDbg)
 	{
-		DbgPrint("%s %x\n",msg14, Adapter->PhysicalIoBaseAddress);
-		DbgPrint("%s %d\n",msg15, Adapter->LanceInterruptVector);
-		DbgPrint("%s %d\n",msg16, Adapter->LanceDmaChannel);
+		DbgPrint("%s %x\n", msg14, Adapter->PhysicalIoBaseAddress);
+		DbgPrint("%s %d\n", msg15, Adapter->LanceInterruptVector);
+		DbgPrint("%s %d\n", msg16, Adapter->LanceDmaChannel);
 	}
-	#endif
+#endif
 	//
 	// Save network adapter address
 	//
-	/*
 	for (i = 0; i < 6; i++)
 	{
-		NdisImmediateReadPortUchar(ConfigurationHandle,
-								   Adapter->PhysicalIoBaseAddress + i,
-								   &dataByte);
+		NdisRawReadPortUchar(Adapter->PhysicalIoBaseAddress + i, &dataByte);
 		Adapter->PermanentNetworkAddress[i] = dataByte;
 	}
-	*/
-		//
-	// Register the adapter io range
-	//
-	Status = NdisMRegisterIoPortRange(
-						(PVOID *)(&(Adapter->MappedIoBaseAddress)),
-						Adapter->LanceMiniportHandle,
-						Adapter->PhysicalIoBaseAddress,
-						//0x20
-						0x400
-						);
 
-	//
-	// Return error status if failed
-	//
-	if (Status != NDIS_STATUS_SUCCESS)
-	{		
-		if (LanceDbg)
-			DbgPrint("Failed registering I/O address!\n");	
-		
-		NdisWriteErrorLogEntry(
-			Adapter->LanceMiniportHandle,
-			NDIS_ERROR_CODE_OUT_OF_RESOURCES,
-			2,
-			registerAdapter,
-			LANCE_ERRMSG_HARDWARE_ADDRESS
-			);				
-		
-		// Release allocated resources
-		LANCE_FREE_MEMORY(Adapter, sizeof(LANCE_ADAPTER)); 
-	}
-	
 	srent_config(ConfigurationHandle, Adapter->PhysicalIoBaseAddress);
-	
-	// Through the ASIC we're in word-only access mode, so we read 4 bytes at once
-    NdisRawWritePortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x00);
-    NdisRawReadPortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
-	
-    Adapter->PermanentNetworkAddress[0] = (UCHAR)(val & 0xFF);
-    Adapter->PermanentNetworkAddress[1] = (UCHAR)((val >> 8)  & 0xFF);
-    Adapter->PermanentNetworkAddress[2] = (UCHAR)((val >> 16) & 0xFF);
-    Adapter->PermanentNetworkAddress[3] = (UCHAR)((val >> 24) & 0xFF);
 
-    NdisRawWritePortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04);
-    NdisRawReadPortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
-    Adapter->PermanentNetworkAddress[4] = (UCHAR)(val & 0xFF);
-    Adapter->PermanentNetworkAddress[5] = (UCHAR)((val >> 8)  & 0xFF);
+	//Through the ASIC we're in word-only access mode, so we read 4 bytes at once
+	NdisRawWritePortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x00);
+	NdisRawReadPortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
 
-	#if DBG
+	Adapter->PermanentNetworkAddress[0] = (UCHAR)(val & 0xFF);
+	Adapter->PermanentNetworkAddress[1] = (UCHAR)((val >> 8) & 0xFF);
+	Adapter->PermanentNetworkAddress[2] = (UCHAR)((val >> 16) & 0xFF);
+	Adapter->PermanentNetworkAddress[3] = (UCHAR)((val >> 24) & 0xFF);
+
+	NdisRawWritePortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04);
+	NdisRawReadPortUlong(Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &val);
+	Adapter->PermanentNetworkAddress[4] = (UCHAR)(val & 0xFF);
+	Adapter->PermanentNetworkAddress[5] = (UCHAR)((val >> 8) & 0xFF);
+
+#if DBG
 	if (LanceDbg)
 	{
 		DbgPrint("[ %.x-%.x-%.x-%.x-%.x-%.x ] ",
@@ -1858,48 +1831,53 @@ Return Value:
 			(UCHAR)Adapter->PermanentNetworkAddress[5]);
 		DbgPrint("\n");
 	}
-	#endif	
+#endif	
 
 	//
 	// Reset the controller and stop the chip
 	//
-	//NdisImmediateReadPortUshort(ConfigurationHandle, Adapter->PhysicalIoBaseAddress + LANCE_RESET_PORT, &Data);
-	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
-	NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);  
-	
+	//NdisImmediateReadPortUshort(ConfigurationHandle, Adapter->PhysicalIoBaseAddress, &Data);
+	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
+	NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
+
 	// Delay after reset
 	//
 	NdisStallExecution(500);
-		
-	if (Adapter->DeviceType==PCNET_PCI3)
+
+	if (Adapter->DeviceType == PCNET_PCI3)
 	{
 		//
 		// if DeviceType is PCNET_PCI3, then check External Phy
 		//
-		LANCE_READ_BCR(Adapter->PhysicalIoBaseAddress,
-												LANCE_BCR32,
-												&Data												
-												);
+		LANCE_READ_BCR
+			(Adapter->PhysicalIoBaseAddress, 
+				LANCE_BCR32,
+				&Data				
+			);
 		if (Data & MIIPD)
 			Adapter->MIIPhyDetected = TRUE;
 	}
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceHardwareDetails\n");
-	#endif
+#endif
 
 	return Adapter->LanceHardwareConfigStatus;
 }
 
-STATIC BOOLEAN LanceCheckIoAddress(IN ULONG IoAddress)
+STATIC 
+BOOLEAN 
+LanceCheckIoAddress(
+IN ULONG IoAddress
+)
 {
 	UCHAR	i;
 	BOOLEAN	ret_code = TRUE;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceCheckIoAddress\n");
-	#endif
+#endif
 
 	for (i = 0; i < MAX_ADAPTERS; i++)
 	{
@@ -1908,10 +1886,10 @@ STATIC BOOLEAN LanceCheckIoAddress(IN ULONG IoAddress)
 			ret_code = FALSE;
 		}
 	}
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceCheckIoAddress\n");
-	#endif
+#endif
 	return ret_code;
 }
 
@@ -1919,45 +1897,45 @@ STATIC
 BOOLEAN
 LanceCheckIrqDmaValid(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 {
 
 	UCHAR i;
 	BOOLEAN	ret_code = TRUE;
 
-	#if DBG
-		if (LanceDbg)
-			DbgPrint("==>LanceCheckIrqDmaValid\n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("==>LanceCheckIrqDmaValid\n");
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
-	
+
 	//
 	// Save resources.	The maximum number of adapters the driver
 	// can handle is defined by MAX_ADAPTERS.
 	//
-		for (i = 0; i < MAX_ADAPTERS; i++)
+	for (i = 0; i < MAX_ADAPTERS; i++)
+	{
+		if (!AdapterIo[i])
 		{
-			if (!AdapterIo[i])
-			{
 
-				AdapterIo[i] = Adapter->PhysicalIoBaseAddress;
-				AdapterIrq[i] = Adapter->LanceInterruptVector;
-				AdapterDma[i] = Adapter->LanceDmaChannel;
-				break;
-			}
-			else if (i == MAX_ADAPTERS-1 && i != 0)
-			{
-				ret_code = FALSE;
-			}
+			AdapterIo[i] = Adapter->PhysicalIoBaseAddress;
+			AdapterIrq[i] = Adapter->LanceInterruptVector;
+			AdapterDma[i] = Adapter->LanceDmaChannel;
+			break;
 		}
-	
-	#if DBG
-		if (LanceDbg)
-			DbgPrint("<==LanceCheckIrqDmaValid\n");
-	#endif
+		else if (i == MAX_ADAPTERS - 1 && i != 0)
+		{
+			ret_code = FALSE;
+		}
+	}
+
+#if DBG
+	if (LanceDbg)
+		DbgPrint("<==LanceCheckIrqDmaValid\n");
+#endif
 
 	return ret_code;
 
@@ -1967,18 +1945,18 @@ STATIC
 VOID
 LanceCleanResources(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 {
 
 	UCHAR i;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceCleanResources\n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	//
 	// Clean resources.	The maximum number of adapters the driver
@@ -1994,18 +1972,18 @@ LanceCleanResources(
 			break;
 		}
 	}
-	#if DBG
+#if DBG
 	if (LanceDbg)
 		DbgPrint("<==LanceCleanResources\n");
-	#endif
+#endif
 }
 
 STATIC
 VOID
-LanceScanMca (
+LanceScanMca(
 	IN PLANCE_ADAPTER Adapter,
 	IN NDIS_HANDLE ConfigurationHandle
-	)
+)
 
 /*++
 
@@ -2030,58 +2008,58 @@ Return Value:
 	NDIS_MCA_POS_DATA McaData;
 	NDIS_STATUS Status;
 	UINT slot;
-	
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("==>LanceScanMca\n");
-		if (LanceBreak)
-			_asm int 3;
 
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("==>LanceScanMca\n");
+	if (LanceBreak)
+		_asm int 3;
+
+#endif
 
 	//
 	// Read MCA POS codes and find out the resources
 	//	
-    NdisReadMcaPosInformation(
-        &Status,
-        ConfigurationHandle,
-        &slot,
-        &McaData
-        );    
+	NdisReadMcaPosInformation(
+		&Status,
+		ConfigurationHandle,
+		&slot,
+		&McaData
+	);
 
-	
+
 	if (Status == NDIS_STATUS_SUCCESS)
 	{
-		if (McaData.AdapterId == SR_ADAPTER_ID )
+		if (McaData.AdapterId == SR_ADAPTER_ID)
 		{
 			// Upper 6 bits of POS[2] contain the IO base * 0x100) 
-			Adapter->PhysicalIoBaseAddress = ((McaData.PosData1 & 0xFC)) << 8;
-			
+			Adapter->MappedIoBaseAddress = ((McaData.PosData1 & 0xFC)) << 8;
+
 
 			// Upper 4 bits of POS[3] contain the DMA arbitration level.
-		    // Unused from CPU side, but reserved by POS for the adapter's 
-		    // busmaster to use.
-		    Adapter->LanceDmaChannel = McaData.PosData2 >> 4;
+			// Unused from CPU side, but reserved by POS for the adapter's 
+			// busmaster to use.
+			Adapter->LanceDmaChannel = McaData.PosData2 >> 4;
 
 			// Lower 2 bits of POS[5] encode the IRQ 
-		    switch (McaData.PosData4 & 0x03)
-		    {
-				case 0x00: 
-					Adapter->LanceInterruptVector = 15; 
-					break;
-				case 0x01: 
-					Adapter->LanceInterruptVector = 12; 
-					break;
-				case 0x02: 
-					Adapter->LanceInterruptVector = 11; 
-					break;
-				case 0x03: 
-					Adapter->LanceInterruptVector = 10; 
-					break;
-		    }		
+			switch (McaData.PosData4 & 0x03)
+			{
+			case 0x00:
+				Adapter->LanceInterruptVector = 15;
+				break;
+			case 0x01:
+				Adapter->LanceInterruptVector = 12;
+				break;
+			case 0x02:
+				Adapter->LanceInterruptVector = 11;
+				break;
+			case 0x03:
+				Adapter->LanceInterruptVector = 10;
+				break;
+			}
 		}
-	}	
-	
+	}
+
 	//
 	// Set chip and bus types
 	//
@@ -2090,10 +2068,10 @@ Return Value:
 
 	Adapter->BoardFound = MCA_DEV;
 
-	#if DBG
-		if (LanceDbg)
-			DbgPrint("<==LanceScanMca\n");
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("<==LanceScanMca\n");
+#endif
 }
 /* End of function LanceScanMca() */
 
@@ -2101,7 +2079,7 @@ STATIC
 VOID
 LancePciEnableDma(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 /*++
 
@@ -2122,27 +2100,27 @@ Return Value:
 
 {
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LancePciEnableDma\n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	LanceSetPciDma(Adapter, TRUE);
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LancePciEnableDma\n");
-	#endif
+#endif
 }
 
 STATIC
 VOID
-srent_config (
-    IN NDIS_HANDLE ConfigurationHandle,
-    IN ULONG IoAddr
-    )
+srent_config(
+	IN NDIS_HANDLE ConfigurationHandle,	
+	IN ULONG IoAddr
+)
 
 /*++
 
@@ -2163,211 +2141,211 @@ None.
 --*/
 
 {
-    ULONG temp, temp1, temp2, temp3, temp4, temp5, eepromPresent;
+	ULONG temp, temp1, temp2, temp3, temp4, temp5, eepromPresent;
 	UINT chipVersion;
 	USHORT Time;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>srent_config\n");
-	    if (LanceBreak)
-			_asm int 3;
-	#endif
-   	
-	  /* This sequence of writes goes out to the San Remo ASIC
-	   and is required to start it up. 
-	   IBM only knows what they mean. */	   
-    NdisRawWritePortUchar (IoAddr + 0x1D, 0x00);
-	if(LanceDbg)
+	if (LanceBreak)
+		_asm int 3;
+#endif
+
+	/* This sequence of writes goes out to the San Remo ASIC
+	 and is required to start it up.
+	 IBM only knows what they mean. */
+	NdisRawWritePortUchar(IoAddr + 0x1D, 0x00);
+	if (LanceDbg)
 		DbgPrint("srent_config0x1D\n");
-    NdisRawWritePortUchar (IoAddr + 0x1E, 0x4F);
-	if(LanceDbg)
+	NdisRawWritePortUchar(IoAddr + 0x1E, 0x0F);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x1E\n");
-    NdisRawWritePortUchar (IoAddr + 0x1F, 0x04);
-	if(LanceDbg)
+	NdisRawWritePortUchar(IoAddr + 0x1F, 0x04);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x1F\n");
-    NdisRawWritePortUlong (IoAddr + 0x28, 0x00000000);
-	if(LanceDbg)
+	NdisRawWritePortUlong(IoAddr + 0x28, 0x00000000);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x0000\n");
-    NdisRawWritePortUshort(IoAddr + 0x00, 0x0006);
-	if(LanceDbg)
+	NdisRawWritePortUshort(IoAddr + 0x00, 0x0006);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x00\n");
-    NdisRawWritePortUlong (IoAddr + 0x10, 0x00000000);
-	if(LanceDbg)
+	NdisRawWritePortUlong(IoAddr + 0x10, 0x00000000);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x10\n");
-    NdisRawWritePortUlong (IoAddr + 0x14, 0x00000000);
-	if(LanceDbg)
+	NdisRawWritePortUlong(IoAddr + 0x14, 0x00000000);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x14\n");
-    NdisRawWritePortUshort(IoAddr + 0x1A, 0x0FFF);
-	if(LanceDbg)
+	NdisRawWritePortUshort(IoAddr + 0x1A, 0x0FFF);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x1A\n");
-    NdisRawWritePortUchar (IoAddr + 0x22, 0x7F);
-	if(LanceDbg)
+	NdisRawWritePortUchar(IoAddr + 0x22, 0x3F);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x22\n");
-    NdisRawWritePortUshort(IoAddr + 0x20, 0x03FF);
-	if(LanceDbg)
+	NdisRawWritePortUshort(IoAddr + 0x20, 0x03FF);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x20\n");
 
-    /* Set up the PCnet's PCI Configuration Space through the ASIC */
+	/* Set up the PCnet's PCI Configuration Space through the ASIC */
 
-    // Read Latency and Header Type
-    NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
-    NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp);
-    if(LanceDbg)
+	// Read Latency and Header Type
+	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
+	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x0C Latency\n");
-	
-    // Write Latency and Header Type
-    NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x0000FF00);
-	if(LanceDbg)
+
+	// Write Latency and Header Type
+	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x0000FF00);
+	if (LanceDbg)
 		DbgPrint("srent_config 0xC Latency Write\n");
 
-    // Write I/O Base Address
-    NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x10);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), ASIC_IO_OFFSET + IoAddr);
-	if(LanceDbg)
+	// Write I/O Base Address
+	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x10);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), ASIC_IO_OFFSET + IoAddr);
+	if (LanceDbg)
 		DbgPrint("srent_config 0x1D\n");
 
-    // Write Control: SERREN, PERREN, IOEN    
-    NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x00000145);
-	if(LanceDbg)
+	// Write Control: SERREN, PERREN, IOEN    
+	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x00000145);
+	if (LanceDbg)
 		DbgPrint("0x04 SERREN, PERREN, IOEN\n");
 
-    // Read PCI Revision ID
-    NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
-    NdisRawReadPortUlong ((IoAddr + ASIC_IO_DATA_REGISTER), &temp1);  
-    if(LanceDbg)
+	// Read PCI Revision ID
+	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
+	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp1);
+	if (LanceDbg)
 	{
 		DbgPrint("Read PCI Revision ID: %4.4X\n", temp1);
-	}	
-	
+	}
+
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x2C);
-    NdisRawReadPortUlong ((IoAddr + ASIC_IO_DATA_REGISTER), &temp2);  
-    if(LanceDbg)
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x2C);
+	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp2);
+	if (LanceDbg)
 	{
 		DbgPrint("Read PCI SubVender ID: %4.4X\n", temp2);
-	}	
-	
+	}
+
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
-    NdisRawReadPortUlong ((IoAddr + ASIC_IO_DATA_REGISTER), &temp3);  
-    if(LanceDbg)
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
+	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp3);
+	if (LanceDbg)
 	{
 		DbgPrint("Read Command Register: %4.4X\n", temp3);
-	}	
+	}
 
 	// Read PCI Vendor ID
-    NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
-    NdisRawReadPortUlong ((IoAddr + ASIC_IO_DATA_REGISTER), &temp4);
-    if(LanceDbg)
+	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
+	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp4);
+	if (LanceDbg)
 	{
 		DbgPrint("Read Vendor ID: %4.4X\n", temp4);
 	}
 
-    /* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the 
-       32-bit DWIO mode. Maybe DWIO is the only one supported by the ASIC, I have never tested WIO.
-       The original AIX driver shifts gears into DWIO mode as first action between the driver and 
-       the PCnet, and in Linux we do the same. Guaranteed to work fine. 
-       From the Am79C971 datasheet:                    
-          "The Software can invoke the DWIO mode by performing a DWord write 
-           access to the I/O location at offset 10h (RDP)"       
+	/* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the
+	   32-bit DWIO mode. Maybe DWIO is the only one supported by the ASIC, I have never tested WIO.
+	   The original AIX driver shifts gears into DWIO mode as first action between the driver and
+	   the PCnet, and in Linux we do the same. Guaranteed to work fine.
+	   From the Am79C971 datasheet:
+		  "The Software can invoke the DWIO mode by performing a DWord write
+		   access to the I/O location at offset 10h (RDP)"
 		   */
 	for (Time = 0; Time < 1000; Time++)
-		NdisStallExecution(1);	   
-	
+		NdisStallExecution(1);
+
 	DbgPrint("PCnet Register RDP: %4.4X\n", IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	DbgPrint("Set AIC to RDP Port take 1\n");
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	DbgPrint("AIC IO port is set to RDP\n");
-    NdisRawReadPortUlong ((IoAddr + ASIC_IO_DATA_REGISTER), &temp5);
+	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp5);
 	DbgPrint("What we read from the RDP Port: %4.4X\n", temp5);
-	if(LanceDbg)
+	if (LanceDbg)
 	{
 		DbgPrint(" WIO address mode read\n");
 	}
 	for (Time = 0; Time < 1000; Time++)
-		NdisStallExecution(1);	
-	
+		NdisStallExecution(1);
+
 	DbgPrint("Set AIC to RDP Port take 2\n");
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	DbgPrint("We will write this to the RDP port: %4.4X\n", temp5);
-    NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), temp5);
+	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), temp5);
 	DbgPrint("We did it!!\n");
-	
+
 	for (Time = 0; Time < 1000; Time++)
 		NdisStallExecution(1);
-	
-	if(LanceDbg)
-		DbgPrint(" WIO address mode write\n");
- 
-	  /* Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
-	    that indicates an EEPROM has been read and found valid */
-    temp = 0;
-    LANCE_READ_BCR(IoAddr, 19, &temp);
-    DbgPrint("EEPROM Control \n");
-    if (!(temp & 0x8000))
-    {
-		    UINT eepromValid, time;
 
-        #if DBG
-        if(LanceDbg){
-          DbgPrint("EEPROM not read\n");
-        }
-        #endif
-		
-		    // Start EEPROM read.
-        // This will trigger the PCnet to read the EEPROM 
-        // and initialize some registers from the data. 
-        LANCE_WRITE_BCR(IoAddr, 19, 0x4000)
-        
-        // Delay until EEPROM is read
-        for(time = 0; time < 1000; time++)
-		{
-            NdisStallExecution(1);
-			 //if(LanceDbg){
-				//DbgPrint("NdisStallExecution\n");
-			//} 
+	if (LanceDbg)
+		DbgPrint(" WIO address mode write\n");
+
+	/* Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
+	  that indicates an EEPROM has been read and found valid */
+	temp = 0;
+	LANCE_READ_BCR(IoAddr, 19, &temp);
+	DbgPrint("EEPROM Control \n");
+	if (!(temp & 0x8000))
+	{
+		UINT eepromValid, time;
+
+#if DBG
+		if (LanceDbg) {
+			DbgPrint("EEPROM not read\n");
 		}
-		    // Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
-		    // that indicates the EEPROM has been read and is checksum-correct
-        temp = 0;
-        LANCE_READ_BCR(IoAddr, 19, &temp);
-        eepromValid = temp & 0x8000;
-		 if(LanceDbg)
-			DbgPrint("eepromValid\n");
- 		
-		if (eepromValid)
-        {
-            #if DBG
-            if(LanceDbg){
-              DbgPrint("EEPROM valid\n");
-            }
-            #endif
-        }
-        else
-        {
-            #if DBG
-            if(LanceDbg){
-              DbgPrint("EEPROM not valid!\n");
-            }
-            #endif
-        }
-    }
-	
-   #if DBG
+#endif
+
+		// Start EEPROM read.
+	// This will trigger the PCnet to read the EEPROM 
+	// and initialize some registers from the data. 
+		LANCE_WRITE_BCR(IoAddr, 19, 0x4000)
+
+			// Delay until EEPROM is read
+			for (time = 0; time < 1000; time++)
+			{
+				NdisStallExecution(1);
+				//if(LanceDbg){
+				   //DbgPrint("NdisStallExecution\n");
+			   //} 
+			}
+		// Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
+		// that indicates the EEPROM has been read and is checksum-correct
+		temp = 0;
+		LANCE_READ_BCR(IoAddr, 19, &temp);
+		eepromValid = temp & 0x8000;
 		if (LanceDbg)
-			DbgPrint("<==srent_config\n");
-	    if (LanceBreak)
-			_asm int 3;
-	#endif
+			DbgPrint("eepromValid\n");
+
+		if (eepromValid)
+		{
+#if DBG
+			if (LanceDbg) {
+				DbgPrint("EEPROM valid\n");
+			}
+#endif
+		}
+		else
+		{
+#if DBG
+			if (LanceDbg) {
+				DbgPrint("EEPROM not valid!\n");
+			}
+#endif
+		}
+	}
+
+#if DBG
+	if (LanceDbg)
+		DbgPrint("<==srent_config\n");
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 } // srent_config()
 
@@ -2376,7 +2354,7 @@ STATIC
 VOID
 LancePciDisableDma(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 /*++
 
@@ -2397,19 +2375,19 @@ Return Value:
 
 {
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LancePciDisableDma\n");
-	    if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	LanceSetPciDma(Adapter, FALSE);
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LancePciDisableDma\n");
-	#endif
+#endif
 }
 
 
@@ -2418,7 +2396,7 @@ VOID
 LanceSetPciDma(
 	IN PLANCE_ADAPTER Adapter,
 	BOOLEAN EnablePciDma
-	)
+)
 
 /*++
 
@@ -2442,31 +2420,32 @@ Return Value:
 
 	ULONG Buffer;
 	ULONG PatchData = 0;
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceSetPciDma\n");
-	#endif
-	
-	NdisRawWritePortUchar((Adapter->PhysicalIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
-    NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Buffer);
-	
+#endif
+
+	NdisRawWritePortUchar((Adapter->MappedIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
+	NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &Buffer);
+
 	if (EnablePciDma) {
 		// Enable DMA		
 		Buffer = 0x00000145;
-	} else {
+	}
+	else {
 		// Disable DMA
 		Buffer &= 0x0000fffb;
 	}
 
-	NdisRawWritePortUchar((Adapter->PhysicalIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), Buffer);
+	NdisRawWritePortUchar((Adapter->MappedIoBaseAddress + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
+	NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), 0x0004);
+	NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), Buffer);
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceSetPciDma\n");
-	#endif
+#endif
 }
 
 
@@ -2474,7 +2453,7 @@ VOID
 LanceInit(
 	IN PLANCE_ADAPTER Adapter,
 	IN BOOLEAN FullReset
-	)
+)
 
 /*++
 
@@ -2496,12 +2475,12 @@ Return Value:
 
 {
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceInit\n");
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	/* Check if reset is allowed	*/
 	if (Adapter->OpFlags & (RESET_IN_PROGRESS | RESET_PROHIBITED))
@@ -2510,9 +2489,9 @@ Return Value:
 	/* Disable interrupts and release any pending interrupt sources	*/
 //	LanceAcquireSpinLock(&Adapter->Lock);
 	LanceDisableInterrupt(Adapter);
-//	LanceReleaseSpinLock(&Adapter->Lock);
+	//	LanceReleaseSpinLock(&Adapter->Lock);
 
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0xff04);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, 0xff04);
 
 	/* Set reset flag for checking in isr. The isr will	*/
 	/* not read CSR0 register for the chip interrupt when	*/
@@ -2523,7 +2502,7 @@ Return Value:
 	/* by the isr	*/
 	Adapter->OpFlags |= RESET_IN_PROGRESS;
 
-	if(Adapter->OpFlags & IN_LINK_TIMER)
+	if (Adapter->OpFlags & IN_LINK_TIMER)
 	{
 		NdisStallExecution(1);
 	}
@@ -2535,14 +2514,14 @@ Return Value:
 
 	/* Initialize registers and data structure	*/
 	LanceSetupRegistersAndInit(Adapter, FullReset);
-		
+
 	/* Start the chip	*/
 	LanceStartChip(Adapter);
-			
-	#if DBG
-		if (LanceDbg)
+
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceInit\n");
-	#endif
+#endif
 }
 
 
@@ -2550,7 +2529,7 @@ STATIC
 VOID
 LanceStopChip(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 /*++
 
@@ -2574,10 +2553,10 @@ Return Value:
 	USHORT Time, Data;
 	UINT Timeout = START_STOP_TIMEOUT;
 
-	#ifdef MYDBG
-		if (LanceDbg)
+#ifdef MYDBG
+	if (LanceDbg)
 		DbgPrint("==>LanceStopChip\n");
-	#endif
+#endif
 
 	//
 	// For PCI device, disable PCI DMA engine before stopping
@@ -2591,54 +2570,53 @@ Return Value:
 		// Stop PCI DMA engine
 		//
 		LancePciDisableDma(Adapter);
-
+		
 		//
 		// Set STOP bit to stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,LANCE_CSR0_STOP | LANCE_CSR0_CLEAR);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,LANCE_CSR0,LANCE_CSR0_STOP | LANCE_CSR0_CLEAR);
 
 		//
 		// Mask out IDONM interrupts
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, LANCE_CSR3_IDONM);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, LANCE_CSR3_IDONM);
 
 		//
 		// Set initialization block physical address registers
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2, LANCE_GET_HIGH_PART_PCI_ADDRESS(
-									NdisGetPhysicalAddressLow(
-										Adapter->InitializationBlockPhysical)));
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1, LANCE_GET_LOW_PART_ADDRESS(
-									NdisGetPhysicalAddressLow(
-										Adapter->InitializationBlockPhysical)));
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR2, LANCE_GET_HIGH_PART_PCI_ADDRESS(
+			NdisGetPhysicalAddressLow(
+				Adapter->InitializationBlockPhysical)));
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR1, LANCE_GET_LOW_PART_ADDRESS(
+			NdisGetPhysicalAddressLow(
+				Adapter->InitializationBlockPhysical)));
 
 		//
 		// Initialize the chip and load initialization block
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
 
 		//
 		// Enable PCI DMA engine
 		//
 		LancePciEnableDma(Adapter);
-
+		
 		//
 		// Check if chip stopped successfully.  If initialization done
 		// bit set, it is sure chip stopped.
 		//
 		for (Time = 0; Time < 1000; Time++) {
-
 			//
 			// Check IDON bit
 			//
-			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Data);
+			LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Data);
 			if (Data & LANCE_CSR0_IDON) {
-
-				//
-				// If IDON bit set, clear status bits
-				//
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR | LANCE_CSR0_STOP);
-				return;
+		
+			//
+			// If IDON bit set, clear status bits
+			//
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);
+			return;
 
 			}
 
@@ -2647,27 +2625,27 @@ Return Value:
 			//
 			NdisStallExecution(1);
 
-		}
+			}
 		}
 
-	} else {
+	}else {
 
 		//
 		// Stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR | LANCE_CSR0_STOP);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR | LANCE_CSR0_STOP);
 
 		//
 		// Ensure that the chip stops completely with interrupts disabled.
 		//
 		for (Time = 0; Time < 5; Time++)
-		NdisStallExecution(1);
+			NdisStallExecution(1);
 	}
-	ASIC_DISABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
-	#if DBG
-		if (LanceDbg)
+	ASIC_DISABLE_INTERRUPTS(Adapter->MappedIoBaseAddress);
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceStopChip\n");
-	#endif
+#endif
 }
 
 
@@ -2676,7 +2654,7 @@ VOID
 LanceSetupRegistersAndInit(
 	IN PLANCE_ADAPTER Adapter,
 	IN BOOLEAN FullReset
-	)
+)
 
 /*++
 
@@ -2712,53 +2690,53 @@ NOTES:
 	PLANCE_RECEIVE_DESCRIPTOR_HI	ReceiveDescriptorRingHi;
 	NDIS_PHYSICAL_ADDRESS			ReceiveBufferPointerPhysical;
 
-	#if DBG
+#if DBG
 	if (LanceDbg)
 		DbgPrint("==>LanceSetupRegistersAndInit\n");
-	#endif
+#endif
 	/* Initialize the Rx/Tx descriptor ring structures	*/
 	TransmitBufferPointerPhysical = Adapter->TransmitBufferPointerPhysical;
 	ReceiveBufferPointerPhysical = Adapter->ReceiveBufferPointerPhysical;
 
 	/* Set the Software Style to 32 Bits (PCNET-PCI).	*/
 
-  	if((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
+	if ((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
 	{
 		TransmitDescriptorRingHi =
-		(PLANCE_TRANSMIT_DESCRIPTOR_HI)Adapter->TransmitDescriptorRing;
+			(PLANCE_TRANSMIT_DESCRIPTOR_HI)Adapter->TransmitDescriptorRing;
 
 		/* Set the software style to 32 Bits	*/
 
-		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR58, &Data);
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR58, &Data);
 
 		/* Mask IOStyle bits.	*/
 
-		Data &= 0xff00 ;
+		Data &= 0xff00;
 
 		/* Enable SSIZE32	*/
 		/* CSRPCNET + PCNET PCI II Sw style, will be set by the controller.	*/
-		Data |= SW_STYLE_2 ;
+		Data |= SW_STYLE_2;
 		Adapter->SwStyle = SW_STYLE_2;
 
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR58, Data);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR58, Data);
 
 		/* Initialize transmit descriptors	*/
-		for (i = 0; i < TRANSMIT_BUFFERS; i++,TransmitDescriptorRingHi++)
+		for (i = 0; i < TRANSMIT_BUFFERS; i++, TransmitDescriptorRingHi++)
 		{
 			//
 			// Initialize transmit buffer pointer
 			//
 			TransmitDescriptorRingHi->LanceBufferPhysicalLow =
-			LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
-			TransmitBufferPointerPhysical) + (i * TRANSMIT_BUFFER_SIZE));
+				LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
+					TransmitBufferPointerPhysical) + (i * TRANSMIT_BUFFER_SIZE));
 
 			TransmitDescriptorRingHi->LanceBufferPhysicalHighL =
-			LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
-			TransmitBufferPointerPhysical) + (i * TRANSMIT_BUFFER_SIZE));
+				LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
+					TransmitBufferPointerPhysical) + (i * TRANSMIT_BUFFER_SIZE));
 
 			TransmitDescriptorRingHi->LanceBufferPhysicalHighH =
-			LANCE_GET_HIGH_PART_ADDRESS_H(NdisGetPhysicalAddressLow(
-			TransmitBufferPointerPhysical) + (i * TRANSMIT_BUFFER_SIZE));
+				LANCE_GET_HIGH_PART_ADDRESS_H(NdisGetPhysicalAddressLow(
+					TransmitBufferPointerPhysical) + (i * TRANSMIT_BUFFER_SIZE));
 
 			TransmitDescriptorRingHi->ByteCount = (SHORT)0xF000;
 			TransmitDescriptorRingHi->TransmitError = 0;
@@ -2768,22 +2746,22 @@ NOTES:
 		} /* END "for" LOOP */
 
 		ReceiveDescriptorRingHi =
-		(PLANCE_RECEIVE_DESCRIPTOR_HI)Adapter->ReceiveDescriptorRing;
+			(PLANCE_RECEIVE_DESCRIPTOR_HI)Adapter->ReceiveDescriptorRing;
 
 		/* Initialize receiving descriptors	*/
 		for (i = 0; i < RECEIVE_BUFFERS; i++, ReceiveDescriptorRingHi++)
 		{
 			ReceiveDescriptorRingHi->LanceBufferPhysicalLow =
-			LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
-			ReceiveBufferPointerPhysical) + (i * RECEIVE_BUFFER_SIZE));
+				LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
+					ReceiveBufferPointerPhysical) + (i * RECEIVE_BUFFER_SIZE));
 
 			ReceiveDescriptorRingHi->LanceBufferPhysicalHighL =
-			LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
-			ReceiveBufferPointerPhysical) + (i * RECEIVE_BUFFER_SIZE));
+				LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
+					ReceiveBufferPointerPhysical) + (i * RECEIVE_BUFFER_SIZE));
 
 			ReceiveDescriptorRingHi->LanceBufferPhysicalHighH =
-			LANCE_GET_HIGH_PART_ADDRESS_H(NdisGetPhysicalAddressLow(
-			ReceiveBufferPointerPhysical) + (i * RECEIVE_BUFFER_SIZE));
+				LANCE_GET_HIGH_PART_ADDRESS_H(NdisGetPhysicalAddressLow(
+					ReceiveBufferPointerPhysical) + (i * RECEIVE_BUFFER_SIZE));
 
 			/* Make Lance the owner of the descriptor	*/
 			ReceiveDescriptorRingHi->LanceRMDFlags = OWN;
@@ -2793,12 +2771,12 @@ NOTES:
 #ifdef NDIS40_MINIPORT
 			/* Write the address of this descriptor's LanceRMDFlags member */
 			/* to the MiniportReserved field of the relative NDIS packet */
-			*((UCHAR **)&(Adapter->pNdisPacket[i]->MiniportReserved[0])) = &(ReceiveDescriptorRingHi->LanceRMDFlags);
+			* ((UCHAR**)&(Adapter->pNdisPacket[i]->MiniportReserved[0])) = &(ReceiveDescriptorRingHi->LanceRMDFlags);
 #endif
 		} /* END "for" LOOP */
 
 	} /* END "if" Section */
-	
+
 	//
 	// Reset Power Management STOP flag
 	//
@@ -2806,7 +2784,7 @@ NOTES:
 	Adapter->OpFlags &= RESET_MASK;
 
 #ifdef NDIS40_MINIPORT
-	Adapter->TxBufsUsed=0;	/* Reset outstanding tx buffer count */
+	Adapter->TxBufsUsed = 0;	/* Reset outstanding tx buffer count */
 #endif
 
 	//
@@ -2834,59 +2812,61 @@ NOTES:
 	Adapter->Csr0Value = 0;
 
 	/* Global setting for csr4 register	*/
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, &Data);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, &Data);
+
 	Data |= (LANCE_CSR4_AUTOPADTRANSMIT | LANCE_CSR4_DPOLL | 0x0004);
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, Data);
+
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, Data);
 
 	switch (Adapter->DeviceType)
 	{
-		case LANCE:
-		case PCNET_PCI1:
-			break;
+	case LANCE:
+	case PCNET_PCI1:
+		break;
 
-		default:
-			/* write dma burst and bus control register bcr18	*/
-			LANCE_READ_BCR(Adapter->PhysicalIoBaseAddress, LANCE_BCR18, &Data);
-			Data |= (LANCE_BCR18_BREADE | LANCE_BCR18_BWRITE );
-			LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, LANCE_BCR18, Data);
-			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, &Data);
-			Data |= LANCE_CSR4_DMAPLUS;
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, Data);
-			break;
+	default:
+		/* write dma burst and bus control register bcr18	*/
+		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR18, &Data);
+		Data |= (LANCE_BCR18_BREADE | LANCE_BCR18_BWRITE);
+		LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR18, Data);
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, &Data);
+		Data |= LANCE_CSR4_DMAPLUS;
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, Data);
+		break;
 	}
 
 	switch (Adapter->DeviceType)
 	{
-		case LANCE:
-		case PCNET_PCI2_A4:
-		case PCNET_PCI2_B2:
-		case PCNET_PCI1:
-			break;
+	case LANCE:
+	case PCNET_PCI2_A4:
+	case PCNET_PCI2_B2:
+	case PCNET_PCI1:
+		break;
 
-		default:
-			/* Transmit Start Point setting(csr80)	*/
-			LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, 80, &Data);
-			Data |= 0x0800;
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 80, Data);
-			break;
+	default:
+		/* Transmit Start Point setting(csr80)	*/
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, 80, &Data);
+		Data |= 0x0800;
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, 80, Data);
+		break;
 	}
 
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, &Data);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, &Data);
 	switch (Adapter->DeviceType)
 	{
-		case LANCE:
-		case PCNET_PCI1:
-		case PCNET_PCI2_A4:
-			Data |= (LANCE_CSR3_MERRM | LANCE_CSR3_BABLM);
-			break;
+	case LANCE:
+	case PCNET_PCI1:
+	case PCNET_PCI2_A4:
+		Data |= (LANCE_CSR3_MERRM | LANCE_CSR3_BABLM);
+		break;
 
-		default:
-			Data |= (LANCE_CSR3_IDONM | LANCE_CSR3_MERRM | LANCE_CSR3_DXSUFLO | LANCE_CSR3_BABLM);
-			break;
+	default:
+		Data |= (LANCE_CSR3_IDONM | LANCE_CSR3_MERRM | LANCE_CSR3_DXSUFLO | LANCE_CSR3_BABLM);
+		break;
 	}
 
 
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, Data);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, Data);
 
 	/* Initialize CSR registers */
 
@@ -2894,15 +2874,15 @@ NOTES:
 	{
 		/* Enable and set bus activity timer	*/
 
-		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, &Data);
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, Data | LANCE_CSR4_TIMER);
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, &Data);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, Data | LANCE_CSR4_TIMER);
 
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR82, Adapter->BusTimer);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR82, Adapter->BusTimer);
 
-		#if DBG
-		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, &Data);
-		DbgPrint("LanceSetupRegistersAndInit: CSR4 = %x\n",Data);
-		#endif
+#if DBG
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, &Data);
+		DbgPrint("LanceSetupRegistersAndInit: CSR4 = %x\n", Data);
+#endif
 	} /* END "if" SECTION */
 
 	if (FullReset)
@@ -2925,20 +2905,20 @@ NOTES:
 
 		if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
 		{
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2,
-			LANCE_GET_HIGH_PART_PCI_ADDRESS(NdisGetPhysicalAddressLow(
-			Adapter->InitializationBlockPhysical)));
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR2,
+				LANCE_GET_HIGH_PART_PCI_ADDRESS(NdisGetPhysicalAddressLow(
+					Adapter->InitializationBlockPhysical)));
 		}
 		else
 		{
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR2,
-			LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
-			Adapter->InitializationBlockPhysical)));
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR2,
+				LANCE_GET_HIGH_PART_ADDRESS(NdisGetPhysicalAddressLow(
+					Adapter->InitializationBlockPhysical)));
 		}
 
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR1,
-		LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
-		Adapter->InitializationBlockPhysical)));
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR1,
+			LANCE_GET_LOW_PART_ADDRESS(NdisGetPhysicalAddressLow(
+				Adapter->InitializationBlockPhysical)));
 	}
 
 #if DBG
@@ -2949,9 +2929,9 @@ NOTES:
 
 STATIC
 VOID
-InitFullDuplexMode (
+InitFullDuplexMode(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 {
 
 	ULONG	Data;
@@ -2966,10 +2946,10 @@ InitFullDuplexMode (
 #if DBG
 	if (LanceDbg)
 		DbgPrint("==>InitFullDuplexMode\n");
-		if (LanceBreak)
-			_asm int 3;
+	if (LanceBreak)
+		_asm int 3;
 #endif
-	if((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
+	if ((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
 	{
 		InitializationBlockHi = (PLANCE_INIT_BLOCK_HI)Adapter->InitializationBlock;
 	}
@@ -2977,58 +2957,35 @@ InitFullDuplexMode (
 	{
 		InitializationBlock = (PLANCE_INIT_BLOCK)Adapter->InitializationBlock;
 	}
-
+	
+	
 	//
 	// Program Full Duplex Mode
 	//
 
-	if (Adapter->DeviceType == PCNET_ISA_PLUS_PLUS)
+	if (Adapter->FullDuplex != FDUP_DEFAULT)
 	{
-		if (Adapter->FullDuplex == FDUP_DEFAULT)
-		{
-			ULONG FullDuplex = 0;
-			LANCE_READ_BCR(Adapter->PhysicalIoBaseAddress, 9, &FullDuplex);
-			Adapter->FullDuplex = FullDuplex;
-		}
-		else
-		{
-			LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, 9, Adapter->FullDuplex);
-		}
-
-		//
-		// Program TP
-		//
-		// Turn TP off when AUI is selected in the Full Duplex Mode.
-		//
-		/*	
-		if (Adapter->FullDuplex == FDUP_AUI)
-		{
-			Adapter->tp = 0;
-		}*/
+		LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress, 9, Adapter->FullDuplex);
 	}
-	//else if (Adapter->FullDuplex != FDUP_DEFAULT)
-	//{
-		LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, 9, Adapter->FullDuplex);
-	//}
 
 	/* Disable "TP" mode on Laguna (P3) and newer boards */
 
 	switch (Adapter->DeviceType)
 	{
-		case PCNET_PCI2_B2:
-		case PCNET_PCI2_A4:
-		case PCNET_PCI1:
-			break;
-		default:
-			Adapter->tp = 0;
+	case PCNET_PCI2_B2:
+	case PCNET_PCI2_A4:
+	case PCNET_PCI1:
+		break;
+	default:
+		Adapter->tp = 0;
 	}
 
 	if (Adapter->tp)
 	{
 		/* Disable link status test */
 		InitializationBlockHi->Mode |= 0x1080;
-		LANCE_READ_BCR(Adapter->PhysicalIoBaseAddress, 2, &Data);
-		LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, 2, (Data & 0xfffc));
+		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, 2, &Data);
+		LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress, 2, (Data & 0xfffc));
 	}
 
 #if DBG
@@ -3040,11 +2997,11 @@ InitFullDuplexMode (
 } /* End of function InitFullDuplexMode () */
 STATIC
 VOID
-InitLEDs (
+InitLEDs(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 {
-	ULONG *	pLEDs[4];
+	ULONG* pLEDs[4];
 	USHORT	n;
 	ULONG	Data;
 
@@ -3059,46 +3016,46 @@ InitLEDs (
 
 	if (Adapter->DeviceType == PCNET_PCI3)
 	{
-		LANCE_READ_BCR(Adapter->PhysicalIoBaseAddress, LANCE_BCR2, &Data);
-		LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, LANCE_BCR2, Data|LANCE_BCR2_LEDPE);
+		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR2, &Data);
+		LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR2, Data | LANCE_BCR2_LEDPE);
 	}
 
-	if ((Adapter->BoardFound == LOCAL_DEV	||
+	if ((Adapter->BoardFound == LOCAL_DEV ||
 		((Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV) &&
-		Adapter->DeviceType == PCNET_PCI1)))
+			Adapter->DeviceType == PCNET_PCI1)))
 	{
-		for (n=0; n<4; n++)
+		for (n = 0; n < 4; n++)
 		{
 			if (*pLEDs[n] == LED_DEFAULT)
 			{
 				switch (n) {
-					case 0 :
-								*pLEDs[n] = LED_defaults[n];
-								break;
-					case 1 :
-								*pLEDs[n] = LED_defaults[n] | 0x0020;
-								break;
-					case 2 :
-								if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
-									break;
-								else
-									*pLEDs[n] = LED_defaults[n];
-								break;
-					default :
-							 	*pLEDs[n] = LED_defaults[n];
-								break;
+				case 0:
+					*pLEDs[n] = LED_defaults[n];
+					break;
+				case 1:
+					*pLEDs[n] = LED_defaults[n] | 0x0020;
+					break;
+				case 2:
+					if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
+						break;
+					else
+						*pLEDs[n] = LED_defaults[n];
+					break;
+				default:
+					*pLEDs[n] = LED_defaults[n];
+					break;
 				}
 			}
 		}
 	}
 
-	for (n=0; n<4; n++)
+	for (n = 0; n < 4; n++)
 	{
 		if (*pLEDs[n] != LED_DEFAULT)
 		{
-			LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress,
-			LANCE_LED0_STAT + n ,
-			*pLEDs[n]);
+			LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress,
+				LANCE_LED0_STAT + n,
+				*pLEDs[n]);
 		}
 	}
 
@@ -3116,7 +3073,7 @@ STATIC
 VOID
 LanceStartChip(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 
 /*++
 
@@ -3138,34 +3095,34 @@ Return Value:
 
 	UINT Data;
 	UINT Timeout = START_STOP_TIMEOUT;
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceStartChip\n");
-	#endif
+#endif
 
 	//
 	// Mask IDON
 	//
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, &Data);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, &Data);
 	Data |= LANCE_CSR3_IDONM;
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, Data);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, Data);
 
 	/* Clear the IDON bit and other interrupt bits in CSR0 with	*/
 	/* chip interrupt disabled	*/
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR);
-	NdisStallExecution(30);
-	/* Load initialization block into controller	*/
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_START | LANCE_CSR0_INIT);
-	NdisStallExecution(30);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR);
 	
+	/* Load initialization block into controller	*/
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_INIT);
+	
+
 	/* Waiting until IDON bit set	*/
 	while (Timeout--) {
 
 		/* Read CSR0	*/
-		LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Data);
+		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Data);
 		if (LanceDbg) {
-			DbgPrint("IDON bit = %x\n",Data);
-			DbgPrint("Timeout = %x\n",Timeout);
+			DbgPrint("IDON bit = %x\n", Data);
+			DbgPrint("Timeout = %x\n", Timeout);
 		}
 		/* Check if IDON bit set	*/
 		if (Data & LANCE_CSR0_IDON) {
@@ -3175,24 +3132,28 @@ Return Value:
 			Adapter->OpFlags &= ~RESET_IN_PROGRESS;
 
 			/* Clear all interrupt status bits and start chip	*/
-			ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
-			if (Adapter->OpFlags & IN_INTERRUPT_DPC) {				
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
-						LANCE_CSR0,
-						LANCE_CSR0_START | LANCE_CSR0_INIT);
-				
-			} else {
-				
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 
-						LANCE_CSR0,
-						LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
-				
-			}	
+			ASIC_ENABLE_INTERRUPTS(Adapter->MappedIoBaseAddress);
+			if (Adapter->OpFlags & IN_INTERRUPT_DPC) {
+				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,
+					LANCE_CSR0,
+					LANCE_CSR0_START | LANCE_CSR0_INIT);
 
-			#if DBG
-				if (LanceDbg)
-					DbgPrint("<==LanceStartChip, Timeout %d\n", Timeout);
-			#endif
+			} else {
+
+				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,
+					LANCE_CSR0,
+					LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
+
+			}
+			//
+			// Exit the loop
+			//
+			break;
+
+#if DBG
+			if (LanceDbg)
+				DbgPrint("<==LanceStartChip, Timeout %d\n", Timeout);
+#endif
 			//
 			// Exit out
 			//
@@ -3203,25 +3164,18 @@ Return Value:
 		//
 		NdisStallExecution(1);
 	}
-	if (LanceDbg) {
-			DbgPrint("Fuck it catch is going to fire!\n");
-	}
-	// This is the fuck it catch
-	Adapter->OpFlags &= ~RESET_IN_PROGRESS;
-	ASIC_ENABLE_INTERRUPTS(Adapter->PhysicalIoBaseAddress);
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,
-						LANCE_CSR0_START | LANCE_CSR0_INIT | LANCE_CSR0_IENA);
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("<==LanceStartChip - Fuck it happened!\n");
-	#endif
+	
+#if DBG
+	if (LanceDbg)
+		DbgPrint("<==LanceStartChip \n");
+#endif
 }
 
 NDIS_STATUS
 LanceReset(
 	OUT PBOOLEAN AddressingReset,
 	IN NDIS_HANDLE MiniportAdapterContext
-	)
+)
 
 /*++
 
@@ -3252,12 +3206,12 @@ Return Value:
 	//
 	PLANCE_ADAPTER Adapter = (PLANCE_ADAPTER)MiniportAdapterContext;
 
-	#if DBG
+#if DBG
 		if (LanceDbg)
-			DbgPrint("==>LanceReset : Adapter->OpFlags = %x\n", Adapter->OpFlags);	
-		if (LanceBreak)
-			_asm int 3;
-	#endif
+		DbgPrint("==>LanceReset\n");
+	if (LanceBreak)
+		_asm int 3;
+#endif
 
 	ASSERT(!(Adapter->OpFlags & RESET_IN_PROGRESS));
 
@@ -3271,17 +3225,14 @@ Return Value:
 		//
 		// Do software reset
 		//
-		// NdisRawReadPortUshort(Adapter->PhysicalIoBaseAddress + LANCE_RESET_PORT, &Data);
+		// NdisRawReadPortUshort(Adapter->MappedIoBaseAddress + LANCE_RESET_PORT, &Data);
 
 		//
 		// Clear operation flags for reset
 		//
 		Adapter->OpFlags &= ~(RESET_IN_PROGRESS | RESET_PROHIBITED);
 
-		#if DBG
-			if (LanceDbg)
-				DbgPrint("LanceReset calls LanceInit.\n");
-		#endif
+
 		//
 		// Restart the chip
 		//
@@ -3289,13 +3240,13 @@ Return Value:
 
 	}
 
-// for DMI
+	// for DMI
 	++Adapter->DmiSpecific[DMI_RESET_CNT];
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceReset\n");
-	#endif
+#endif
 
 	NdisMSendResourcesAvailable(Adapter->LanceMiniportHandle);
 	return NDIS_STATUS_SUCCESS;
@@ -3306,7 +3257,7 @@ STATIC
 VOID
 LanceHalt(
 	IN NDIS_HANDLE Context
-	)
+)
 
 /*++
 
@@ -3333,115 +3284,62 @@ Return Value:
 	ULONG Data;
 	BOOLEAN IsCancelled;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceHalt\n");
-	#endif
+#endif
 
-	NdisMCancelTimer (&(Adapter->CableTimer),&IsCancelled);
+	NdisMCancelTimer(&(Adapter->CableTimer), &IsCancelled);
 	//
 	// Stop the controller and disable the controller interrupt
 	//
-	LanceStopChip (Adapter);
-	//
-	// magic packet mode
-	//
-	if(
-		Adapter->MpMode &&
-		(
-			Adapter->DeviceType == PCNET_ISA_PLUS_PLUS ||
-			(
-				(Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)  &&
-				Adapter->DeviceType != PCNET_PCI1
-			)
-		)
-	)
-	{
-		#if DBG
-		if (LanceDbg)
-			DbgPrint ("I am at Magic Packet Mode code\n");
-		#endif
+	LanceStopChip(Adapter);
+	
 
-		//NdisRawReadPortUshort (Adapter->PhysicalIoBaseAddress, &Data);
-		NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET)); 
-		NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data); 
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 12, Data);
-		//NdisRawReadPortUshort (Adapter->PhysicalIoBaseAddress+2, &Data);
-		NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x02)); 
-		NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 13, Data);
-		//NdisRawReadPortUshort (Adapter->PhysicalIoBaseAddress+4, &Data);
-		NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04)); 
-		NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 14, Data);
 
-		//
-		// Disable Transmit and Receiver which will not access the
-		// descritor ring
-		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR15, 0x0003);
-
-		LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, LANCE_BCR7, 0x0200);
-
-		//
-		// Set DPOLL in CSR4(bit12) to disable polling
-		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, 0x1115);
-
-		//
-		// Magic Packet Mode, Magic Packet Physical Logical Broadcast Accept
-		// and Magic Packet Enable(Software Control)
-		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR5, 0x0022);
-
-		//
-		// Set START bit in CSR0 to 1
-		//
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0x0002);
-	}
-
+	// Clean resources anyway
+	LanceCleanResources(Adapter);
 	//
 	// Deregister interrupt number
 	//
-	NdisMDeregisterInterrupt (&(Adapter->LanceInterruptObject));
+	NdisMDeregisterInterrupt(&(Adapter->LanceInterruptObject));
 
 	//
 	// Deregister io address range
 	//
 	NdisMDeregisterIoPortRange(
-			Adapter->LanceMiniportHandle,
-			Adapter->PhysicalIoBaseAddress,
-			//0x20,
-			0x400,  //AIX usines 0x400 
-			(PVOID)(Adapter->MappedIoBaseAddress)
-			);
+		Adapter->LanceMiniportHandle,
+		Adapter->PhysicalIoBaseAddress,
+		//0x20,
+		0x400,  //AIX usines 0x400 
+		(PVOID)(Adapter->MappedIoBaseAddress)
+	);
 
-//	NdisFreeSpinLock(&Adapter->Lock);
+	//	NdisFreeSpinLock(&Adapter->Lock);
 
 #ifdef NDIS40_MINIPORT
 	LanceFreeRxPacketPool(Adapter);
 #endif
+//
+	// Clean resources data anyway
+	//
+	LanceCleanResources(Adapter);
 
 	//
 	// Release allocated memory for initiation block,
 	// descriptors and buffers
 	//
-	LanceDeleteAdapterMemory (Adapter);
+	LanceDeleteAdapterMemory(Adapter);
 
 	//
 	// Release allocated memory for driver data storage
 	//
 	LANCE_FREE_MEMORY(Adapter, sizeof(LANCE_ADAPTER));
 
-	//
-	// Clean resources data anyway
-	//
-	LanceCleanResources(Adapter);
-
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceHalt\n");
-	#endif
+#endif
 }
 
 
@@ -3454,7 +3352,7 @@ LanceTransferData(
 	IN NDIS_HANDLE MiniportReceiveContext,
 	IN UINT ByteOffset,
 	IN UINT BytesToTransfer
-	)
+)
 
 /*++
 
@@ -3502,20 +3400,20 @@ Return Value:
 
 	PLANCE_ADAPTER Adapter = (PLANCE_ADAPTER)MiniportAdapterContext;
 
-	#if DBG
-		if (LanceDbg)
-		DbgPrint("==>LanceTransferData routine : %i\n",Adapter->RedundantMode);
-	#endif
+#if DBG
+	if (LanceDbg)
+		DbgPrint("==>LanceTransferData routine : %i\n", Adapter->RedundantMode);
+#endif
 
 	//
 	// If reset flag set, return with reset status
 	//
 	if (Adapter->OpFlags & RESET_IN_PROGRESS) {
 
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("LanceTransferData routine: found reset and return.\n");
-		#endif
+#endif
 
 		return NDIS_STATUS_RESET_IN_PROGRESS;
 
@@ -3525,17 +3423,17 @@ Return Value:
 	// Copy packet data into data buffers provided by system
 	//
 	LanceMovePacket(Adapter,
-				Packet,
-				BytesToTransfer,
-				(PCHAR)MiniportReceiveContext + ByteOffset,
-				BytesTransferred,
-				FALSE
-				);
+		Packet,
+		BytesToTransfer,
+		(PCHAR)MiniportReceiveContext + ByteOffset,
+		BytesTransferred,
+		FALSE
+	);
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceTransferData routine\n");
-	#endif
+#endif
 
 	return NDIS_STATUS_SUCCESS;
 
@@ -3550,7 +3448,7 @@ LanceMovePacket(
 	PCHAR Buffer,
 	OUT PUINT BytesCopied,
 	IN BOOLEAN CopyFromPacketToBuffer
-	)
+)
 
 /*++
 
@@ -3591,21 +3489,21 @@ Return Value:
 	UINT LocalBytesCopied = 0;
 	UINT AmountToMove;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceMovePacket\n");
-	#endif
+#endif
 
 	//
 	// Take care of boundary condition of zero length copy.
 	//
-	*BytesCopied = 0;
+	* BytesCopied = 0;
 	if (!BytesToCopy) {
 
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("LanceMovePacket routine: number of bytes to move is 0.\n");
-		#endif
+#endif
 
 		return;
 
@@ -3620,17 +3518,17 @@ Return Value:
 		&NdisBufferCount,
 		&CurrentBuffer,
 		NULL
-		);
+	);
 
 	//
 	// Could have a null packet.
 	//
 	if (!NdisBufferCount) {
 
-		#if DBG
+#if DBG
 		if (LanceDbg)
 			DbgPrint("LanceMovePacket routine: buffer count is 0.\n");
-		#endif
+#endif
 
 		return;
 
@@ -3640,32 +3538,32 @@ Return Value:
 		CurrentBuffer,
 		&VirtualAddress,
 		&CurrentLength
-		);
+	);
 
 	while (LocalBytesCopied < BytesToCopy) {
 
 		if (!CurrentLength) {
 
-		NdisGetNextBuffer(
-			CurrentBuffer,
-			&CurrentBuffer
+			NdisGetNextBuffer(
+				CurrentBuffer,
+				&CurrentBuffer
 			);
 
-		//
-		// We've reached the end of the packet.	We return
-		// with what we've done so far. (Which must be shorter
-		// than requested.
-		//
-		if (!CurrentBuffer)
-			break;
+			//
+			// We've reached the end of the packet.	We return
+			// with what we've done so far. (Which must be shorter
+			// than requested.
+			//
+			if (!CurrentBuffer)
+				break;
 
-		NdisQueryBuffer(
-			CurrentBuffer,
-			&VirtualAddress,
-			&CurrentLength
+			NdisQueryBuffer(
+				CurrentBuffer,
+				&VirtualAddress,
+				&CurrentLength
 			);
 
-		continue;
+			continue;
 
 		}
 
@@ -3673,24 +3571,24 @@ Return Value:
 		// Copy the data.
 		//
 		AmountToMove = (CurrentLength <= (BytesToCopy - LocalBytesCopied)) ?
-						CurrentLength : (BytesToCopy - LocalBytesCopied);
+			CurrentLength : (BytesToCopy - LocalBytesCopied);
 
 
 		if (CopyFromPacketToBuffer)
 
-		LANCE_MOVE_MEMORY(
+			LANCE_MOVE_MEMORY(
 				Buffer,
 				VirtualAddress,
 				AmountToMove
-				);
+			);
 
 		else
 
-		LANCE_MOVE_MEMORY(
+			LANCE_MOVE_MEMORY(
 				VirtualAddress,
 				Buffer,
 				AmountToMove
-				);
+			);
 
 		Buffer = (PCHAR)Buffer + AmountToMove;
 		LocalBytesCopied += AmountToMove;
@@ -3700,44 +3598,52 @@ Return Value:
 
 	*BytesCopied = LocalBytesCopied;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceMovePacket\n");
-	#endif
+#endif
 }
 
 #ifdef NDIS40_MINIPORT
 
 STATIC
 VOID
-LanceGetActiveMediaInfo (
+LanceGetActiveMediaInfo(
 	IN PLANCE_ADAPTER Adapter)
 {
 
-ULONG	MyAbility;
-ULONG	LinkPartnerAbility;
-USHORT	BitMask = 0x8000;
+	ULONG	MyAbility;
+	ULONG	LinkPartnerAbility;
+	USHORT	BitMask = 0x8000;
+	USHORT  Bcr33Value;
+	USHORT  NewBcr33Value;
 
-	if (ExtPhyLinkStatus (Adapter->PhysicalIoBaseAddress))
+	if (ExtPhyLinkStatus(Adapter->MappedIoBaseAddress))
 	{	/* Read speed and duplex mode from ext phy */
 		/* Write address of MII register to be read */
-		LANCE_WRITE_BCR (Adapter->PhysicalIoBaseAddress, MII_ADDR, (PHYADDR | MII_MY_ABILITY));
+		LANCE_READ_BCR (Adapter->MappedIoBaseAddress, MII_ADDR, &Bcr33Value);
+		Bcr33Value &= PHYADDR_MASK;
+		NewBcr33Value = Bcr33Value | MII_MY_ABILITY;
+		LANCE_WRITE_BCR (Adapter->MappedIoBaseAddress, MII_ADDR, NewBcr33Value);
 
 		/* Read Data from MII */
-		LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, MII_MDR, &MyAbility);
+		LANCE_READ_BCR (Adapter->MappedIoBaseAddress, MII_MDR, &MyAbility);
 		MyAbility &= ABILITY_MASK;
-		MyAbility >>= 5;	/* Align LSB of the ability field at bit 0 */
+		MyAbility >>= 5;        /* Align LSB of the ability field at bit 0 */
 
 		/* Write address of MII register to be read */
-		LANCE_WRITE_BCR (Adapter->PhysicalIoBaseAddress, MII_ADDR, (PHYADDR | MII_LNK_PRTNR));
+		LANCE_READ_BCR (Adapter->MappedIoBaseAddress, MII_ADDR, &Bcr33Value);
+		Bcr33Value &= PHYADDR_MASK;
+		NewBcr33Value = Bcr33Value | MII_LNK_PRTNR;
+		LANCE_WRITE_BCR (Adapter->MappedIoBaseAddress, MII_ADDR, NewBcr33Value);
 
 		/* Read Data from MII */
-		LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, MII_MDR, &LinkPartnerAbility);
+		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, MII_MDR, &LinkPartnerAbility);
 
 		LinkPartnerAbility &= ABILITY_MASK;
 		LinkPartnerAbility >>= 5;	/* Align LSB of the ability field at bit 0 */
 		MyAbility &= LinkPartnerAbility;	/* AND the two together */
-											/* and save in MyAbility */
+		/* and save in MyAbility */
 
 		if (MyAbility)
 		{
@@ -3750,37 +3656,37 @@ USHORT	BitMask = 0x8000;
 		switch (BitMask)	/* The order of bit testing is deliberate and is defined */
 		{					/* in IEEE 802.3 Supplement 802.3u/D5.3 Dated June 12, 1995 */
 							/* annex 28B, specifically 28B.2 and 28B.3 */
-			case 0x08:	/* 100BASE-TX FD */
-				Adapter->FullDuplex = TRUE;
-				Adapter->LineSpeed = 100;
-				break;
+		case 0x08:	/* 100BASE-TX FD */
+			Adapter->FullDuplex = TRUE;
+			Adapter->LineSpeed = 100;
+			break;
 
-			case 0x10:	/* 100BASE-T4 */
-			case 0x04:	/* 100BASE-TX */
-				Adapter->FullDuplex = FALSE;
-				Adapter->LineSpeed = 100;
-				break;
+		case 0x10:	/* 100BASE-T4 */
+		case 0x04:	/* 100BASE-TX */
+			Adapter->FullDuplex = FALSE;
+			Adapter->LineSpeed = 100;
+			break;
 
-			case 0x02:	/* 10BASE-T FD */
-				Adapter->FullDuplex = TRUE;
-				Adapter->LineSpeed = 10;
-				break;
+		case 0x02:	/* 10BASE-T FD */
+			Adapter->FullDuplex = TRUE;
+			Adapter->LineSpeed = 10;
+			break;
 
-//			case 0x01:	/* 10BASE-T */
-			default:	/* 10BASE-T */
-				Adapter->FullDuplex = FALSE;
-				Adapter->LineSpeed = 10;
-				break;
+			//			case 0x01:	/* 10BASE-T */
+		default:	/* 10BASE-T */
+			Adapter->FullDuplex = FALSE;
+			Adapter->LineSpeed = 10;
+			break;
 
 		}
 	}
 	else
-	{	
+	{
 		ULONG FullDuplex = 0;
 		/* Read duplex mode from internal phy (10Mbps) */
 		Adapter->LineSpeed = 10;
 		/* Determine if the internal PHY is in Full Duplex mode */
-		LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, LANCE_FDC_REG, &FullDuplex);
+		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, LANCE_FDC_REG, &FullDuplex);
 		Adapter->FullDuplex = FullDuplex;
 		Adapter->FullDuplex &= LANCE_FDC_FDEN;	/* Non-zero (TRUE) if full duplex */
 	}
@@ -3789,43 +3695,43 @@ USHORT	BitMask = 0x8000;
 
 STATIC
 BOOLEAN
-LanceReadLink (
+LanceReadLink(
 	IN ULONG IoBaseAddress,
 	IN UCHAR DevType,
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 {
 	BOOLEAN	RetCode;
 
 	/* Read the internal PHY's link status */
-	if(Adapter->OpFlags & RESET_IN_PROGRESS)
+	if (Adapter->OpFlags & RESET_IN_PROGRESS)
 	{
 		return TRUE;
 	}
-	RetCode = IntPhyLinkStatus (IoBaseAddress);
+	RetCode = IntPhyLinkStatus(IoBaseAddress);
 
 	switch (DevType)
 	{
-		case PCNET_PCI2_B2:	/* Internal PHY only on P2 card */
-			break;
+	case PCNET_PCI2_B2:	/* Internal PHY only on P2 card */
+		break;
 
-		case PCNET_PCI3:
-			/* If the internal PHY reports link not present */
-			/* Try the external PHY ... */
-			if (RetCode == FALSE)
+	case PCNET_PCI3:
+		/* If the internal PHY reports link not present */
+		/* Try the external PHY ... */
+		if (RetCode == FALSE)
+		{
+			if (Adapter->OpFlags & RESET_IN_PROGRESS)
 			{
-				if(Adapter->OpFlags & RESET_IN_PROGRESS)
-				{
-					return TRUE;
-				}
-
-				RetCode = ExtPhyLinkStatus (IoBaseAddress);
+				return TRUE;
 			}
-			break;
 
-		default:	/* All other devices are unsupported, so to avoid calamity, */
-					/* report valid link always */
-			break; //RetCode = TRUE;
+			RetCode = ExtPhyLinkStatus(IoBaseAddress);
+		}
+		break;
+
+	default:	/* All other devices are unsupported, so to avoid calamity, */
+		/* report valid link always */
+		break; //RetCode = TRUE;
 	}
 
 	return RetCode;
@@ -3834,9 +3740,9 @@ LanceReadLink (
 
 STATIC
 BOOLEAN
-ExtPhyLinkStatus (
+ExtPhyLinkStatus(
 	IN ULONG IoBaseAddress
-	)
+)
 {
 	USHORT  TempValue;
 	USHORT  Bcr33Value;
@@ -3856,20 +3762,20 @@ ExtPhyLinkStatus (
 	/*      MIIPD = 0       External PHY? Maybe, maybe not!                                         */
 	/* Of course, all of this is theory and conjecture anyway...            */
 
-	LANCE_READ_BCR (IoBaseAddress, LANCE_BCR32, &TempValue);
+	LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &TempValue);
 	/* If no PHY is detected, double-check by reading the IEEE ID */
 	/* register. If it's all ones (0xFFFF), we'll assume that there's no */
 	/* external PHY present */
 	if (!(TempValue & MIIPD))
 	{
 		/* Write address of IEEE ID register */
-		LANCE_READ_BCR (IoBaseAddress, MII_ADDR, &Bcr33Value);
+		LANCE_READ_BCR(IoBaseAddress, MII_ADDR, &Bcr33Value);
 		Bcr33Value &= PHYADDR_MASK;
 		NewBcr33Value = Bcr33Value | MII_IEEE_ID;
-		LANCE_WRITE_BCR (IoBaseAddress, MII_ADDR, NewBcr33Value);
+		LANCE_WRITE_BCR(IoBaseAddress, MII_ADDR, NewBcr33Value);
 
 		/* Read IEEE ID from MII data register */
-		LANCE_READ_BCR (IoBaseAddress, MII_MDR, &TempValue);
+		LANCE_READ_BCR(IoBaseAddress, MII_MDR, &TempValue);
 
 		/* Two assumtions are made here:        */
 		/* 1. There is no IEEE ID == 0 or 0xFFFF */
@@ -3881,13 +3787,13 @@ ExtPhyLinkStatus (
 		}                                       /* No PHY means no link, right? Bail out here */
 	}
 	/* Write address of MII register to be read */
-	LANCE_READ_BCR (IoBaseAddress, MII_ADDR, &Bcr33Value);
-	Bcr33Value &= PHYADDR_MASK; 
+	LANCE_READ_BCR(IoBaseAddress, MII_ADDR, &Bcr33Value);
+	Bcr33Value &= PHYADDR_MASK;
 	NewBcr33Value = Bcr33Value | MII_STAT_REG;
-	LANCE_WRITE_BCR (IoBaseAddress, MII_ADDR, NewBcr33Value);
+	LANCE_WRITE_BCR(IoBaseAddress, MII_ADDR, NewBcr33Value);
 
 	/* Read Status from MII */
-	LANCE_READ_BCR (IoBaseAddress, MII_MDR, &TempValue);
+	LANCE_READ_BCR(IoBaseAddress, MII_MDR, &TempValue);
 
 	/* Test link status bit and exit FALSE if necessary */
 	if (!(TempValue & LS0))
@@ -3898,22 +3804,22 @@ ExtPhyLinkStatus (
 }
 STATIC
 BOOLEAN
-IntPhyLinkStatus (
+IntPhyLinkStatus(
 	IN ULONG IoBaseAddress
-	)
+)
 {
-	ULONG	TempValue;	
+	ULONG	TempValue;
 	ULONG	LinkStatus;
 	BOOLEAN	RetCode = TRUE;
 	ULONG	FullDuplex;
 
 	/* Determine if the internal PHY is in Full Duplex mode */
 	/* and set local variable to indicate the correct state. */
-	LANCE_READ_BCR (IoBaseAddress, LANCE_FDC_REG, &FullDuplex);
+	LANCE_READ_BCR(IoBaseAddress, LANCE_FDC_REG, &FullDuplex);
 	FullDuplex &= LANCE_FDC_FDEN;	/* Non-zero (TRUE) if full duplex */
 
 	/* Read and save contents of LED0 status register. */
-	LANCE_READ_BCR (IoBaseAddress, LANCE_LED0_STAT, &TempValue);
+	LANCE_READ_BCR(IoBaseAddress, LANCE_LED0_STAT, &TempValue);
 
 	/* Mask off any read-only bits */
 	TempValue &= LANCE_LINKSE_MASK;
@@ -3921,18 +3827,18 @@ IntPhyLinkStatus (
 	/* Configure LED0 status reg to indicate link status */
 	if (FullDuplex)	/* Full duplex link status */
 	{
-		LANCE_WRITE_BCR (IoBaseAddress, LANCE_LED0_STAT, LANCE_LINK_FDE);
+		LANCE_WRITE_BCR(IoBaseAddress, LANCE_LED0_STAT, LANCE_LINK_FDE);
 	}
 	else	/* Half duplex link status */
 	{
-		LANCE_WRITE_BCR (IoBaseAddress, LANCE_LED0_STAT, LANCE_LINKSE);
+		LANCE_WRITE_BCR(IoBaseAddress, LANCE_LED0_STAT, LANCE_LINKSE);
 	}
 
 	/* Read link status from LED0 register */
-	LANCE_READ_BCR (IoBaseAddress, LANCE_LED0_STAT, &LinkStatus);
+	LANCE_READ_BCR(IoBaseAddress, LANCE_LED0_STAT, &LinkStatus);
 
 	/* Restore LED0 Stat register configuration */
-	LANCE_WRITE_BCR (IoBaseAddress, LANCE_LED0_STAT, TempValue);
+	LANCE_WRITE_BCR(IoBaseAddress, LANCE_LED0_STAT, TempValue);
 
 	/* Test relevant bit(s) and return the proper state. */
 	if (!(LinkStatus & LANCE_LED_ON))
@@ -3950,15 +3856,15 @@ LanceCableTimerFunction(
 	IN PLANCE_ADAPTER Adapter,
 	IN PVOID SystemSpecific2,
 	IN PVOID SystemSpecific3
-	)
+)
 {
 	BOOLEAN IsCancelled;
 	PLANCE_ADAPTER TempAdapter;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceCableTimerFunction\n");
-	#endif
+#endif
 
 	if (Adapter->OpFlags & RESET_IN_PROGRESS)
 		return;
@@ -3969,27 +3875,27 @@ LanceCableTimerFunction(
 		if (Adapter->CableDisconnected)
 		{
 			Adapter->CableDisconnected = FALSE;
-			NdisMIndicateStatus (Adapter->LanceMiniportHandle,
-								NDIS_STATUS_MEDIA_CONNECT,
-								NULL,
-								0
-								);
+			NdisMIndicateStatus(Adapter->LanceMiniportHandle,
+				NDIS_STATUS_MEDIA_CONNECT,
+				NULL,
+				0
+			);
 		}
 		return;
 	}
 
 	Adapter->OpFlags |= IN_LINK_TIMER;
 
-	if (LanceReadLink (Adapter->PhysicalIoBaseAddress, Adapter->DeviceType, Adapter))
+	if (LanceReadLink(Adapter->MappedIoBaseAddress, Adapter->DeviceType, Adapter))
 	{
 		if (Adapter->CableDisconnected)
 		{
 			Adapter->CableDisconnected = FALSE;
-			NdisMIndicateStatus (Adapter->LanceMiniportHandle,
-								NDIS_STATUS_MEDIA_CONNECT,
-								NULL,
-								0
-								);
+			NdisMIndicateStatus(Adapter->LanceMiniportHandle,
+				NDIS_STATUS_MEDIA_CONNECT,
+				NULL,
+				0
+			);
 		}
 	}
 	else
@@ -3997,20 +3903,20 @@ LanceCableTimerFunction(
 		if (!Adapter->CableDisconnected)
 		{
 			Adapter->CableDisconnected = TRUE;
-			NdisMIndicateStatus (Adapter->LanceMiniportHandle,
-								NDIS_STATUS_MEDIA_DISCONNECT,
-								NULL,
-								0
-								);
+			NdisMIndicateStatus(Adapter->LanceMiniportHandle,
+				NDIS_STATUS_MEDIA_DISCONNECT,
+				NULL,
+				0
+			);
 		}
 	}
 
 	Adapter->OpFlags &= ~IN_LINK_TIMER;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("<==LanceCableTimerFunction\n");
-	#endif
+#endif
 }
 
 STATIC
@@ -4018,52 +3924,52 @@ VOID
 LanceSetExtPhyMedia(
 	IN ULONG IoBaseAddress,
 	IN ULONG ExtPhyMode
-	)
+)
 {
 
 	UCHAR	TempByte;
 	ULONG Data;
 
- #if DBG
+#if DBG
 	if (LanceDbg)
 		DbgPrint("==>LanceSetExtPhyMedia\n");
- #endif
+#endif
 
 	LANCE_READ_BCR(IoBaseAddress, LANCE_BCR2, &Data);
-	LANCE_WRITE_BCR(IoBaseAddress, LANCE_BCR2, Data|LANCE_BCR2_ASEL);
+	LANCE_WRITE_BCR(IoBaseAddress, LANCE_BCR2, Data | LANCE_BCR2_ASEL);
 
-//	LanceResetExtPhy(IoBaseAddress);
+	//	LanceResetExtPhy(IoBaseAddress);
 
 	LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &Data);
 	TempByte = (UCHAR)Data;
- #if DBG
+#if DBG
 	if (LanceExtPhyDbg)
-		DbgPrint("BCR32 : %x\n",TempByte);
- #endif
+		DbgPrint("BCR32 : %x\n", TempByte);
+#endif
 	TempByte &= FORCED_PHY_MASK;
-	TempByte |= (DANAS|XPHYRST);		/* Disable auto-neg. auto setup. */
+	TempByte |= (DANAS | XPHYRST);		/* Disable auto-neg. auto setup. */
 
-	switch	(ExtPhyMode)
+	switch (ExtPhyMode)
 	{
 
-		case 0:		// Auto-negotiate (Is this correct???)
-			TempByte |= XPHYANE;	/* Enable auto-neg. */
-			break;
+	case 0:		// Auto-negotiate (Is this correct???)
+		TempByte |= XPHYANE;	/* Enable auto-neg. */
+		break;
 
-		case 1:		// 100Mb H.D.
-			TempByte |= XPHYSP;		/* Set the speed bit */
-			break;
+	case 1:		// 100Mb H.D.
+		TempByte |= XPHYSP;		/* Set the speed bit */
+		break;
 
-		case 2:		// 100Mb F.D.
-			TempByte |= (XPHYSP | XPHYFD); /* Set speed and full duplex bits */
-			break;
+	case 2:		// 100Mb F.D.
+		TempByte |= (XPHYSP | XPHYFD); /* Set speed and full duplex bits */
+		break;
 
-		case 3:		// 10Mb H.D.
-			break;
+	case 3:		// 10Mb H.D.
+		break;
 
-		case 4:		// 10Mb F.D.
-			TempByte |= XPHYFD;		/* Set the full duplex bit */
-			break;
+	case 4:		// 10Mb F.D.
+		TempByte |= XPHYFD;		/* Set the full duplex bit */
+		break;
 
 	}
 	/* Write the new BCR32 value with DANAS Set */
@@ -4081,23 +3987,23 @@ LanceSetExtPhyMedia(
 	/* Write the new BCR32 value with DANAS Clear */
 	LANCE_WRITE_BCR(IoBaseAddress, LANCE_BCR32, TempByte);
 
- #if DBG
+#if DBG
 	if (LanceExtPhyDbg) {
 		LANCE_READ_BCR(IoBaseAddress, LANCE_BCR32, &Data);
-		DbgPrint("BCR32 : %x\n",Data);
+		DbgPrint("BCR32 : %x\n", Data);
 	}
- #endif
- #if DBG
+#endif
+#if DBG
 	if (LanceDbg)
 		DbgPrint("<==LanceSetExtPhyMedia\n");
- #endif
+#endif
 }
 
 STATIC
 BOOLEAN
 LanceInitRxPacketPool(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 /*
  ** LanceInitRxPacketPool
  *
@@ -4121,18 +4027,18 @@ LanceInitRxPacketPool(
 	PUCHAR							BufferVirtAddr;
 	int								n;
 
- #if DBG
+#if DBG
 	if (LanceDbg)
 	{
 		DbgPrint("==>LanceInitRxPacketPool\n");
 	}
- #endif
-	for (n=0; n<RECEIVE_BUFFERS; n++)
+#endif
+	for (n = 0; n < RECEIVE_BUFFERS; n++)
 	{
 		Adapter->pNdisPacket[n] = NULL;
 	}
 
-    NdisAllocatePacketPool (&Status, &PktPoolHandle, RECEIVE_BUFFERS, PROT_RESERVED_AREA_SIZE);
+	NdisAllocatePacketPool(&Status, &PktPoolHandle, RECEIVE_BUFFERS, PROT_RESERVED_AREA_SIZE);
 
 	/* Later on , we may elect to reduce the requested number of buffers	*/
 	/* if the first allocation attempt fails. For now, just match the		*/
@@ -4141,25 +4047,25 @@ LanceInitRxPacketPool(
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
 		return FALSE;
- #if DBG
+#if DBG
 		if (LanceDbg)
 		{
 			DbgPrint("NdisAllocatePacketPool () Failed.\n<==LanceInitRxPacketPool\n");
 		}
- #endif
+#endif
 	}
 
-    NdisAllocateBufferPool (&Status, &BufPoolHandle, RECEIVE_BUFFERS);
+	NdisAllocateBufferPool(&Status, &BufPoolHandle, RECEIVE_BUFFERS);
 	if (Status != NDIS_STATUS_SUCCESS)
 	{
- #if DBG
+#if DBG
 		if (LanceDbg)
 		{
 			DbgPrint("NdisAllocateBufferPool () Failed.\n<==LanceInitRxPacketPool\n");
 		}
- #endif
+#endif
 		/* Free the packet pool before exiting. */
-		NdisFreePacketPool (PktPoolHandle);
+		NdisFreePacketPool(PktPoolHandle);
 		return FALSE;
 	}
 
@@ -4170,60 +4076,60 @@ LanceInitRxPacketPool(
 	/* Get the virtual address of the start of rx buffer space */
 	BufferVirtAddr = Adapter->ReceiveBufferPointer;
 
-	for (n=0; n<RECEIVE_BUFFERS; n++)
+	for (n = 0; n < RECEIVE_BUFFERS; n++)
 	{
 		/* First, allocate an NDIS packet descriptor*/
-		NdisAllocatePacket (&Status, &Packet, PktPoolHandle);
+		NdisAllocatePacket(&Status, &Packet, PktPoolHandle);
 
 		/* If that worked, allocate an NDIS buffer descriptor */
 		if (Status == NDIS_STATUS_SUCCESS)
 		{
-			NdisAllocateBuffer (&Status, &Buffer, BufPoolHandle, BufferVirtAddr, RECEIVE_BUFFER_SIZE);
+			NdisAllocateBuffer(&Status, &Buffer, BufPoolHandle, BufferVirtAddr, RECEIVE_BUFFER_SIZE);
 		}
 
 		/* If either packet or buffer allocation calls fail, we'll end up here */
 		if (Status != NDIS_STATUS_SUCCESS)
 		{
 			/* Free NDIS packet resources */
-			LanceFreeNdisPkts (Adapter);
+			LanceFreeNdisPkts(Adapter);
 
 			/* Free the packet pool before exiting. */
-			NdisFreePacketPool (PktPoolHandle);
+			NdisFreePacketPool(PktPoolHandle);
 
 			/* Free the buffer pool before exiting, too. */
-			NdisFreeBufferPool (BufPoolHandle);
+			NdisFreeBufferPool(BufPoolHandle);
 
- #if DBG
+#if DBG
 			if (LanceDbg)
 			{
 				DbgPrint("NdisAllocatePacket() and/or NdisAllocateBuffer() Failed.\n<==LanceInitRxPacketPool\n");
 			}
- #endif
+#endif
 			return FALSE;
 		}
 
-/* initialize the NDIS_PACKET_OOB_DATA block HeaderSize to 14  */
+		/* initialize the NDIS_PACKET_OOB_DATA block HeaderSize to 14  */
 
-		OobyDoobyData = NDIS_OOB_DATA_FROM_PACKET (Packet);
-		NdisZeroMemory (OobyDoobyData, sizeof(PNDIS_PACKET_OOB_DATA));
+		OobyDoobyData = NDIS_OOB_DATA_FROM_PACKET(Packet);
+		NdisZeroMemory(OobyDoobyData, sizeof(PNDIS_PACKET_OOB_DATA));
 		OobyDoobyData->HeaderSize = 14;
 		OobyDoobyData->SizeMediaSpecificInfo = 0;
 		OobyDoobyData->MediaSpecificInformation = NULL;
 
 
-	   NdisChainBufferAtFront(Packet, Buffer);
+		NdisChainBufferAtFront(Packet, Buffer);
 		Adapter->pNdisPacket[n] = Packet;
 		Adapter->pNdisBuffer[n] = Buffer;
 		BufferVirtAddr += RECEIVE_BUFFER_SIZE;
 	}
 	Adapter->NdisPktPoolHandle = PktPoolHandle;
 	Adapter->NdisBufPoolHandle = BufPoolHandle;
- #if DBG
-			if (LanceDbg)
-			{
-				DbgPrint("<==LanceInitRxPacketPool\n");
-			}
- #endif
+#if DBG
+	if (LanceDbg)
+	{
+		DbgPrint("<==LanceInitRxPacketPool\n");
+	}
+#endif
 	return TRUE;
 
 } /* End of function LanceInitRxPacketPool() */
@@ -4232,7 +4138,7 @@ STATIC
 VOID
 LanceFreeRxPacketPool(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 /*
  ** LanceFreeRxPacketPool
  *
@@ -4246,22 +4152,22 @@ LanceFreeRxPacketPool(
  */
 {
 	/* Free NDIS packet resources */
-	LanceFreeNdisPkts (Adapter);
+	LanceFreeNdisPkts(Adapter);
 
 	/* Free the packet pool before exiting. */
 	if (Adapter->NdisPktPoolHandle)
-		NdisFreePacketPool (Adapter->NdisPktPoolHandle);
+		NdisFreePacketPool(Adapter->NdisPktPoolHandle);
 
 	/* Free the buffer pool before exiting, too. */
 	if (Adapter->NdisBufPoolHandle)
-		NdisFreeBufferPool (Adapter->NdisBufPoolHandle);
+		NdisFreeBufferPool(Adapter->NdisBufPoolHandle);
 }
 
 STATIC
 VOID
-LanceFreeNdisPkts (
+LanceFreeNdisPkts(
 	IN PLANCE_ADAPTER Adapter
-	)
+)
 /*
  ** LanceFreeNdisPkts
  *
@@ -4280,19 +4186,19 @@ LanceFreeNdisPkts (
 	PNDIS_PACKET	ThisPacket;
 	PNDIS_BUFFER	ThisBuffer;
 
-	for (n=0; n<RECEIVE_BUFFERS; n++)
+	for (n = 0; n < RECEIVE_BUFFERS; n++)
 	{
 		ThisPacket = Adapter->pNdisPacket[n];
 
 		if (ThisPacket != NULL)
 		{
-		    NdisUnchainBufferAtFront (ThisPacket, &ThisBuffer);
+			NdisUnchainBufferAtFront(ThisPacket, &ThisBuffer);
 
 			if (ThisBuffer != NULL)
 			{
-				NdisFreeBuffer (ThisBuffer);
+				NdisFreeBuffer(ThisBuffer);
 			}
-			NdisFreePacket (ThisPacket);
+			NdisFreePacket(ThisPacket);
 			Adapter->pNdisPacket[n] = NULL;
 		}
 	}
@@ -4303,26 +4209,26 @@ LanceFreeNdisPkts (
 VOID
 LanceShutdownHandler(
 	IN PVOID a
-	)
+)
 {
 	PLANCE_ADAPTER Adapter = (PLANCE_ADAPTER)a;
 	ULONG Data;
 	BOOLEAN IsCancelled;
 
-	#if DBG
-		if (LanceDbg)
+#if DBG
+	if (LanceDbg)
 		DbgPrint("==>LanceShutdownHandler\n");
-	#endif
+#endif
 
-	NdisMCancelTimer (&(Adapter->CableTimer),&IsCancelled);
+	NdisMCancelTimer(&(Adapter->CableTimer), &IsCancelled);
 	LanceStopChip(Adapter);
 
 	//
 	// Do hardware reset
 	//
-	//NdisRawReadPortUshort(Adapter->PhysicalIoBaseAddress + LANCE_RESET_PORT, &Data);
-	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
-	NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
+	//NdisRawReadPortUshort(Adapter->MappedIoBaseAddress + LANCE_RESET_PORT, &Data);
+	NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
+	NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
 	//
 	// magic packet mode
 	//
@@ -4331,62 +4237,62 @@ LanceShutdownHandler(
 		if (Adapter->DeviceType == PCNET_ISA_PLUS_PLUS ||
 			((Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV) && Adapter->DeviceType != PCNET_PCI1))
 		{
-			#if DBG
-				if (LanceDbg)
-					DbgPrint ("I am at Magic Packet Mode code\n");
-			#endif
+#if DBG
+			if (LanceDbg)
+				DbgPrint("I am at Magic Packet Mode code\n");
+#endif
 
-			//NdisRawReadPortUshort (Adapter->PhysicalIoBaseAddress, &Data);
-			NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET));
-			NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);				
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 12, Data);
-			//NdisRawReadPortUshort(Adapter->PhysicalIoBaseAddress + 2, &Data);
-			NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x02));
-			NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);			
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 13, Data);
-			//NdisRawReadPortUshort (Adapter->PhysicalIoBaseAddress+4, &Data);
-			NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + 0x04));
-			NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, 14, Data);
+			//NdisRawReadPortUshort (Adapter->MappedIoBaseAddress, &Data);
+			NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET));
+			NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, 12, Data);
+			//NdisRawReadPortUshort(Adapter->MappedIoBaseAddress + 2, &Data);
+			NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + 0x02));
+			NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, 13, Data);
+			//NdisRawReadPortUshort (Adapter->MappedIoBaseAddress+4, &Data);
+			NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + 0x04));
+			NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, 14, Data);
 
 			//
 			// Disable Transmit and Receiver which will not access the
 			// descritor ring
 			//
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR15, 0x0003);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR15, 0x0003);
 
-			LANCE_WRITE_BCR(Adapter->PhysicalIoBaseAddress, LANCE_BCR7, 0x0200);
+			LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR7, 0x0200);
 
 			//
 			// Set DPOLL in CSR4(bit12) to disable polling
 			//
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR4, 0x1115);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, 0x1115);
 
 			//
 			// Magic Packet Mode, Magic Packet Physical Logical Broadcast Accept
 			// and Magic Packet Enable(Software Control)
 			//
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR5, 0x0022);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR5, 0x0022);
 
 			//
 			// Set START bit in CSR0 to 1
 			//
-			LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0x0002);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, 0x0002);
 		}
 
 	}
-	#if DBG
+#if DBG
 	if (LanceDbg)
 		DbgPrint("<==LanceShutdownHandler\n");
-	#endif
+#endif
 	return;
 }
 /* Handy code for detecting reentrancy problems */
 /* NEVER use in free builds ! */
 #if DBG
-UCHAR LanceMutex (USHORT Flag)
+UCHAR LanceMutex(USHORT Flag)
 {
-UCHAR	OldFlag;
+	UCHAR	OldFlag;
 	_asm
 	{
 		mov		ax, Flag

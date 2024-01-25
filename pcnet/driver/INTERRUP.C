@@ -109,21 +109,11 @@ Return Value:
 		if (LanceDbg)
 		DbgPrint("==>LanceEnableInterrupt : %i\n",((PLANCE_ADAPTER)Adapter)->RedundantMode);
 	#endif
-
-	/* Save RAP value */
-	//NdisRawReadPortUshort(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + LANCE_RAP_PORT, &SavedRAPValue);
-	NdisRawWritePortUlong(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, ((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
-    NdisRawReadPortUlong(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, &SavedRAPValue); 
-
+	
 	/* Enable device interrupts	*/
-	ASIC_ENABLE_INTERRUPTS(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress);
-	LANCE_WRITE_CSR(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_IENA);
-
-	/* Restore RAP value */
-	//NdisRawWritePortUshort(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + LANCE_RAP_PORT, SavedRAPValue);
-	NdisRawWritePortUlong(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER, ((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
-    NdisRawWritePortUlong(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER, SavedRAPValue); 
-		
+	ASIC_ENABLE_INTERRUPTS(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress);
+	LANCE_WRITE_CSR(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_IENA);
+	
 	#if DBG
 		if (LanceDbg)
 		DbgPrint("<==LanceEnableInterrupt\n");
@@ -161,18 +151,20 @@ Return Value:
 	#endif
 
 	/* Save RAP value */
-	//NdisRawReadPortUshort(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + LANCE_RAP_PORT, &SavedRAPValue);		
-	NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), ((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
-    NdisRawReadPortUlong((((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &SavedRAPValue); 
+	//NdisRawReadPortUshort(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + LANCE_RAP_PORT, &SavedRAPValue);		
+	//****Not used in the Phoenix code
+	//NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), ((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
+    //NdisRawReadPortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &SavedRAPValue); 
 
 	/* Disable device interrupts.	Only IENA is affected by writing 0	*/
-	ASIC_DISABLE_INTERRUPTS(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress);
-	LANCE_WRITE_CSR(((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress, LANCE_CSR0, 0);
+	ASIC_DISABLE_INTERRUPTS(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress);
+	LANCE_WRITE_CSR(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress, LANCE_CSR0, 0);
 
-	/* Restore RAP value */
+	/* Restore RAP value */	
 	//NdisRawWritePortUshort(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + LANCE_RAP_PORT, SavedRAPValue);
-	NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), ((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
-    NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), SavedRAPValue); 
+	//****Not used in the Phoenix code
+	//NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), ((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
+    //NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), SavedRAPValue); 
 
 	#if DBG
 		if (LanceDbg)
@@ -228,8 +220,8 @@ Return Value:
 
 	/* Read ASIC interrupt flags?
        ASIC is not documented. */
-	NdisRawReadPortUshort((Adapter->PhysicalIoBaseAddress + 0x18), &ASICData18);
-	NdisRawReadPortUshort((Adapter->PhysicalIoBaseAddress + 0x02), &ASICData02);
+	NdisRawReadPortUshort((Adapter->MappedIoBaseAddress + 0x18), &ASICData18);
+	NdisRawReadPortUshort((Adapter->MappedIoBaseAddress + 0x02), &ASICData02);
 
 	/* Set default return value	*/
 	*InterruptRecognized = FALSE;
@@ -246,12 +238,13 @@ Return Value:
 	}
 
 	/* Save RAP value */
-	//NdisRawReadPortUshort(Adapter->PhysicalIoBaseAddress + LANCE_RAP_PORT, &SavedRAPValue);
-	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); 	
-    NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &SavedRAPValue);   
+	////NdisRawReadPortUshort(Adapter->MappedIoBaseAddress + LANCE_RAP_PORT, &SavedRAPValue);
+	//****This is not used in the Phoenix code
+	//NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); 	
+    //NdisRawReadPortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &SavedRAPValue);   
 
 	/* Read CSR0 value	*/
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 	/* Check if we own this interrupt	*/
 	//if (Csr0Value & (LANCE_CSR0_INTR) | LANCE_CSR0_STOP))
@@ -260,7 +253,7 @@ Return Value:
 		/* Disable interrupt source. Writing zeroes to the interrupt status */
 		/* bits in CSR0 has no effect on them. All the other bits except	*/
 		/* IENA (interrupt enable, bit 6) are read only.					*/
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, 0);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, 0);
 
 		/* Replace default return value	*/
 		*InterruptRecognized = TRUE;
@@ -288,16 +281,17 @@ Return Value:
 
     /* Acknowledge ASIC interrupt flags and re-prepare?
 	   ASIC is not documented. */
-	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x18), ASICData18);
-	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x02), ASICData02);
-	NdisRawWritePortUshort((Adapter->PhysicalIoBaseAddress + 0x1A), 0x0FFF);
+	NdisRawWritePortUshort((Adapter->MappedIoBaseAddress + 0x18), ASICData18);
+	NdisRawWritePortUshort((Adapter->MappedIoBaseAddress + 0x02), ASICData02);
+	NdisRawWritePortUshort((Adapter->MappedIoBaseAddress + 0x1A), 0x0FFF);
 
 	LOG(OUT_ISR)
 
 	/* Restore RAP value */
-	//NdisRawWritePortUshort(Adapter->PhysicalIoBaseAddress + LANCE_DWIO_RAP_PORT, SavedRAPValue);
-	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); 	
-    NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), SavedRAPValue); 		
+	//NdisRawWritePortUshort(Adapter->MappedIoBaseAddress + LANCE_DWIO_RAP_PORT, SavedRAPValue);
+	//***Not use in Phoenix code
+	//NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); 	
+    //NdisRawWritePortUlong((Adapter->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), SavedRAPValue); 		
    
 	#if DBG
 		if (LanceDbg)
@@ -413,7 +407,7 @@ Return Value:
 	}
 
 	/* Read CSR0 for interrupts	*/
-	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, &Csr0Value);
+	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
 	/* Check if there are any pending interrupts	*/
 	/* If STOP bit is set, reset the chip.	Note: when	*/
@@ -538,7 +532,7 @@ Return Value:
 					DbgPrint("LanceReceiveInterrupt: No rx descriptors to process.\n");
 				#endif
 				/* Clear interrupt source #2 */
-				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, (LANCE_CSR0_RINT | LANCE_CSR0_MISS));
+				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, (LANCE_CSR0_RINT | LANCE_CSR0_MISS));
 				/* Check status after clearing int */
 				if (ReceiveStatus & OWN)
 					break;	/* The only way out of this 'while' loop */
@@ -864,7 +858,7 @@ SkipIndication:
 		++Adapter->DmiSpecific[DMI_CSR0_ERR];		
 		
 		/* Clear interrupt source #1 */
-		LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0,
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0,
 			(LANCE_CSR0_MERR | LANCE_CSR0_BABL | LANCE_CSR0_CERR | LANCE_CSR0_MISS));
 		#if DBG
 		if (LanceDbg)
@@ -945,7 +939,7 @@ SkipIndication:
 
 				/* Start Lance, but do not enable interrupts as	*/
 				/* interrupts will be enabled at the end of the DPC. */
-//				LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_START);
+//				LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_START);
 
 				/* Clear the flags and return	*/
 //				Adapter->OpFlags &= ~RESET_IN_PROGRESS;
@@ -1168,9 +1162,9 @@ DoNotIndicateCableDisconnect:
 
 	/* Disable TX interrupts here */
 // MJ : Disabled tx watermark
-//	LANCE_READ_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, &Data);
+//	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, &Data);
 //	Data |= LANCE_CSR3_TINTM;
-//	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR3, Data);
+//	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, Data);
 
 //MJ modified | to &
 	if (Adapter->OpFlags & TX_RESOURCES)
@@ -1184,7 +1178,7 @@ DoNotIndicateCableDisconnect:
 	}
 
 	/* Clear interrupt source #3 */
-	LANCE_WRITE_CSR(Adapter->PhysicalIoBaseAddress, LANCE_CSR0, LANCE_CSR0_TINT);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_TINT);
 
 #if DBG
 	if (LanceSendDbg)

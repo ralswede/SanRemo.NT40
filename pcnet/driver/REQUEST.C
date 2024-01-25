@@ -204,7 +204,8 @@ Return Value:
                            OID_GEN_XMIT_ERROR,
                            OID_GEN_RCV_ERROR,
                            OID_GEN_RCV_NO_BUFFER,
-
+                           /* Optional Statistics OID */
+						   OID_GEN_RCV_CRC_ERROR,
                            OID_802_3_PERMANENT_ADDRESS,
                            OID_802_3_CURRENT_ADDRESS,
                            OID_802_3_MULTICAST_LIST,
@@ -212,6 +213,14 @@ Return Value:
                            OID_802_3_RCV_ERROR_ALIGNMENT,
                            OID_802_3_XMIT_ONE_COLLISION,
                            OID_802_3_XMIT_MORE_COLLISIONS,
+                           /* Optional Statistics OID */
+							OID_802_3_XMIT_DEFERRED,
+							OID_802_3_XMIT_MAX_COLLISIONS,
+							OID_802_3_RCV_OVERRUN,
+							OID_802_3_XMIT_UNDERRUN,
+//							OID_802_3_XMIT_HEARTBEAT_FAILURE,
+							OID_802_3_XMIT_TIMES_CRS_LOST,
+							OID_802_3_XMIT_LATE_COLLISIONS,
 //for DMI
 									OID_CUSTOM_DMI_CI_INIT,
 									OID_CUSTOM_DMI_CI_INFO
@@ -296,7 +305,7 @@ Return Value:
 #ifdef NDIS40_MINIPORT
 
 				case OID_GEN_MEDIA_CONNECT_STATUS:
-					if (LanceReadLink (Adapter->PhysicalIoBaseAddress,
+					if (LanceReadLink (Adapter->MappedIoBaseAddress,
 						 Adapter->DeviceType, Adapter))
 						GenericUlong = NdisMediaStateConnected;
 					else
@@ -414,7 +423,10 @@ Return Value:
 
                GenericUlong = Adapter->MediaOptional[MO_RECEIVE_OVERRUN];
                break;
-
+			/* Optional Statistics OID */
+				case OID_GEN_RCV_CRC_ERROR:
+               GenericUlong = Adapter->GeneralOptional[GO_RECEIVE_CRC-GO_ARRAY_START];
+               break;
             default:
 
                ASSERT(FALSE);
@@ -473,6 +485,33 @@ Return Value:
                GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_MAX_COLLISIONS];
                break;
 
+			case OID_802_3_XMIT_DEFERRED:
+               GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_DEFERRED];
+               break;
+
+				case OID_802_3_XMIT_MAX_COLLISIONS:
+               GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_MAX_COLLISIONS];
+               break;
+
+				case OID_802_3_RCV_OVERRUN:
+               GenericUlong = Adapter->MediaOptional[MO_RECEIVE_OVERRUN];
+               break;
+
+				case OID_802_3_XMIT_UNDERRUN:
+               GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_UNDERRUN];
+               break;
+
+//				case OID_802_3_XMIT_HEARTBEAT_FAILURE:
+//               GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_MAX_COLLISIONS];
+//               break;
+
+				case OID_802_3_XMIT_TIMES_CRS_LOST:
+               GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_TIMES_CRS_LOST];
+               break;
+
+				case OID_802_3_XMIT_LATE_COLLISIONS:
+               GenericUlong = Adapter->MediaOptional[MO_TRANSMIT_LATE_COLLISIONS];
+               break;
             default:
 
                ASSERT(FALSE);
@@ -1358,7 +1397,7 @@ Return Value:
 			break;
 
 		case DMI_OPCODE_GET_IO_BASE_ADDR:
-			ReqBlock->Value = Adapter->PhysicalIoBaseAddress;
+			ReqBlock->Value = Adapter->MappedIoBaseAddress;
 			break;
 
 		case DMI_OPCODE_GET_GET_IRQ:
@@ -1506,7 +1545,7 @@ Return Value:
          break;
 
 		case DMI_OPCODE_GET_RAM_SIZE:
-			LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, 25, &Data);
+			LANCE_READ_BCR (Adapter->MappedIoBaseAddress, 25, &Data);
 			ReqBlock->Value = ((USHORT)Data << 8);
 			break;
 
@@ -1530,11 +1569,11 @@ INT	RetCode		= LANCE_PORT_SUCCESS;
 				switch (AccessType)
 				{
 					case PORT_READ:
-						LANCE_READ_CSR (Adapter->PhysicalIoBaseAddress, Adapter->CsrNum, pData);
+						LANCE_READ_CSR (Adapter->MappedIoBaseAddress, Adapter->CsrNum, pData);
 						break;
 
 					case PORT_WRITE:
-						LANCE_WRITE_CSR (Adapter->PhysicalIoBaseAddress, Adapter->CsrNum, *pData);
+						LANCE_WRITE_CSR (Adapter->MappedIoBaseAddress, Adapter->CsrNum, *pData);
 						break;
 
 					default:
@@ -1546,11 +1585,11 @@ INT	RetCode		= LANCE_PORT_SUCCESS;
 				switch (AccessType)
 				{
 					case PORT_READ:
-						LANCE_READ_BCR (Adapter->PhysicalIoBaseAddress, Adapter->BcrNum, pData);
+						LANCE_READ_BCR (Adapter->MappedIoBaseAddress, Adapter->BcrNum, pData);
 						break;
 
 					case PORT_WRITE:
-						LANCE_WRITE_BCR (Adapter->PhysicalIoBaseAddress, Adapter->BcrNum, *pData);
+						LANCE_WRITE_BCR (Adapter->MappedIoBaseAddress, Adapter->BcrNum, *pData);
 						break;
 
 					default:

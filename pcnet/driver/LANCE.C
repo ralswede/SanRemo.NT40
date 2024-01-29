@@ -1794,15 +1794,6 @@ Return Value:
 		DbgPrint("%s %d\n", msg16, Adapter->LanceDmaChannel);
 	}
 #endif
-	//
-	// Save network adapter address
-	//
-	for (i = 0; i < 6; i++)
-	{
-		NdisRawReadPortUchar(Adapter->PhysicalIoBaseAddress + i, &dataByte);
-		Adapter->PermanentNetworkAddress[i] = dataByte;
-	}
-
 	srent_config(ConfigurationHandle, Adapter->PhysicalIoBaseAddress);
 
 	//Through the ASIC we're in word-only access mode, so we read 4 bytes at once

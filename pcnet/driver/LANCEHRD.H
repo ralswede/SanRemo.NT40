@@ -678,11 +678,13 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 #define ASIC_ENABLE_INTERRUPTS(_IOBASE) \
 {\
     NdisRawWritePortUchar(_IOBASE + ASIC_IRQ_ENABLE_REGISTER, (UCHAR)(1)); \
+	DbgPrint("ASIC_ENABLE_INTERRUPTS %x\n", 1);\
 }
 
 #define ASIC_DISABLE_INTERRUPTS(_IOBASE) \
 {\
     NdisRawWritePortUchar(_IOBASE + ASIC_IRQ_ENABLE_REGISTER, (UCHAR)(0)); \
+	DbgPrint("ASIC_DISABLE_INTERRUPTS %x\n", 0);\
 }
 
 #if MTX	/* Macros using LanceMutex. NEVER use in free builds */
@@ -788,7 +790,9 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
     NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Port));  \
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT)); \
     NdisRawReadPortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (PULONG)(_Value)); \
-	*_Value &= 0xFFFF; \
+	*_Value &= 0x0000FFFF;\
+	DbgPrint("LANCE_READ_CSR Port %x\n", _Port);\
+	DbgPrint("LANCE_READ_CSR Value %x\n", *_Value);\
 }
 
 #define LANCE_WRITE_CSR(_IOBASE, _Port, _Value) \
@@ -796,7 +800,9 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); \
     NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Port));  \
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT)); \
-    NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Value)); \
+    NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Value & 0x0000FFFF)); \
+	DbgPrint("LANCE_WRITE_CSR Port %x\n", _Port); \
+	DbgPrint("LANCE_WRITE_CSR Value %x\n", (_Value & 0x0000FFFF)); \
 }
 /*
 #define LANCE_READ_BCR_BEFORE_REGISTRATION(_IOBASE, _Port, _Value, _Handle) \
@@ -822,15 +828,19 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
     NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Port));  \
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_IDP_PORT)); \
     NdisRawReadPortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (PULONG)(_Value)); \
-	*_Value &= 0xFFFF; \
+	*_Value &= 0x0000FFFF;\
+	DbgPrint("LANCE_READ_BCR Port %x\n", _Port);\
+	DbgPrint("LANCE_READ_BCR Value %x\n", *_Value);\
 }
 
 #define LANCE_WRITE_BCR(_IOBASE, _Port, _Value) \
 {\
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT)); 	\
-    NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Port));  \
+    NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (USHORT)(_Port));  \
 	NdisRawWritePortUlong((_IOBASE + ASIC_IO_ADDRESS_REGISTER), (_IOBASE + ASIC_IO_OFFSET + LANCE_DWIO_IDP_PORT)); \
-    NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (ULONG)(_Value)); \
+    NdisRawWritePortUlong((_IOBASE + ASIC_IO_DATA_REGISTER), (USHORT)(_Value & 0x0000FFFF)); \
+	DbgPrint("LANCE_WRITE_BCR Port %x\n", _Port);\
+	DbgPrint("LANCE_WRITE_BCR Value %x\n", (_Value & 0x0000FFFF));\
 }
 
 #endif /* #if MTX */

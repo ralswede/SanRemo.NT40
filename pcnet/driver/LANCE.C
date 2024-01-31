@@ -2482,7 +2482,7 @@ Return Value:
 	LanceDisableInterrupt(Adapter);
 	//	LanceReleaseSpinLock(&Adapter->Lock);
 
-	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, 0xff04);
+	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);
 
 	/* Set reset flag for checking in isr. The isr will	*/
 	/* not read CSR0 register for the chip interrupt when	*/
@@ -2565,7 +2565,7 @@ Return Value:
 		//
 		// Set STOP bit to stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,LANCE_CSR0,LANCE_CSR0_STOP | LANCE_CSR0_CLEAR);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,LANCE_CSR0, LANCE_CSR0_STOP);
 
 		//
 		// Mask out IDONM interrupts
@@ -2627,7 +2627,7 @@ Return Value:
 		//
 		// Stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_CLEAR | LANCE_CSR0_STOP);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);
 		
 		ASIC_DISABLE_INTERRUPTS(Adapter->MappedIoBaseAddress);
 		//
@@ -3119,8 +3119,8 @@ Return Value:
 		/* Read CSR0	*/
 		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Data);
 		if (LanceDbg) {
-			DbgPrint("IDON bit = %x\n", Data);
-			DbgPrint("Timeout = %x\n", Timeout);
+			//DbgPrint("IDON bit = %x\n", Data);
+			//DbgPrint("Timeout = %x\n", Timeout);
 		}
 		/* Check if IDON bit set	*/
 		if (Data & LANCE_CSR0_IDON) {

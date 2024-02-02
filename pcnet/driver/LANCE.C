@@ -1828,7 +1828,7 @@ Return Value:
 	// Reset the controller and stop the chip
 	//
 	//NdisImmediateReadPortUshort(ConfigurationHandle, Adapter->PhysicalIoBaseAddress, &Data);
-	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
+	NdisRawWritePortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), (Adapter->PhysicalIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RESET_PORT));
 	NdisRawReadPortUlong((Adapter->PhysicalIoBaseAddress + ASIC_IO_DATA_REGISTER), &Data);
 
 	// Delay after reset
@@ -1840,11 +1840,11 @@ Return Value:
 		//
 		// if DeviceType is PCNET_PCI3, then check External Phy
 		//
-		LANCE_READ_BCR
-			(Adapter->PhysicalIoBaseAddress, 
-				LANCE_BCR32,
-				&Data				
-			);
+		LANCE_READ_BCR_BEFORE_REGISTRATION(Adapter->PhysicalIoBaseAddress, 			
+					LANCE_BCR32, 
+					&Data,
+					ConfigurationHandle
+					);
 		if (Data & MIIPD)
 			Adapter->MIIPhyDetected = TRUE;
 	}
@@ -2148,7 +2148,7 @@ None.
 	 IBM only knows what they mean. */
 	NdisRawWritePortUchar(IoAddr + 0x1D, 0x00);
 	if (LanceDbg)
-		DbgPrint("srent_config0x1D\n");
+		DbgPrint("srent_config 0x1D\n");
 	NdisRawWritePortUchar(IoAddr + 0x1E, 0x0F);
 	if (LanceDbg)
 		DbgPrint("srent_config 0x1E\n");
@@ -2295,7 +2295,7 @@ None.
 		// Start EEPROM read.
 	// This will trigger the PCnet to read the EEPROM 
 	// and initialize some registers from the data. 
-		LANCE_WRITE_BCR(IoAddr, 19, 0x4000)
+		LANCE_WRITE_BCR(IoAddr, 19, 0x4000);
 
 			// Delay until EEPROM is read
 			for (time = 0; time < 1000; time++)
@@ -2565,7 +2565,7 @@ Return Value:
 		//
 		// Set STOP bit to stop the chip
 		//
-		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,LANCE_CSR0, LANCE_CSR0_STOP);
+		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress,LANCE_CSR0,LANCE_CSR0_STOP | 0xff00);
 
 		//
 		// Mask out IDONM interrupts
@@ -2606,7 +2606,7 @@ Return Value:
 			//
 			// If IDON bit set, clear status bits
 			//
-			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, LANCE_CSR0_STOP);
+			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, 0xff00 | LANCE_CSR0_STOP);
 			return;
 
 			}
@@ -3119,8 +3119,8 @@ Return Value:
 		/* Read CSR0	*/
 		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Data);
 		if (LanceDbg) {
-			//DbgPrint("IDON bit = %x\n", Data);
-			//DbgPrint("Timeout = %x\n", Timeout);
+			DbgPrint("IDON bit = %x\n", Data);
+			DbgPrint("Timeout = %x\n", Timeout);
 		}
 		/* Check if IDON bit set	*/
 		if (Data & LANCE_CSR0_IDON) {
@@ -3308,7 +3308,7 @@ Return Value:
 		Adapter->LanceMiniportHandle,
 		Adapter->PhysicalIoBaseAddress,
 		//0x20,
-		0x400,  //AIX usines 0x400 
+		0x400,  //AIX uses 0x400 
 		(PVOID)(Adapter->MappedIoBaseAddress)
 	);
 
@@ -3679,13 +3679,11 @@ LanceGetActiveMediaInfo(
 	}
 	else
 	{
-		ULONG FullDuplex = 0;
 		/* Read duplex mode from internal phy (10Mbps) */
 		Adapter->LineSpeed = 10;
 		/* Determine if the internal PHY is in Full Duplex mode */
-		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, LANCE_FDC_REG, &FullDuplex);
-		Adapter->FullDuplex = FullDuplex;
-		Adapter->FullDuplex &= LANCE_FDC_FDEN;	/* Non-zero (TRUE) if full duplex */
+		LANCE_READ_BCR (Adapter->MappedIoBaseAddress, LANCE_FDC_REG, &Adapter->FullDuplex);
+		Adapter->FullDuplex &= LANCE_FDC_FDEN;  /* Non-zero (TRUE) if full duplex */
 	}
 
 }

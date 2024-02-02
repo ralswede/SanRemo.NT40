@@ -736,8 +736,7 @@ Return Value:
 
 	//
 	// Set no-reset flag for ISR routine
-	//commented out in NDIS5
-	//Adapter->OpFlags |= RESET_PROHIBITED;
+	Adapter->OpFlags |= RESET_PROHIBITED;
 
 	//
 	// Check if there is a descriptor available for this request

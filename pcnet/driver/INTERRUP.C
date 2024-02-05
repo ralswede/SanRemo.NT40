@@ -152,7 +152,6 @@ Return Value:
 
 	/* Save RAP value */
 	//NdisRawReadPortUshort(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + LANCE_RAP_PORT, &SavedRAPValue);		
-	//****Not used in the Phoenix code
 	//NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), ((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
     //NdisRawReadPortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), &SavedRAPValue); 
 
@@ -162,7 +161,6 @@ Return Value:
 
 	/* Restore RAP value */	
 	//NdisRawWritePortUshort(((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + LANCE_RAP_PORT, SavedRAPValue);
-	//****Not used in the Phoenix code
 	//NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_ADDRESS_REGISTER), ((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_OFFSET + LANCE_DWIO_RAP_PORT); 	
     //NdisRawWritePortUlong((((PLANCE_ADAPTER)Adapter)->MappedIoBaseAddress + ASIC_IO_DATA_REGISTER), SavedRAPValue); 
 
@@ -246,8 +244,7 @@ Return Value:
 	/* Read CSR0 value	*/
 	LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Csr0Value);
 
-	/* Check if we own this interrupt	*/
-	//if (Csr0Value & (LANCE_CSR0_INTR) | LANCE_CSR0_STOP))
+	/* Check if we own this interrupt	*/	
 	if ((Csr0Value & (LANCE_CSR0_INTR)) && (Csr0Value & (LANCE_CSR0_IENA)) )
 	{
 		/* Disable interrupt source. Writing zeroes to the interrupt status */

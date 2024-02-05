@@ -309,7 +309,7 @@ $Log:   V:\network\pcnet\mini3&4\src\lancehrd.h_v  $
 //
 // Maximum number of multicast entries in the table
 //
-#define LANCE_MAX_MULTICAST      16
+#define LANCE_MAX_MULTICAST      32
 
 /* Default transmit settings	*/
 
@@ -678,13 +678,11 @@ typedef struct _LANCE_RECEIVE_DESCRIPTOR {
 #define ASIC_ENABLE_INTERRUPTS(_IOBASE) \
 {\
     NdisRawWritePortUchar(_IOBASE + ASIC_IRQ_ENABLE_REGISTER, (UCHAR)(1)); \
-	DbgPrint("ASIC_ENABLE_INTERRUPTS %x\n", 1);\
 }
 
 #define ASIC_DISABLE_INTERRUPTS(_IOBASE) \
 {\
     NdisRawWritePortUchar(_IOBASE + ASIC_IRQ_ENABLE_REGISTER, (UCHAR)(0)); \
-	DbgPrint("ASIC_DISABLE_INTERRUPTS %x\n", 0);\
 }
 
 #if MTX	/* Macros using LanceMutex. NEVER use in free builds */

@@ -1,0 +1,32 @@
+1 DLGINCLUDE "Amddlg.h"
+
+PCNTN3 DIALOG FIXED 19, 18, 235, 143
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STYLE DS_ABSALIGN | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "@Caption"
+FONT 8, "MS Shell Dlg"
+CLASS "mydlg"
+BEGIN   
+    PUSHBUTTON      "@OK", 424,117,125,45,13
+    CTEXT           "IBM 10/100 Ethernet Adapter Microchannel Device Driver",430,15,9,194,10,SS_SUNKEN
+	CTEXT           "IBM Code Name ""San Remo""",435,78,24,68,19,SS_SUNKEN
+    ICON            "dllicon", 101, 214, 2, 16, 16
+	LTEXT           "Driver created by Ryan Alswede based on AMD PCnet-Fast vendor provided souce code. All rights reserved.",
+                    440,21,48,187,20
+    LTEXT           "Adaptec ASIC-9060R start-up and initialization code provided by Christian Holzapfel.  All rights reserved.",
+                    441,21,71,181,20
+	LTEXT           "All network device system resources are controled by the Adapter Description File (ADF) for this adapter.",
+					446,21,91,181,20
+    PUSHBUTTON      "@Help", 408, 167, 125, 39, 13
+END
+
+PCNTN3PCI DIALOG 18, 56, 242, 62
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "@Caption"
+FONT 8, "MS Sans Serif"
+CLASS "mydlg"
+BEGIN
+   
+END

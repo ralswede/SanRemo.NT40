@@ -88,7 +88,7 @@ $Log:   V:\network\pcnet\mini3&4\src\lance.c_v  $
  * Removed conditional statements for redundancy, replaced with "NDIS40_MINIPORT"
 
 --*/
-#define DBG 1
+//#define DBG 1
 
 #include <ndis.h>
 #include <efilter.h>
@@ -157,7 +157,7 @@ CHAR* msg25 = "25: MCA-Abtastung angegeben, Ger„t nicht gefunden";
 
 
 #if DBG
-INT LanceDbg = 1;
+INT LanceDbg = 0;
 INT LanceSendDbg = 0;
 INT LanceExtPhyDbg = 0;
 INT LanceEventDbg = 0;
@@ -1408,7 +1408,7 @@ Return Value:
 	//
 	// Initialize the init-block structure for the adapter
 	//
-	if ((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
+	if (Adapter->BoardFound == MCA_DEV)
 	{
 		InitializationBlockHi = (PLANCE_INIT_BLOCK_HI)Adapter->InitializationBlock;
 		InitializationBlockHi->Mode = LANCE_NORMAL_MODE;
@@ -1728,8 +1728,8 @@ Return Value:
 			if (!Adapter->BoardFound)
 			{
 #if DBG
-				//if (LanceDbg)
-				DbgPrint("%s \n", msg18);
+				if (LanceDbg)
+					DbgPrint("%s \n", msg18);
 #endif
 			}
 			else
@@ -1750,8 +1750,8 @@ Return Value:
 			if (!Adapter->BoardFound)
 			{
 #if DBG
-				//if (LanceDbg)
-				DbgPrint("%s \n", msg25);
+				if (LanceDbg)
+					DbgPrint("%s \n", msg25);
 #endif
 			}
 			else
@@ -2147,35 +2147,15 @@ None.
 	 and is required to start it up.
 	 IBM only knows what they mean. */
 	NdisRawWritePortUchar(IoAddr + 0x1D, 0x00);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x1D\n");
 	NdisRawWritePortUchar(IoAddr + 0x1E, 0x0F);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x1E\n");
 	NdisRawWritePortUchar(IoAddr + 0x1F, 0x04);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x1F\n");
 	NdisRawWritePortUlong(IoAddr + 0x28, 0x00000000);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x0000\n");
 	NdisRawWritePortUshort(IoAddr + 0x00, 0x0006);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x00\n");
 	NdisRawWritePortUlong(IoAddr + 0x10, 0x00000000);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x10\n");
 	NdisRawWritePortUlong(IoAddr + 0x14, 0x00000000);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x14\n");
 	NdisRawWritePortUshort(IoAddr + 0x1A, 0x0FFF);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x1A\n");
 	NdisRawWritePortUchar(IoAddr + 0x22, 0x3F);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x22\n");
 	NdisRawWritePortUshort(IoAddr + 0x20, 0x03FF);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x20\n");
 
 	/* Set up the PCnet's PCI Configuration Space through the ASIC */
 
@@ -2183,63 +2163,56 @@ None.
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x0C Latency\n");
 
 	// Write Latency and Header Type
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x0C);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x0000FF00);
-	if (LanceDbg)
-		DbgPrint("srent_config 0xC Latency Write\n");
 
 	// Write I/O Base Address
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x10);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), ASIC_IO_OFFSET + IoAddr);
-	if (LanceDbg)
-		DbgPrint("srent_config 0x1D\n");
 
 	// Write Control: SERREN, PERREN, IOEN    
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x00000141);
-	if (LanceDbg)
-		DbgPrint("0x04 SERREN, PERREN, IOEN\n");
 
 	// Read PCI Revision ID
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp1);
+#if DBG
 	if (LanceDbg)
 	{
 		DbgPrint("Read PCI Revision ID: %4.4X\n", temp1);
 	}
-
+#endif
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x2C);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp2);
+#if DBG
 	if (LanceDbg)
 	{
 		DbgPrint("Read PCI SubVender ID: %4.4X\n", temp2);
 	}
+#endif
 
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp3);
-	if (LanceDbg)
-	{
-		DbgPrint("Read Command Register: %4.4X\n", temp3);
-	}
 
 	// Read PCI Vendor ID
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp4);
+#if DBG
 	if (LanceDbg)
 	{
 		DbgPrint("Read Vendor ID: %4.4X\n", temp4);
 	}
+#endif
 
 	/* The following 32-bit accesses will switch the PCnet from 16-bit WIO address mode to the
 	   32-bit DWIO mode. Maybe DWIO is the only one supported by the ASIC, I have never tested WIO.
@@ -2252,31 +2225,26 @@ None.
 	for (Time = 0; Time < 1000; Time++)
 		NdisStallExecution(1);
 
-	DbgPrint("PCnet Register RDP: %4.4X\n", IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-	DbgPrint("Set AIC to RDP Port take 1\n");
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-	DbgPrint("AIC IO port is set to RDP\n");
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp5);
-	DbgPrint("What we read from the RDP Port: %4.4X\n", temp5);
+#if DBG
 	if (LanceDbg)
 	{
-		DbgPrint(" WIO address mode read\n");
+		DbgPrint(" WIO address mode read.\n");
 	}
+#endif	
 	for (Time = 0; Time < 1000; Time++)
 		NdisStallExecution(1);
 
-	DbgPrint("Set AIC to RDP Port take 2\n");
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
-	DbgPrint("We will write this to the RDP port: %4.4X\n", temp5);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), temp5);
-	DbgPrint("We did it!!\n");
 
 	for (Time = 0; Time < 1000; Time++)
-		NdisStallExecution(1);
-
+		NdisStallExecution(1);		
+#if DBG
 	if (LanceDbg)
 		DbgPrint(" WIO address mode write\n");
-
+#endif	
 	/* Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
 	  that indicates an EEPROM has been read and found valid */
 	temp = 0;
@@ -2293,25 +2261,20 @@ None.
 #endif
 
 		// Start EEPROM read.
-	// This will trigger the PCnet to read the EEPROM 
-	// and initialize some registers from the data. 
+		// This will trigger the PCnet to read the EEPROM 
+		// and initialize some registers from the data. 
 		LANCE_WRITE_BCR(IoAddr, 19, 0x4000);
 
 			// Delay until EEPROM is read
 			for (time = 0; time < 1000; time++)
 			{
-				NdisStallExecution(1);
-				//if(LanceDbg){
-				   //DbgPrint("NdisStallExecution\n");
-			   //} 
+				NdisStallExecution(1);				
 			}
 		// Check BDP19 = EECAS = EEPROM Control and Status for bit 0x8000 = PVALID set,
 		// that indicates the EEPROM has been read and is checksum-correct
 		temp = 0;
 		LANCE_READ_BCR(IoAddr, 19, &temp);
 		eepromValid = temp & 0x8000;
-		if (LanceDbg)
-			DbgPrint("eepromValid\n");
 
 		if (eepromValid)
 		{
@@ -2478,7 +2441,7 @@ Return Value:
 		return;
 
 	/* Disable interrupts and release any pending interrupt sources	*/
-//	LanceAcquireSpinLock(&Adapter->Lock);
+	//	LanceAcquireSpinLock(&Adapter->Lock);
 	LanceDisableInterrupt(Adapter);
 	//	LanceReleaseSpinLock(&Adapter->Lock);
 
@@ -2544,7 +2507,7 @@ Return Value:
 	USHORT Time, Data;
 	UINT Timeout = START_STOP_TIMEOUT;
 
-#ifdef MYDBG
+#ifdef DBG
 	if (LanceDbg)
 		DbgPrint("==>LanceStopChip\n");
 #endif
@@ -2553,7 +2516,6 @@ Return Value:
 	// For PCI device, disable PCI DMA engine before stopping
 	// the chip.
 	//
-//      if (Adapter->BoardFound == PCI_DEV) {
 	if (Adapter->DeviceType == PCNET_PCI1) {
 		while (Timeout--) {
 
@@ -2695,7 +2657,7 @@ NOTES:
 
 	/* Set the Software Style to 32 Bits (PCNET-PCI).	*/
 
-	if ((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
+	if (Adapter->BoardFound == MCA_DEV)
 	{
 		TransmitDescriptorRingHi =
 			(PLANCE_TRANSMIT_DESCRIPTOR_HI)Adapter->TransmitDescriptorRing;
@@ -2863,23 +2825,6 @@ NOTES:
 
 	LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR3, Data);
 
-	/* Initialize CSR registers */
-
-	if (Adapter->BoardFound != PCI_DEV && Adapter->BoardFound != MCA_DEV)
-	{
-		/* Enable and set bus activity timer	*/
-
-		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, &Data);
-		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, Data | LANCE_CSR4_TIMER);
-
-		LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR82, Adapter->BusTimer);
-
-#if DBG
-		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR4, &Data);
-		DbgPrint("LanceSetupRegistersAndInit: CSR4 = %x\n", Data);
-#endif
-	} /* END "if" SECTION */
-
 	if (FullReset)
 	{
 		//
@@ -2898,7 +2843,7 @@ NOTES:
 		// Program CSR1 and CSR2 with initialization block physical address
 		//
 
-		if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
+		if (Adapter->BoardFound == MCA_DEV)
 		{
 			LANCE_WRITE_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR2,
 				LANCE_GET_HIGH_PART_PCI_ADDRESS(NdisGetPhysicalAddressLow(
@@ -2944,7 +2889,7 @@ InitFullDuplexMode(
 	if (LanceBreak)
 		_asm int 3;
 #endif
-	if ((Adapter->BoardFound == PCI_DEV) || (Adapter->BoardFound == MCA_DEV))
+	if (Adapter->BoardFound == MCA_DEV)
 	{
 		InitializationBlockHi = (PLANCE_INIT_BLOCK_HI)Adapter->InitializationBlock;
 	}
@@ -3014,36 +2959,7 @@ InitLEDs(
 		LANCE_READ_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR2, &Data);
 		LANCE_WRITE_BCR(Adapter->MappedIoBaseAddress, LANCE_BCR2, Data | LANCE_BCR2_LEDPE);
 	}
-
-	if ((Adapter->BoardFound == LOCAL_DEV ||
-		((Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV) &&
-			Adapter->DeviceType == PCNET_PCI1)))
-	{
-		for (n = 0; n < 4; n++)
-		{
-			if (*pLEDs[n] == LED_DEFAULT)
-			{
-				switch (n) {
-				case 0:
-					*pLEDs[n] = LED_defaults[n];
-					break;
-				case 1:
-					*pLEDs[n] = LED_defaults[n] | 0x0020;
-					break;
-				case 2:
-					if (Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV)
-						break;
-					else
-						*pLEDs[n] = LED_defaults[n];
-					break;
-				default:
-					*pLEDs[n] = LED_defaults[n];
-					break;
-				}
-			}
-		}
-	}
-
+	
 	for (n = 0; n < 4; n++)
 	{
 		if (*pLEDs[n] != LED_DEFAULT)
@@ -3118,10 +3034,12 @@ Return Value:
 
 		/* Read CSR0	*/
 		LANCE_READ_CSR(Adapter->MappedIoBaseAddress, LANCE_CSR0, &Data);
+#if DBG	
 		if (LanceDbg) {
 			DbgPrint("IDON bit = %x\n", Data);
 			DbgPrint("Timeout = %x\n", Timeout);
 		}
+#endif
 		/* Check if IDON bit set	*/
 		if (Data & LANCE_CSR0_IDON) {
 
@@ -4229,8 +4147,7 @@ LanceShutdownHandler(
 	//
 	if (Adapter->MpMode)
 	{
-		if (Adapter->DeviceType == PCNET_ISA_PLUS_PLUS ||
-			((Adapter->BoardFound == PCI_DEV || Adapter->BoardFound == MCA_DEV) && Adapter->DeviceType != PCNET_PCI1))
+		if (Adapter->BoardFound == MCA_DEV)
 		{
 #if DBG
 			if (LanceDbg)

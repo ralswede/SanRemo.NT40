@@ -67,7 +67,7 @@ Revision History:
 
 //#ifdef RC_INVOKED
 
-#define VER_LEGALCOPYRIGHT_YEARS    "2022"
+#define VER_LEGALCOPYRIGHT_YEARS    "2024"
 
 #define VER_LEGALCOPYRIGHT_STR "(C) Copyright AMD Corporation All Rights Reserved." VER_LEGALCOPYRIGHT_YEARS
 
@@ -76,9 +76,9 @@ Revision History:
 #define VER_FILESUBTYPE             VFT2_DRV_NETWORK
 
 #ifdef _FAILOVER
-#define VER_FILEDESCRIPTION_STR     "PermaNet(tm) Server Driver for IBM AMD PCNET"
+#define VER_FILEDESCRIPTION_STR     "PermaNet(tm) Server Driver for IBM 10/100 Ethernet Adapter MC"
 #else
-#define VER_FILEDESCRIPTION_STR     "Network Driver for IBM AMD PCNET"
+#define VER_FILEDESCRIPTION_STR     "Network Driver for IBM 10/100 Ethernet Adapter MC"
 #endif
 
 #ifdef _FAILOVER
@@ -94,9 +94,9 @@ Revision History:
 #define AVER_COMPANYNAME_STR         "Advanced Micro Devices"
 
 #ifdef _FAILOVER
-#define AVER_PRODUCTNAME_STR         "PermaNet(tm) Server Driver for IBM AMD PCNET"
+#define AVER_PRODUCTNAME_STR         "PermaNet(tm) Server Driver for IBM 10/100 Ethernet Adapter MC"
 #else
-#define AVER_PRODUCTNAME_STR         "Network Driver for IBM AMD PCNET"
+#define AVER_PRODUCTNAME_STR         "Network Driver for IBM 10/100 Ethernet Adapter MC"
 #endif
 
 #define AVER_PRODUCTVERSION          4,00,010
@@ -105,7 +105,7 @@ Revision History:
 #define VER_FILEVERSION AVER_PRODUCTVERSION
 
 
-#define AVER_PRODUCTVERSION_STR "4.00.010"
+#define AVER_PRODUCTVERSION_STR "4.00.013"
 
 #define VER_FILEVERSION_STR AVER_PRODUCTVERSION_STR
 

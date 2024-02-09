@@ -2178,26 +2178,26 @@ None.
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), 0x00000141);
-
+#if DBG
 	// Read PCI Revision ID
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x08);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp1);
-#if DBG
+
 	if (LanceDbg)
 	{
 		DbgPrint("Read PCI Revision ID: %4.4X\n", temp1);
 	}
-#endif
+
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x2C);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp2);
-#if DBG
+
 	if (LanceDbg)
 	{
 		DbgPrint("Read PCI SubVender ID: %4.4X\n", temp2);
 	}
-#endif
+
 
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x04);
@@ -2207,7 +2207,7 @@ None.
 	NdisRawWritePortUchar((IoAddr + ASIC_PCI_CONFIG_CMD_REGISTER), ASIC_PCI_CONFIG_CMD);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), 0x00);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp4);
-#if DBG
+
 	if (LanceDbg)
 	{
 		DbgPrint("Read Vendor ID: %4.4X\n", temp4);
@@ -2266,7 +2266,7 @@ None.
 		LANCE_WRITE_BCR(IoAddr, 19, 0x4000);
 
 			// Delay until EEPROM is read
-			for (time = 0; time < 1000; time++)
+			for (time = 0; time < 2000; time++)
 			{
 				NdisStallExecution(1);				
 			}

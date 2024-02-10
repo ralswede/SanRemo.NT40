@@ -12,9 +12,9 @@ BEGIN
     CTEXT           "IBM 10/100 Ethernet Adapter Microchannel Device Driver",430,15,9,194,10,SS_SUNKEN
 	CTEXT           "IBM Code Name ""San Remo""",435,78,24,68,19,SS_SUNKEN
     ICON            "dllicon", 101, 214, 2, 16, 16
-	LTEXT           "Device driver created by Ryan Alswede using AMD PCnet-FAST sample souce code.",
+	LTEXT           "Device driver created by Ryan Alswede by modifying AMD PCnet-FAST sample source code for Microchannel Architecture.",
                     440,11,49,221,20
-    LTEXT           "Adaptec ASIC 9060R start-up routine and initialization source code provided by Christian Holzapfel.",
+    LTEXT           "Adaptec ASIC 9060R start-up routine and initialization source code created and provided by Christian Holzapfel.",
                     441,11,68,220,20
 	LTEXT           "All network device system resources are controlled by the Adapter Description File (ADF) for this adapter.",
 					446,11,88,220,20

@@ -2024,7 +2024,7 @@ Return Value:
 		if (McaData.AdapterId == SR_ADAPTER_ID)
 		{
 			// Upper 6 bits of POS[2] contain the IO base * 0x100) 
-			Adapter->MappedIoBaseAddress = ((McaData.PosData1 & 0xFC)) << 8;
+			Adapter->PhysicalIoBaseAddress = ((McaData.PosData1 & 0xFC)) << 8;
 
 
 			// Upper 4 bits of POS[3] contain the DMA arbitration level.

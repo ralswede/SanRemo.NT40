@@ -2232,15 +2232,10 @@ None.
 	{
 		DbgPrint(" WIO address mode read.\n");
 	}
-#endif	
-	for (Time = 0; Time < 1000; Time++)
-		NdisStallExecution(1);
-
+#endif		
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_DATA_REGISTER), temp5);
 
-	for (Time = 0; Time < 1000; Time++)
-		NdisStallExecution(1);		
 #if DBG
 	if (LanceDbg)
 		DbgPrint(" WIO address mode write\n");

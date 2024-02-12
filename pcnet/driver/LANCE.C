@@ -2222,8 +2222,6 @@ None.
 		  "The Software can invoke the DWIO mode by performing a DWord write
 		   access to the I/O location at offset 10h (RDP)"
 		   */
-	for (Time = 0; Time < 1000; Time++)
-		NdisStallExecution(1);
 
 	NdisRawWritePortUlong((IoAddr + ASIC_IO_ADDRESS_REGISTER), IoAddr + ASIC_IO_OFFSET + LANCE_DWIO_RDP_PORT);
 	NdisRawReadPortUlong((IoAddr + ASIC_IO_DATA_REGISTER), &temp5);

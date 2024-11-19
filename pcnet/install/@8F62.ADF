@@ -1,9 +1,11 @@
 ;********************************************************************
 ;* Copyright (C) 2023 by Ryan Alswede  All rights reserved          *
-;* Based on data read from AIX POS Regiters by Christian Holzapfel  *
+;* Based on data read by Christian Holzapfel from AIX POS Registers *
+;* Revision 11-16-2024												*
+;* Added 04C00-04FFFh io choice to allow ATI Mach32 to not conflict * 
 ;********************************************************************
 
-;Version 2.0
+;Version 3.0
 
 AdapterId  08f62h
 
@@ -20,7 +22,8 @@ NamedItem
   Choice "I/O Ports 01C00-01FFF" POS[0]=0001111Xb io 01C00h-01FFFh 
   Choice "I/O Ports 02000-023FF" POS[0]=0010001Xb io 02000h-023FFh
   choice "I/O Ports 02400-027FF" POS[0]=0010011Xb io 02400h-027FFh
-  Choice "I/O Ports 02800-02BFF" POS[0]=0010101Xb io 02800h-02BFFh												   
+  Choice "I/O Ports 02800-02BFF" POS[0]=0010101Xb io 02800h-02BFFh	
+  Choice "I/O Ports 04C00-04FFF" POS[0]=0100111Xb io 04C00h-04FFFh   
              
   Help "This option selects the I/O address to be used by the network adapter."
 
